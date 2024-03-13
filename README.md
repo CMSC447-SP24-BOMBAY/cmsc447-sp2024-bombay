@@ -29,7 +29,7 @@ Close Powershell and restart your terminal.
 
 `python init_db.py`
 
-### Whenever finished developing or running the program,top the virtual environment.
+### Whenever finished developing or running the program, stop the virtual environment.
 
 Windows: `deactivate`
 
