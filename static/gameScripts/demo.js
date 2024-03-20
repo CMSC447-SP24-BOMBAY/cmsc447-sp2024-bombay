@@ -12,7 +12,9 @@ var config = {
     physics:{
         default: 'arcade',
         arcade:{
-            gravity: {y:0}
+            gravity: {y:0},
+            //Only Turn on Debug if Needed
+            debug: true
         }
     },
     scale: {
