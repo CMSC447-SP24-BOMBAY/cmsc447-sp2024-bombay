@@ -1,13 +1,14 @@
 /** @type {import("..typings/phaser")} */
 
-import loader from "../scenes/loader.js";
-import Game from "../scenes/Game.js"
+import mainMenu from "../scenes/mainMenu.js";
+import loader1 from "../scenes/loader1.js";
+import level1 from "../scenes/level1.js";
 
 var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    scene: [loader, Game],
+    scene: [mainMenu, loader1, level1],
     
     physics:{
         default: 'arcade',
@@ -19,6 +20,9 @@ var config = {
     },
     scale: {
         zoom:1.2
+    },
+    render:{
+        pixelArt: true
     }
 };
 
