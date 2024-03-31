@@ -1,6 +1,6 @@
 export default class mainMenu extends Phaser.Scene{
     constructor(){
-        super('menu')
+        super('mainMenu')
     }
     
     preload(){
@@ -74,7 +74,8 @@ export default class mainMenu extends Phaser.Scene{
         })
         playButton.on("pointerup", ()=>{
             console.log("Play Button Clicked")
-            this.scene.start('loader1')
+            this.scene.start('levelSelect')
+            this.game.sound.stopAll();
             this.scene.stop('mainMenu')
         })
 

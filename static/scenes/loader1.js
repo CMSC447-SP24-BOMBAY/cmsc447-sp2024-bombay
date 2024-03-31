@@ -10,6 +10,22 @@ export default class loader1 extends Phaser.Scene{
 
         //Loads in Character
         this.load.atlas('Niko', '/static/Assets/Character_Sprites/Niko/NikoSheet.png', '/static/Assets/Character_Sprites/Niko/NikoSheet.json')
+
+        //Creates the Loading Bar
+        let loadingBar = this.add.graphics({
+            fillStyle: {
+                color: 0xffffff
+            }
+        })
+
+        this.load.on("progress", (percent)=>{
+            loadingBar.fillRect(0, this.game.renderer.height/2, this.game.renderer.width * percent, 50);
+            console.log(percent);
+        })
+
+        this.load.on("complete", ()=>{
+            console.log("Completeed Load")
+        })
     }
 
     create(){

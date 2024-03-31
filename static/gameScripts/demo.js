@@ -1,6 +1,8 @@
 /** @type {import("..typings/phaser")} */
 
 import mainMenu from "../scenes/mainMenu.js";
+import levelSelect from "../scenes/levelSelect.js";
+import login from "../scenes/login.js";
 import loader1 from "../scenes/loader1.js";
 import level1 from "../scenes/level1.js";
 
@@ -8,7 +10,7 @@ var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    scene: [mainMenu, loader1, level1],
+    scene: [login, mainMenu, levelSelect, loader1, level1],
     
     physics:{
         default: 'arcade',
