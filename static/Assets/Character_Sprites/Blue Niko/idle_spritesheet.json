@@ -1,0 +1,87 @@
+{
+  "frames": {
+    "Blue_Niko (2).png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 5,
+        "w": 54,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Blue_Niko (3).png": {
+      "frame": {
+        "x": 0,
+        "y": 57,
+        "w": 54,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 5,
+        "w": 54,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Blue_Niko (1).png": {
+      "frame": {
+        "x": 0,
+        "y": 114,
+        "w": 54,
+        "h": 55
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 7,
+        "w": 54,
+        "h": 55
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "idle_spritesheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 54,
+      "h": 169
+    },
+    "scale": 1
+  }
+}

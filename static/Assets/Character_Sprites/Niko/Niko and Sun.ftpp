@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "version": "0.6.7"
+  },
+  "savePath": "",
+  "images": [
+    {
+      "name": "Niko B1.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko B1.png",
+      "folder": ""
+    },
+    {
+      "name": "Niko B2.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko B2.png",
+      "folder": ""
+    },
+    {
+      "name": "Niko B3.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko B3.png",
+      "folder": ""
+    },
+    {
+      "name": "Niko F2.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko F2.png",
+      "folder": ""
+    },
+    {
+      "name": "Niko F3.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko F3.png",
+      "folder": ""
+    },
+    {
+      "name": "Niko L1.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko L1.png",
+      "folder": ""
+    },
+    {
+      "name": "Niko L2.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko L2.png",
+      "folder": ""
+    },
+    {
+      "name": "Niko L3.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko L3.png",
+      "folder": ""
+    },
+    {
+      "name": "Niko R1.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko R1.png",
+      "folder": ""
+    },
+    {
+      "name": "Niko R2.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko R2.png",
+      "folder": ""
+    },
+    {
+      "name": "Niko R3.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Niko R3.png",
+      "folder": ""
+    },
+    {
+      "name": "NikoSheet.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/NikoSheet.png",
+      "folder": ""
+    },
+    {
+      "name": "Sun B1.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Sun B1.png",
+      "folder": ""
+    },
+    {
+      "name": "Sun B2.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Sun B2.png",
+      "folder": ""
+    },
+    {
+      "name": "Sun F1.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Sun F1.png",
+      "folder": ""
+    },
+    {
+      "name": "Sun F2.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Sun F2.png",
+      "folder": ""
+    },
+    {
+      "name": "Sun F3.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Sun F3.png",
+      "folder": ""
+    },
+    {
+      "name": "Sun L1.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Sun L1.png",
+      "folder": ""
+    },
+    {
+      "name": "Sun L2.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Sun L2.png",
+      "folder": ""
+    },
+    {
+      "name": "Sun R1.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Sun R1.png",
+      "folder": ""
+    },
+    {
+      "name": "Sun R2.png",
+      "path": "D:/CMSC 447 GroupProject/Mockup/static/Assets/Character_Sprites/Niko/Sun R2.png",
+      "folder": ""
+    }
+  ],
+  "folders": [],
+  "packOptions": {
+    "textureName": "NikoSheet",
+    "textureFormat": "png",
+    "removeFileExtension": false,
+    "prependFolderName": true,
+    "base64Export": false,
+    "tinify": false,
+    "tinifyKey": "",
+    "scale": 1,
+    "filter": "none",
+    "exporter": "JSON (hash)",
+    "fileName": "pack-result",
+    "savePath": "",
+    "width": 2048,
+    "height": 2048,
+    "fixedSize": false,
+    "powerOfTwo": false,
+    "padding": 0,
+    "extrude": 0,
+    "allowRotation": true,
+    "allowTrim": true,
+    "trimMode": "trim",
+    "alphaThreshold": "0",
+    "detectIdentical": true,
+    "packer": "MaxRectsBin",
+    "packerMethod": "BestShortSideFit"
+  }
+}
