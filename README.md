@@ -3,15 +3,15 @@
 
 ### Create a virtual environment to contain and isolate any library installations.
 
-`python -m venv venv`
+`python -m venv .venv`
 
-### Run the virtual environment. Make sure to execute any commands while the virtual environment is active. This can be verified if there is a `(venv)` at the beginning of the shell prompt.
+### Run the virtual environment. Make sure to execute any commands while the virtual environment is active. This can be verified if there is a `(.venv)` at the beginning of the shell prompt.
 
 The command for Windows and MacOS differ slightly:
 
-Windows: `venv\Scripts\activate`
+Windows: `.venv\Scripts\activate`
 
-MacOS: `source venv/bin/activate`
+MacOS: `source .venv/bin/activate`
 
 If you are getting an error from trying to activate your virtual environment for Windows, try the following steps:
 
@@ -35,10 +35,14 @@ Windows: `deactivate`
 
 MacOS: `deactivate` or `source deactivate`
 
+### Install any necessary packages with npm
+
+`npm install`
+
 ## Running the game
 
-### Start the server. Open another terminal for this.
+### Start the Flask server
 
-`python server.py`
+`flask --app app run`
 
 You can stop running the server with `Ctrl + C`
