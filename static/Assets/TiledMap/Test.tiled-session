@@ -1,0 +1,76 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "demomap.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 2
+        },
+        "#dungeon2": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "demomap.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 230.5,
+                "y": 132.5
+            }
+        },
+        "demomap.tmx#atlas_walls_low-16x16": {
+            "scaleInDock": 1
+        },
+        "demomap.tmx#dungeon2": {
+            "scaleInDock": 1
+        },
+        "demomap.tmx#dungeon3": {
+            "scaleInDock": 1.5
+        },
+        "demomapused.tmx": {
+            "scale": 0.27134375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 801.5662789358518,
+                "y": 801.5662789358519
+            }
+        },
+        "demomapused.tmx#atlas_walls_low-16x16": {
+            "scaleInDock": 1
+        },
+        "demomapused.tmx#dungeon2": {
+            "scaleInDock": 1
+        },
+        "demomapused.tmx#dungeon3": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "D:/CMSC 447 GroupProject/TestWebsite/Assets/TiledMap",
+    "last.imagePath": "D:/CMSC 447 GroupProject/TestWebsite/Assets/Map Sprites",
+    "map.height": 100,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 100,
+    "openFiles": [
+        "demomap.tmx"
+    ],
+    "project": "Test.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "demomap.tmx",
+        "demomapused.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.transparentColor": "#000000"
+}

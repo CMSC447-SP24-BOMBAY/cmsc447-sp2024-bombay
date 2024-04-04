@@ -1,0 +1,47 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "testuremap.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "testuremap.tmx": {
+            "scale": 0.2529375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 798.6162589572524,
+                "y": 800.5930318754635
+            }
+        },
+        "testuremap.tmx#stardew": {
+            "scaleInDock": 1
+        }
+    },
+    "last.imagePath": "D:/CMSC 447 GroupProject/TestWebsite/Assets/Map Sprites",
+    "map.height": 100,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 100,
+    "openFiles": [
+        "testuremap.tmx"
+    ],
+    "project": "test1.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "testuremap.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.transparentColor": "#050304",
+    "tileset.useTransparentColor": true
+}
