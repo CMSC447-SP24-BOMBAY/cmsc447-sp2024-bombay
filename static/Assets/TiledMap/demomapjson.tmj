@@ -9,7 +9,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 197, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 132, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -119,14 +119,14 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 264, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 5, 2, 6, 2, 7, 2, 4, 65, 65, 65, 65, 65, 65, 65, 65, 264, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 324, 66, 34, 67, 34, 98, 34, 99, 34, 34, 34, 34, 34, 34, 165, 34, 34, 34, 34, 37, 34, 38, 34, 39, 34, 36, 290, 65, 65, 65, 65, 65, 65, 65, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 324, 66, 34, 67, 34, 98, 34, 99, 34, 34, 34, 34, 34, 34, 68, 34, 34, 34, 34, 37, 34, 38, 34, 39, 34, 36, 290, 65, 65, 65, 65, 65, 65, 65, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 324, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 69, 65, 70, 65, 71, 65, 65, 323, 0, 65, 65, 65, 65, 65, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 324, 0, 0, 0, 65, 65, 166, 65, 65, 166, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 0, 65, 323, 0, 0, 0, 0, 65, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 324, 0, 0, 0, 0, 0, 198, 0, 0, 198, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 323, 2, 2, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 324, 0, 0, 0, 0, 0, 230, 0, 0, 230, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 101, 34, 102, 34, 103, 36, 290, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 324, 0, 0, 0, 0, 0, 231, 0, 0, 231, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 101, 34, 102, 34, 103, 36, 290, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 324, 0, 0, 0, 0, 0, 166, 0, 0, 166, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 133, 65, 134, 65, 135, 65, 323, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 324, 0, 0, 0, 0, 0, 198, 0, 0, 198, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 323, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 324, 0, 0, 0, 0, 0, 230, 0, 0, 230, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 323, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 324, 0, 0, 0, 0, 0, 231, 0, 0, 231, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 323, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 324, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 450, 451, 452, 453, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 323, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 321, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 4, 482, 483, 484, 485, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 323, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 353, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 35, 36, 514, 515, 516, 517, 34, 35, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 354, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -234,7 +234,7 @@
         {
          "columns":32,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/TestWebsite\/Assets\/Map Sprites\/0x72_DungeonTilesetII_v1.7.png",
+         "image":"..\/..\/..\/..\/..\/CMSC 447 GroupProject\/TestWebsite\/Assets\/Map Sprites\/0x72_DungeonTilesetII_v1.7.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -250,6 +250,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -259,6 +264,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -268,6 +278,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -277,6 +292,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -286,6 +306,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -295,6 +320,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -304,6 +334,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -538,6 +573,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -547,6 +587,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -556,6 +601,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -565,6 +615,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -574,6 +629,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -583,6 +643,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -592,6 +657,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -826,6 +896,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -835,6 +910,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -844,6 +924,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":"openDoor"
                         }]
                 }, 
                 {
@@ -853,6 +938,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -862,6 +952,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -871,6 +966,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -880,6 +980,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1114,6 +1219,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1123,6 +1233,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1132,6 +1247,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1141,6 +1261,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 },
             
@@ -1151,6 +1276,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1160,6 +1290,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1169,6 +1304,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1403,6 +1543,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1412,6 +1557,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1421,6 +1571,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1430,6 +1585,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1439,6 +1599,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1448,6 +1613,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1457,6 +1627,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1691,6 +1866,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1700,6 +1880,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1709,6 +1894,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1718,6 +1908,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1727,6 +1922,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1735,7 +1935,12 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1744,7 +1949,12 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1979,6 +2189,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1988,6 +2203,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -1997,6 +2217,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2006,6 +2231,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2015,6 +2245,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2024,6 +2259,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2033,6 +2273,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2268,6 +2513,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2277,6 +2527,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2286,6 +2541,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2295,6 +2555,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2304,6 +2569,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2313,6 +2583,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2321,7 +2596,12 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2556,6 +2836,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2565,6 +2850,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2574,6 +2864,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2583,6 +2878,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2592,6 +2892,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2601,6 +2906,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2610,6 +2920,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2844,6 +3159,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2853,6 +3173,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2862,6 +3187,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2871,6 +3201,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2880,6 +3215,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2889,6 +3229,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -2898,6 +3243,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3133,6 +3483,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3142,6 +3497,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3151,6 +3511,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3160,6 +3525,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3169,6 +3539,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3178,6 +3553,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3187,6 +3567,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3421,6 +3806,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3430,6 +3820,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3439,6 +3834,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3448,6 +3848,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3457,6 +3862,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3466,6 +3876,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3475,6 +3890,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3709,6 +4129,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3718,6 +4143,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3727,6 +4157,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3736,6 +4171,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3745,6 +4185,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3754,6 +4199,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3763,6 +4213,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -3998,6 +4453,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4007,6 +4467,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4016,6 +4481,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4025,6 +4495,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4034,6 +4509,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4043,6 +4523,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4052,6 +4537,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4286,6 +4776,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4295,6 +4790,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4304,6 +4804,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4313,6 +4818,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4322,6 +4832,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4331,6 +4846,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4340,6 +4860,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4574,6 +5099,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4583,6 +5113,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4592,6 +5127,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4601,6 +5141,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4610,6 +5155,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4619,6 +5169,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4628,6 +5183,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4863,6 +5423,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4872,6 +5437,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4881,6 +5451,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4890,6 +5465,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4899,6 +5479,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4908,6 +5493,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -4917,6 +5507,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -5151,6 +5746,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -5160,6 +5760,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -5169,6 +5774,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -5178,6 +5788,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -5187,6 +5802,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -5196,6 +5816,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -5205,6 +5830,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"isInteractable",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {

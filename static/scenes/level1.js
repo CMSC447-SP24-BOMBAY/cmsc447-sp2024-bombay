@@ -12,12 +12,12 @@ export default class level1 extends Phaser.Scene{
     create(){
         //For the Cursors
         //This Creates the Map + sets collisions
-        const map = this.make.tilemap({key : 'dungeon'})
-        const tileset = map.addTilesetImage('dungeon3', 'tiles')
+        this.map = this.make.tilemap({key : 'dungeon'})
+        this.tileset = this.map.addTilesetImage('dungeon3', 'tiles')
         
-        map.createLayer('floor', tileset)
-        const wallslayer = map.createLayer('Walls', tileset)
-        wallslayer.setCollisionByProperty({collides: true})
+        this.floorlayer = this.map.createLayer('floor', this.tileset)
+        this.wallslayer = this.map.createLayer('Walls', this.tileset)
+        this.wallslayer.setCollisionByProperty({collides: true})
 
         //This will create the character
         this.niko = this.physics.add.sprite(250,200,'Niko','Sun F1.png')
@@ -74,15 +74,15 @@ export default class level1 extends Phaser.Scene{
             frameRate: 10
         })
 
-        this.physics.add.collider(this.niko, wallslayer)
+        this.physics.add.collider(this.niko, this.wallslayer)
         this.cameras.main.startFollow(this.niko, true)
         // For Debugging
-        // const debugGraphics = this.add.graphics().setAlpha(0.7)
-        // wallslayer.renderDebug(debugGraphics, {
-        //     tileColor:null,
-        //     collidingTileColor: new Phaser.Display.Color(255,255,0, 255),
-        //     faceColor: new Phaser.Display.Color(255, 0, 255, 255)
-        // })
+        const debugGraphics = this.add.graphics().setAlpha(0.7)
+        this.wallslayer.renderDebug(debugGraphics, {
+            tileColor:null,
+            collidingTileColor: new Phaser.Display.Color(255,255,0, 255),
+            faceColor: new Phaser.Display.Color(255, 0, 255, 255)
+        })
     }
 
     update(time, dTime){
@@ -106,17 +106,42 @@ export default class level1 extends Phaser.Scene{
         else if(this.cursors.up.isDown){
             this.niko.anims.play('niko-run-back', true)
             this.niko.setVelocity(0, -speed)
-            this.niko.facing = "back"
+            this.niko.facing = "up"
         }
         else if(this.cursors.down.isDown){
             this.niko.anims.play('niko-run-forward', true)
             this.niko.setVelocity(0, speed)
-            this.niko.facing = "right"
+            this.niko.facing = "down"
         }
         else{
-            this.niko.anims.play('niko-idle-forward', true)
+            this.niko.anims.stop()
             this.niko.setVelocity(0, 0)
         }
+        console.log("Movement Key Pressed ", this.niko.facing)
+
+        this.input.keyboard.on('keydown-E', ()=>{
+            //console.log("Interact Key Pressed ", this.niko.facing)
+            
+            //This Returns the Floor Layer
+            const tile = this.map.getTileAtWorldXY(this.niko.body.x, this.niko.body.y, true, null, this.floorlayer)
+            console.log(tile.index-1)
+
+            //Find the Wall Layer of direction faced.
+            this.wallTile;
+            if(this.niko.facing = "left"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x - 8, this.niko.y, true, null, this.wallslayer)
+            }
+            else if(this.niko.facing = "right"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x + 8, this.niko.y, true, null, this.wallslayer)
+            }
+            else if(this.niko.facing = "up"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y + 8, true, null, this.wallslayer)
+            }
+            else if(this.niko.facing = "down"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y - 8, true, null, this.wallslayer)
+            }
+            console.log("INTERACTION: FACING", this.niko.facing, this.wallTile.index-1)
+        })
     }
 }
 
