@@ -1,4 +1,5 @@
 export default class level1 extends Phaser.Scene{
+    delay;
     cursors;
     niko = Phaser.Physics.Arcade.Sprite;
     constructor(){
@@ -10,6 +11,7 @@ export default class level1 extends Phaser.Scene{
     }
 
     create(){
+        this.delay = this.time.now
         //For the Cursors
         //This Creates the Map + sets collisions
         this.map = this.make.tilemap({key : 'dungeon'})
@@ -120,6 +122,12 @@ export default class level1 extends Phaser.Scene{
         console.log("Movement Key Pressed ", this.niko.facing)
 
         this.input.keyboard.on('keydown-E', ()=>{
+            if(this.delay > this.time.now){
+                //Prevents The game from interacting way to many times.
+                return 
+            }
+
+            this.delay = this.time.now + 500
             //console.log("Interact Key Pressed ", this.niko.facing)
             
             //This Returns the Floor Layer
