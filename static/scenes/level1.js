@@ -1,5 +1,5 @@
 export default class level1 extends Phaser.Scene{
-    delay;
+    interactIsPressed;
     cursors;
     niko = Phaser.Physics.Arcade.Sprite;
     constructor(){
@@ -122,12 +122,12 @@ export default class level1 extends Phaser.Scene{
         console.log("Movement Key Pressed ", this.niko.facing)
 
         this.input.keyboard.on('keydown-E', ()=>{
-            if(this.delay > this.time.now){
+            if(this.interactIsPressed){
                 //Prevents The game from interacting way to many times.
                 return 
             }
-
-            this.delay = this.time.now + 500
+            this.interactIsPressed = true;
+            //this.delay = this.time.now + 500
             //console.log("Interact Key Pressed ", this.niko.facing)
             
             //This Returns the Floor Layer
@@ -150,6 +150,7 @@ export default class level1 extends Phaser.Scene{
             }
             console.log("INTERACTION: FACING", this.niko.facing, this.wallTile.index-1)
         })
+        this.input.keyboard.on('keyup-E', ()=>{this.interactIsPressed = false})
     }
 }
 
