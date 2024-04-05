@@ -1,14 +1,29 @@
 /** @type {import("..typings/phaser")} */
 
 export default class Game extends Phaser.Scene{
-    cursors;
-    niko = Phaser.Physics.Arcade.Sprite;
+    cursors
+    niko = Phaser.Physics.Arcade.Sprite
     constructor(){
         super('game')
     }
 
     preload(){
+        keybinds
+
+        //TODO: Once login is added, use this with user information to get user's keybinds
+        /*
+        fetch('/api/settings/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(result => {keybinds = result})
+        .catch(error => {console.error('Error:', error)})
+        this.cursors = this.input.keyboard.addKeys(keybinds)
+        */
         this.cursors = this.input.keyboard.createCursorKeys()
+        this.input.keyboard.addkey({'interact': 'E'}) //For interaction in interim
     }
 
     create(){
@@ -119,6 +134,35 @@ export default class Game extends Phaser.Scene{
             this.niko.anims.play('niko-idle-forward', true)
             this.niko.setVelocity(0, 0)
         }
+        
+        this.input.keyboard.on(this.cursors.key('interact'), ()=>{
+            if(this.interactIsPressed){
+                //Prevents The game from interacting way to many times.
+                return 
+            }
+            this.interactIsPressed = true;
+
+            //This Returns the Floor Layer
+            const tile = this.map.getTileAtWorldXY(this.niko.body.x, this.niko.body.y, true, null, this.floorlayer)
+            console.log(tile.index-1)
+
+            //Find the Wall Layer of direction faced.
+            this.wallTile;
+            if(this.niko.facing = "left"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x - 8, this.niko.y, true, null, this.wallslayer)
+            }
+            else if(this.niko.facing = "right"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x + 8, this.niko.y, true, null, this.wallslayer)
+            }
+            else if(this.niko.facing = "up"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y + 8, true, null, this.wallslayer)
+            }
+            else if(this.niko.facing = "down"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y - 8, true, null, this.wallslayer)
+            }
+            console.log("INTERACTION: FACING", this.niko.facing, this.wallTile.index-1)
+        })
+        this.input.keyboard.on(this.cursors.key('interact'), ()=>{this.interactIsPressed = false})
     }
 }
 
