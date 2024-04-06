@@ -7,8 +7,11 @@ export default class level1 extends Phaser.Scene{
         null: ()=>{
             return
         },
-        
-
+        "mop": ()=>{
+            this.niko.inventory.push("mop")
+            this.wallslayer.removeTileAt(29, 14, true, true, this.wallsLayer)
+            this.wallslayer.removeTileAt(29, 15, true, true, this.wallsLayer)
+        }
 
         //Old Demo level
         // "openDoor": ()=>{
@@ -58,6 +61,7 @@ export default class level1 extends Phaser.Scene{
         this.niko = this.physics.add.sprite(250,200,'Niko','Sun F1.png')
         this.niko.setScale(0.5)
         this.niko.body.setSize(16,16,true)
+        this.niko.inventory = []
         //this.niko.body.setOffset(8,8)
         this.niko.facing = "down"
 
@@ -160,12 +164,9 @@ export default class level1 extends Phaser.Scene{
                 return 
             }
             this.interactIsPressed = true;
-            //this.delay = this.time.now + 500
-            //console.log("Interact Key Pressed ", this.niko.facing)
             
             //This Returns the Floor Layer
             this.floorTile = this.map.getTileAtWorldXY(this.niko.body.x, this.niko.body.y, true, null, this.floorInteractLayer)
-            //console.log(tile.index-1)
 
             //Find the Wall Layer of direction faced.
             this.wallTile;
@@ -181,7 +182,6 @@ export default class level1 extends Phaser.Scene{
             else if(this.niko.facing == "down"){
                 this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y + 16, true, null, this.wallslayer)
             }
-            //console.log("INTERACTION: FACING", this.niko.facing, this.wallTile.index-1
             
             //Now knowing the current standing tile and facing tile, we can perform interactions based on the tile 'isInteractable' string
             //  DEBUGGING ISSUE FOR LATER, sometimes game does allow unauthorized interacts so it looks for something that isnt defined in the dictionary. Will need to fix later
