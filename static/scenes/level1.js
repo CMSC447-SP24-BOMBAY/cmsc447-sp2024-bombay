@@ -132,23 +132,31 @@ export default class level1 extends Phaser.Scene{
             
             //This Returns the Floor Layer
             const tile = this.map.getTileAtWorldXY(this.niko.body.x, this.niko.body.y, true, null, this.floorlayer)
-            console.log(tile.index-1)
+            //console.log(tile.index-1)
 
             //Find the Wall Layer of direction faced.
             this.wallTile;
-            if(this.niko.facing = "left"){
-                this.wallTile = this.map.getTileAtWorldXY(this.niko.x - 8, this.niko.y, true, null, this.wallslayer)
+            if(this.niko.facing == "left"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x - 16, this.niko.y, true, null, this.wallslayer)
             }
-            else if(this.niko.facing = "right"){
-                this.wallTile = this.map.getTileAtWorldXY(this.niko.x + 8, this.niko.y, true, null, this.wallslayer)
+            else if(this.niko.facing == "right"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x + 16, this.niko.y, true, null, this.wallslayer)
             }
-            else if(this.niko.facing = "up"){
-                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y + 8, true, null, this.wallslayer)
+            else if(this.niko.facing == "up"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y - 16, true, null, this.wallslayer)
             }
-            else if(this.niko.facing = "down"){
-                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y - 8, true, null, this.wallslayer)
+            else if(this.niko.facing == "down"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y + 16, true, null, this.wallslayer)
             }
-            console.log("INTERACTION: FACING", this.niko.facing, this.wallTile.index-1)
+            //console.log("INTERACTION: FACING", this.niko.facing, this.wallTile.index-1
+            
+            //Now knowing the current standing tile and facing tile, we can perform interactions based on the tile 'isInteractable' string
+            if(tile.properties.isInteractable != ""){
+                console.log(JSON.stringify(tile.properties.isInteractable))
+            }
+            else if(this.wallTile.properties.isInteractable  != ""){
+                console.log(JSON.stringify(this.wallTile.properties.isInteractable))
+            }
         })
         this.input.keyboard.on('keyup-E', ()=>{this.interactIsPressed = false})
     }
