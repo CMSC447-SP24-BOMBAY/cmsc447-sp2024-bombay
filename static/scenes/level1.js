@@ -1,7 +1,32 @@
 export default class level1 extends Phaser.Scene{
+
     interactIsPressed;
     cursors;
     niko = Phaser.Physics.Arcade.Sprite;
+    fnDict = {
+        null: ()=>{
+            return
+        },
+        "openDoor": ()=>{
+            this.wallslayer.removeTileAt(17, 14, true, true, this.wallsLayer)
+            this.wallslayer.removeTileAt(18, 14, true, true, this.wallsLayer)
+            this.wallslayer.removeTileAt(17, 15, true, true, this.wallsLayer)
+            this.wallslayer.removeTileAt(18, 15, true, true, this.wallsLayer)
+
+            this.wallslayer.putTileAt(486, 17, 14, true, this.wallsLayer)
+            this.wallslayer.putTileAt(487, 18, 14, true, this.wallsLayer)
+            this.wallslayer.putTileAt(518, 17, 15, true, this.wallsLayer)
+            this.wallslayer.putTileAt(519, 18, 15, true, this.wallsLayer)
+        },
+        "blueSwitch": ()=>{
+            this.floorInteractLayer.removeTileAt(20, 17, true, true, this.floorInteractLayer)
+            this.floorInteractLayer.putTileAt(390, 20, 17, true, this.floorInteractLayer)
+
+            this.floorInteractLayer.removeTileAt(15, 17, true, true, this.floorInteractLayer)
+            this.floorInteractLayer.putTileAt(421, 15, 17, true, this.floorInteractLayer)
+        }
+    }
+
     constructor(){
         super('level1')
     }
@@ -19,6 +44,7 @@ export default class level1 extends Phaser.Scene{
         
         this.floorlayer = this.map.createLayer('floor', this.tileset)
         this.wallslayer = this.map.createLayer('Walls', this.tileset)
+        this.floorInteractLayer = this.map.createLayer('floorInteractables', this.tileset)
         this.wallslayer.setCollisionByProperty({collides: true})
 
         //This will create the character
@@ -79,12 +105,12 @@ export default class level1 extends Phaser.Scene{
         this.physics.add.collider(this.niko, this.wallslayer)
         this.cameras.main.startFollow(this.niko, true)
         // For Debugging
-        const debugGraphics = this.add.graphics().setAlpha(0.7)
-        this.wallslayer.renderDebug(debugGraphics, {
-            tileColor:null,
-            collidingTileColor: new Phaser.Display.Color(255,255,0, 255),
-            faceColor: new Phaser.Display.Color(255, 0, 255, 255)
-        })
+        // const debugGraphics = this.add.graphics().setAlpha(0.7)
+        // this.wallslayer.renderDebug(debugGraphics, {
+        //     tileColor:null,
+        //     collidingTileColor: new Phaser.Display.Color(255,255,0, 255),
+        //     faceColor: new Phaser.Display.Color(255, 0, 255, 255)
+        // })
     }
 
     update(time, dTime){
@@ -119,7 +145,7 @@ export default class level1 extends Phaser.Scene{
             this.niko.anims.stop()
             this.niko.setVelocity(0, 0)
         }
-        console.log("Movement Key Pressed ", this.niko.facing)
+        //console.log("Movement Key Pressed ", this.niko.facing)
 
         this.input.keyboard.on('keydown-E', ()=>{
             if(this.interactIsPressed){
@@ -131,7 +157,7 @@ export default class level1 extends Phaser.Scene{
             //console.log("Interact Key Pressed ", this.niko.facing)
             
             //This Returns the Floor Layer
-            const tile = this.map.getTileAtWorldXY(this.niko.body.x, this.niko.body.y, true, null, this.floorlayer)
+            this.floorTile = this.map.getTileAtWorldXY(this.niko.body.x, this.niko.body.y, true, null, this.floorInteractLayer)
             //console.log(tile.index-1)
 
             //Find the Wall Layer of direction faced.
@@ -151,11 +177,17 @@ export default class level1 extends Phaser.Scene{
             //console.log("INTERACTION: FACING", this.niko.facing, this.wallTile.index-1
             
             //Now knowing the current standing tile and facing tile, we can perform interactions based on the tile 'isInteractable' string
-            if(tile.properties.isInteractable != ""){
-                console.log(JSON.stringify(tile.properties.isInteractable))
+            //  DEBUGGING ISSUE FOR LATER, sometimes game does allow unauthorized interacts so it looks for something that isnt defined in the dictionary. Will need to fix later
+            console.log(this.floorTile.index, this.wallTile.index)
+            if(this.floorTile.properties.isInteractable != "" && this.floorTile.index != -1){
+                var interact = this.floorTile.properties.isInteractable
+                console.log(JSON.stringify(interact))
+                this.fnDict[interact]()
             }
-            else if(this.wallTile.properties.isInteractable  != ""){
-                console.log(JSON.stringify(this.wallTile.properties.isInteractable))
+            if(this.wallTile.properties.isInteractable != "" && this.wallTile.index != -1){
+                var interact = this.wallTile.properties.isInteractable
+                console.log(JSON.stringify(interact))
+                this.fnDict[interact]()
             }
         })
         this.input.keyboard.on('keyup-E', ()=>{this.interactIsPressed = false})
