@@ -7,24 +7,28 @@ export default class level1 extends Phaser.Scene{
         null: ()=>{
             return
         },
-        "openDoor": ()=>{
-            this.wallslayer.removeTileAt(17, 14, true, true, this.wallsLayer)
-            this.wallslayer.removeTileAt(18, 14, true, true, this.wallsLayer)
-            this.wallslayer.removeTileAt(17, 15, true, true, this.wallsLayer)
-            this.wallslayer.removeTileAt(18, 15, true, true, this.wallsLayer)
+        
 
-            this.wallslayer.putTileAt(486, 17, 14, true, this.wallsLayer)
-            this.wallslayer.putTileAt(487, 18, 14, true, this.wallsLayer)
-            this.wallslayer.putTileAt(518, 17, 15, true, this.wallsLayer)
-            this.wallslayer.putTileAt(519, 18, 15, true, this.wallsLayer)
-        },
-        "blueSwitch": ()=>{
-            this.floorInteractLayer.removeTileAt(20, 17, true, true, this.floorInteractLayer)
-            this.floorInteractLayer.putTileAt(390, 20, 17, true, this.floorInteractLayer)
 
-            this.floorInteractLayer.removeTileAt(15, 17, true, true, this.floorInteractLayer)
-            this.floorInteractLayer.putTileAt(421, 15, 17, true, this.floorInteractLayer)
-        }
+        //Old Demo level
+        // "openDoor": ()=>{
+        //     this.wallslayer.removeTileAt(17, 14, true, true, this.wallsLayer)
+        //     this.wallslayer.removeTileAt(18, 14, true, true, this.wallsLayer)
+        //     this.wallslayer.removeTileAt(17, 15, true, true, this.wallsLayer)
+        //     this.wallslayer.removeTileAt(18, 15, true, true, this.wallsLayer)
+
+        //     this.wallslayer.putTileAt(486, 17, 14, true, this.wallsLayer)
+        //     this.wallslayer.putTileAt(487, 18, 14, true, this.wallsLayer)
+        //     this.wallslayer.putTileAt(518, 17, 15, true, this.wallsLayer)
+        //     this.wallslayer.putTileAt(519, 18, 15, true, this.wallsLayer)
+        // },
+        // "blueSwitch": ()=>{
+        //     this.floorInteractLayer.removeTileAt(20, 17, true, true, this.floorInteractLayer)
+        //     this.floorInteractLayer.putTileAt(390, 20, 17, true, this.floorInteractLayer)
+
+        //     this.floorInteractLayer.removeTileAt(15, 17, true, true, this.floorInteractLayer)
+        //     this.floorInteractLayer.putTileAt(421, 15, 17, true, this.floorInteractLayer)
+        // }
     }
 
     constructor(){
@@ -41,10 +45,13 @@ export default class level1 extends Phaser.Scene{
         //This Creates the Map + sets collisions
         this.map = this.make.tilemap({key : 'dungeon'})
         this.tileset = this.map.addTilesetImage('dungeon3', 'tiles')
+        this.tileset2 = this.map.addTilesetImage('stardewValley_assets', 'tavern')
+        const tilesetArr = [this.tileset, this.tileset2]
         
-        this.floorlayer = this.map.createLayer('floor', this.tileset)
-        this.wallslayer = this.map.createLayer('Walls', this.tileset)
-        this.floorInteractLayer = this.map.createLayer('floorInteractables', this.tileset)
+        this.floorlayer = this.map.createLayer('floor', tilesetArr)
+        this.wallslayer = this.map.createLayer('Walls', tilesetArr)
+        this.floorInteractLayer = this.map.createLayer('floorInteractables', tilesetArr)
+
         this.wallslayer.setCollisionByProperty({collides: true})
 
         //This will create the character
