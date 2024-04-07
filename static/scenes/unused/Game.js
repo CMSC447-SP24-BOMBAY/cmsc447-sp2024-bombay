@@ -1,14 +1,15 @@
 /** @type {import("..typings/phaser")} */
 
 export default class Game extends Phaser.Scene{
-    cursors
-    niko = Phaser.Physics.Arcade.Sprite
-    constructor(){
-        super('game')
+    constructor(name){
+        super(name)
+        this.interactIsPressed
+        this.cursors
+        this.niko = Phaser.Physics.Arcade.Sprite
     }
 
     preload(){
-        keybinds
+        // keybinds
 
         //TODO: Once login is added, use this with user information to get user's keybinds
         /*
@@ -23,23 +24,21 @@ export default class Game extends Phaser.Scene{
         this.cursors = this.input.keyboard.addKeys(keybinds)
         */
         this.cursors = this.input.keyboard.createCursorKeys()
-        this.input.keyboard.addkey({'interact': 'E'}) //For interaction in interim
+        //this.input.keyboard.addkey({'interact': 'E'}) //For interaction in interim
     }
 
     create(){
         //For the Cursors
         //This Creates the Map + sets collisions
-        const map = this.make.tilemap({key : 'dungeon'})
-        const tileset = map.addTilesetImage('dungeon3', 'tiles')
         
-        map.createLayer('floor', tileset)
-        const wallslayer = map.createLayer('Walls', tileset)
-        wallslayer.setCollisionByProperty({collides: true})
+        //Setting everything that -isn't- level specific. (character and cursors)
 
         //This will create the character
         this.niko = this.physics.add.sprite(250,200,'Niko','Sun F1.png')
         this.niko.setScale(0.5)
         this.niko.body.setSize(16,16,true)
+        this.niko.inventory = []
+        this.niko.body.setOffset(24, 32)
         //this.niko.body.setOffset(8,8)
         this.niko.facing = "down"
 
@@ -91,7 +90,6 @@ export default class Game extends Phaser.Scene{
             frameRate: 10
         })
 
-        this.physics.add.collider(this.niko, wallslayer)
         this.cameras.main.startFollow(this.niko, true)
         // For Debugging
         // const debugGraphics = this.add.graphics().setAlpha(0.7)
@@ -123,46 +121,87 @@ export default class Game extends Phaser.Scene{
         else if(this.cursors.up.isDown){
             this.niko.anims.play('niko-run-back', true)
             this.niko.setVelocity(0, -speed)
-            this.niko.facing = "back"
+            this.niko.facing = "up"
         }
         else if(this.cursors.down.isDown){
             this.niko.anims.play('niko-run-forward', true)
             this.niko.setVelocity(0, speed)
-            this.niko.facing = "right"
+            this.niko.facing = "down"
         }
         else{
-            this.niko.anims.play('niko-idle-forward', true)
+            this.niko.anims.stop()
             this.niko.setVelocity(0, 0)
         }
-        
-        this.input.keyboard.on(this.cursors.key('interact'), ()=>{
+        //console.log("Movement Key Pressed ", this.niko.facing)
+
+        this.input.keyboard.on('keydown-E', ()=>{
             if(this.interactIsPressed){
                 //Prevents The game from interacting way to many times.
                 return 
             }
             this.interactIsPressed = true;
-
+            
             //This Returns the Floor Layer
-            const tile = this.map.getTileAtWorldXY(this.niko.body.x, this.niko.body.y, true, null, this.floorlayer)
-            console.log(tile.index-1)
+            this.floorTile = this.map.getTileAtWorldXY(this.niko.body.x, this.niko.body.y, true, null, this.floorInteractLayer)
 
             //Find the Wall Layer of direction faced.
             this.wallTile;
-            if(this.niko.facing = "left"){
-                this.wallTile = this.map.getTileAtWorldXY(this.niko.x - 8, this.niko.y, true, null, this.wallslayer)
+            if(this.niko.facing == "left"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x - 16, this.niko.y, true, null, this.wallslayer)
             }
-            else if(this.niko.facing = "right"){
-                this.wallTile = this.map.getTileAtWorldXY(this.niko.x + 8, this.niko.y, true, null, this.wallslayer)
+            else if(this.niko.facing == "right"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x + 16, this.niko.y, true, null, this.wallslayer)
             }
-            else if(this.niko.facing = "up"){
-                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y + 8, true, null, this.wallslayer)
+            else if(this.niko.facing == "up"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y - 16, true, null, this.wallslayer)
             }
-            else if(this.niko.facing = "down"){
-                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y - 8, true, null, this.wallslayer)
+            else if(this.niko.facing == "down"){
+                this.wallTile = this.map.getTileAtWorldXY(this.niko.x, this.niko.y + 16, true, null, this.wallslayer)
             }
-            console.log("INTERACTION: FACING", this.niko.facing, this.wallTile.index-1)
+            
+            //Now knowing the current standing tile and facing tile, we can perform interactions based on the tile 'isInteractable' string
+            //  DEBUGGING ISSUE FOR LATER, sometimes game does allow unauthorized interacts so it looks for something that isnt defined in the dictionary. Will need to fix later
+            console.log(this.floorTile.index, this.wallTile.index)
+            if(this.floorTile.properties.isInteractable != "" && this.floorTile.index != -1){
+                var interact = this.floorTile.properties.isInteractable
+                console.log(JSON.stringify(interact))
+                this.fnDict[interact]()
+            }
+            if(this.wallTile.properties.isInteractable != "" && this.wallTile.index != -1){
+                var interact = this.wallTile.properties.isInteractable
+                console.log(JSON.stringify(interact))
+                this.fnDict[interact]()
+            }
         })
-        this.input.keyboard.on(this.cursors.key('interact'), ()=>{this.interactIsPressed = false})
+        this.input.keyboard.on('keyup-E', ()=>{this.interactIsPressed = false})
+    }
+
+    dialog(){
+        this.r = this.add.rectangle(this.niko.x, this.niko.y+200, 700, 150, 0x301934)
+        this.r.setStrokeStyle(4,0xefc53f)
+        this.face = this.add.image(this.niko.x-290, this.niko.y+200, 'niko_face').setScale(1.5,1.5)
+        this.text = this.add.text(this.niko.x-200, this.niko.y+150, this.message, { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+            
+        const end = () =>{
+            this.r.destroy()
+            this.text.destroy()
+            this.face.destroy()
+            this.scene.resume("level1")
+        }
+        this.scene.pause("level1")
+
+        var keypressed = false
+        document.addEventListener("keydown", (event) => {
+            end()
+            keypressed = true
+        })
+        
+        function repeat(){
+            if(!keypressed){
+                setTimeout(repeat,0)
+            }
+        }
+        repeat()
     }
 }
 
