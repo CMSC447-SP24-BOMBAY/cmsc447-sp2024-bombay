@@ -14,19 +14,7 @@ export default class level1 extends Phaser.Scene{
         },
         "brownSign": ()=>{
             this.message = "This is a sign!"
-            this.r = this.add.rectangle(this.niko.x, this.niko.y+200, 700, 150, 0x301934);
-            this.r.setStrokeStyle(4,0xefc53f)
-            this.face = this.add.image(this.niko.x-290, this.niko.y+200, 'niko_face').setScale(1.5,1.5)
-            this.text = this.add.text(this.niko.x-200, this.niko.y+150, this.message, { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
-            
-            const end = () =>{
-                this.r.destroy()
-                this.text.destroy()
-                this.face.destroy()
-                this.scene.resume("level1")
-            }
-            this.scene.pause("level1")
-            const timeout = setTimeout(end, 10000)
+            this.dialog()
         }
     }
 
@@ -196,6 +184,28 @@ export default class level1 extends Phaser.Scene{
             }
         })
         this.input.keyboard.on('keyup-E', ()=>{this.interactIsPressed = false})
+    }
+
+    dialog(){
+        this.r = this.add.rectangle(this.niko.x, this.niko.y+200, 700, 150, 0x301934);
+        this.r.setStrokeStyle(4,0xefc53f)
+        this.face = this.add.image(this.niko.x-290, this.niko.y+200, 'niko_face').setScale(1.5,1.5)
+        this.text = this.add.text(this.niko.x-200, this.niko.y+150, this.message, { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+            
+        const end = () =>{
+            this.r.destroy()
+            this.text.destroy()
+            this.face.destroy()
+            this.scene.resume("level1")
+        }
+        this.scene.pause("level1")
+        
+        function repeat(){
+            document.addEventListener("keydown", (event) => {
+                end()
+            })
+        }
+        const timeout = setTimeout(repeat, 1000)
     }
 }
 
