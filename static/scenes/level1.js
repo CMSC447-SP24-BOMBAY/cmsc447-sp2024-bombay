@@ -13,8 +13,20 @@ export default class level1 extends Phaser.Scene{
             this.wallslayer.removeTileAt(29, 15, true, true, this.wallsLayer)
         },
         "brownSign": ()=>{
-            this.message = "This is a sign!"
+            this.message = ['There is a note here.', 'It says "To anyone who finds my key, Plz give back. I lost it near the table."']
             this.dialog()
+            this.niko.checkedSign = true
+        },
+        "brownTable": ()=>{
+            if(this.niko.checkedSign == false){
+                this.message = "Just a regular table!"
+                this.dialog()
+            }
+            else{
+                this.message = "The sign was right! There was a key here! Its Red."
+                this.dialog()
+                this.inventory.push("red key")
+            }
         }
     }
 
@@ -47,6 +59,7 @@ export default class level1 extends Phaser.Scene{
         this.niko.body.setSize(16,16,true)
         this.niko.body.setOffset(24, 32)
         this.niko.inventory = []
+        this.niko.checkedSign = false
         //this.niko.body.setOffset(8,8)
         this.niko.facing = "down"
 
@@ -187,7 +200,7 @@ export default class level1 extends Phaser.Scene{
     }
 
     dialog(){
-        this.r = this.add.rectangle(this.niko.x, this.niko.y+200, 700, 150, 0x301934);
+        this.r = this.add.rectangle(this.niko.x, this.niko.y+200, 700, 150, 0x301934)
         this.r.setStrokeStyle(4,0xefc53f)
         this.face = this.add.image(this.niko.x-290, this.niko.y+200, 'niko_face').setScale(1.5,1.5)
         this.text = this.add.text(this.niko.x-200, this.niko.y+150, this.message, { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
@@ -199,13 +212,19 @@ export default class level1 extends Phaser.Scene{
             this.scene.resume("level1")
         }
         this.scene.pause("level1")
+
+        var keypressed = false
+        document.addEventListener("keydown", (event) => {
+            end()
+            keypressed = true
+        })
         
         function repeat(){
-            document.addEventListener("keydown", (event) => {
-                end()
-            })
+            if(!keypressed){
+                setTimeout(repeat,0)
+            }
         }
-        const timeout = setTimeout(repeat, 1000)
+        repeat()
     }
 }
 

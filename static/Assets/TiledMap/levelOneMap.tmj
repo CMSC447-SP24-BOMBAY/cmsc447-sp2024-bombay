@@ -9902,7 +9902,7 @@
                         {
                          "name":"isInteractable",
                          "type":"string",
-                         "value":""
+                         "value":"brownTable"
                         }]
                 }, 
                 {
@@ -9916,7 +9916,7 @@
                         {
                          "name":"isInteractable",
                          "type":"string",
-                         "value":""
+                         "value":"brownTable"
                         }]
                 }, 
                 {
@@ -10014,7 +10014,7 @@
                         {
                          "name":"isInteractable",
                          "type":"string",
-                         "value":""
+                         "value":"brownTable"
                         }]
                 }, 
                 {
@@ -10028,7 +10028,7 @@
                         {
                          "name":"isInteractable",
                          "type":"string",
-                         "value":""
+                         "value":"brownTable"
                         }]
                 }, 
                 {
