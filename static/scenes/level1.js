@@ -11,27 +11,23 @@ export default class level1 extends Phaser.Scene{
             this.niko.inventory.push("mop")
             this.wallslayer.removeTileAt(29, 14, true, true, this.wallsLayer)
             this.wallslayer.removeTileAt(29, 15, true, true, this.wallsLayer)
+        },
+        "brownSign": ()=>{
+            this.message = "This is a sign!"
+            this.r = this.add.rectangle(this.niko.x, this.niko.y+200, 700, 150, 0x301934);
+            this.r.setStrokeStyle(4,0xefc53f)
+            this.face = this.add.image(this.niko.x-290, this.niko.y+200, 'niko_face').setScale(1.5,1.5)
+            this.text = this.add.text(this.niko.x-200, this.niko.y+150, this.message, { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+            
+            const end = () =>{
+                this.r.destroy()
+                this.text.destroy()
+                this.face.destroy()
+                this.scene.resume("level1")
+            }
+            this.scene.pause("level1")
+            const timeout = setTimeout(end, 10000)
         }
-
-        //Old Demo level
-        // "openDoor": ()=>{
-        //     this.wallslayer.removeTileAt(17, 14, true, true, this.wallsLayer)
-        //     this.wallslayer.removeTileAt(18, 14, true, true, this.wallsLayer)
-        //     this.wallslayer.removeTileAt(17, 15, true, true, this.wallsLayer)
-        //     this.wallslayer.removeTileAt(18, 15, true, true, this.wallsLayer)
-
-        //     this.wallslayer.putTileAt(486, 17, 14, true, this.wallsLayer)
-        //     this.wallslayer.putTileAt(487, 18, 14, true, this.wallsLayer)
-        //     this.wallslayer.putTileAt(518, 17, 15, true, this.wallsLayer)
-        //     this.wallslayer.putTileAt(519, 18, 15, true, this.wallsLayer)
-        // },
-        // "blueSwitch": ()=>{
-        //     this.floorInteractLayer.removeTileAt(20, 17, true, true, this.floorInteractLayer)
-        //     this.floorInteractLayer.putTileAt(390, 20, 17, true, this.floorInteractLayer)
-
-        //     this.floorInteractLayer.removeTileAt(15, 17, true, true, this.floorInteractLayer)
-        //     this.floorInteractLayer.putTileAt(421, 15, 17, true, this.floorInteractLayer)
-        // }
     }
 
     constructor(){
@@ -61,6 +57,7 @@ export default class level1 extends Phaser.Scene{
         this.niko = this.physics.add.sprite(250,200,'Niko','Sun F1.png')
         this.niko.setScale(0.5)
         this.niko.body.setSize(16,16,true)
+        this.niko.body.setOffset(24, 32)
         this.niko.inventory = []
         //this.niko.body.setOffset(8,8)
         this.niko.facing = "down"
@@ -115,6 +112,7 @@ export default class level1 extends Phaser.Scene{
 
         this.physics.add.collider(this.niko, this.wallslayer)
         this.cameras.main.startFollow(this.niko, true)
+
         // For Debugging
         // const debugGraphics = this.add.graphics().setAlpha(0.7)
         // this.wallslayer.renderDebug(debugGraphics, {
