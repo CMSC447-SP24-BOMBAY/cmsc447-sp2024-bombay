@@ -4,6 +4,7 @@ export default class Game extends Phaser.Scene{
     constructor(name){
         super(name)
         this.interactIsPressed
+        this.mouseIsClicked
         this.backpackIsPressed
         this.cursors
         this.niko = Phaser.Physics.Arcade.Sprite
@@ -27,7 +28,6 @@ export default class Game extends Phaser.Scene{
         this.cursors = this.input.keyboard.createCursorKeys()
         this.interact = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E)
         this.backpack = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B)
-        //this.input.keyboard.addkey({'interact': 'E'}) //For interaction in interim
     }
 
     create(){
@@ -137,8 +137,8 @@ export default class Game extends Phaser.Scene{
             this.niko.anims.stop()
             this.niko.setVelocity(0, 0)
         }
-        //console.log("Movement Key Pressed ", this.niko.facing)
 
+        //Use keyboard to interact with objects and to enter and exit object pop ups
         this.interact.on('down', ()=>{
             if(this.interactIsPressed){
                 //Prevents The game from interacting way to many times.
@@ -182,6 +182,24 @@ export default class Game extends Phaser.Scene{
             }
         })
         this.interact.on('up', ()=>{this.interactIsPressed = false})
+
+        this.input.topOnly = false //Enables you to layer objects
+        //Use mouse to interact with object pop ups
+        this.input.on('pointerdown', (pointer, gameObjects)=>{
+            if(this.mouseIsClicked){
+                //Prevents The game from interacting way to many times.
+                return 
+            }
+            this.mouseIsClicked = true;
+            
+            //Use for checking objects against a dictionary
+            for (let clickedOn of gameObjects){
+                console.log(clickedOn.name)
+            }
+        })
+        this.input.on('pointerup', (pointer)=>{
+            this.mouseIsClicked = false;
+        })
 
         this.backpack.on('down', ()=>{
             if(this.backpackIsPressed){
