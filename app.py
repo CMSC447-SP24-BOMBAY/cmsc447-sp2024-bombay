@@ -32,6 +32,7 @@ def login():
     try:
         # insert user and add default keybinds to db
         if request.method == "POST":
+            data = request.get_json()
             conn = sqlite3.connect("game.db")
             cur = conn.cursor()
 
@@ -39,7 +40,7 @@ def login():
             cur.execute("""
                         INSERT INTO player (name)
                         VALUES (?)
-                        """, [request.form.get("username")])
+                        """, [data["username"]])
             conn.commit()
             # validate query result
             if cur.rowcount == 0:
@@ -48,13 +49,15 @@ def login():
                 raise Exception("Player already exists")
             
             cur.close()
+            conn.close()
+            conn = sqlite3.connect("game.db")
             cur = conn.cursor()
 
             # execute db
             cur.execute("""
                         INSERT INTO keybinds (player_name)
                         VALUES (?)
-                        """, [request.form.get("username")])
+                        """, [data["username"]])
             conn.commit()
             # validate query result
             if cur.rowcount == 0:
@@ -64,7 +67,25 @@ def login():
 
             cur.close()
             conn.close()
-            return ("", HTTPStatus.NO_CONTENT.value)
+            conn = sqlite3.connect("game.db")
+            cur = conn.cursor()
+            
+            # execute query
+            res = cur.execute("""
+                              SELECT player.name, player.level_id, player.level1_time, player.level2_time, player.level3_time
+                              FROM player
+                              WHERE player.name = ?
+                              """, [data["username"]])
+            res = res.fetchone()
+            # format player name response
+            response = {}
+            for col, row in zip([column[0] for column in cur.description], res):
+                response[col] = row
+
+            cur.close()
+            conn.close()
+            return jsonify(response), HTTPStatus.OK.value
+
     except sqlite3.Error as e:
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
     except Exception as e:
@@ -87,7 +108,6 @@ def player(name):
                               WHERE player.name = ?
                               """, [name])
             res = res.fetchone()
-            print(res)
             # validate query result:
             if res:
                 # format player name response
@@ -144,6 +164,7 @@ def settings(name):
             return jsonify(response), HTTPStatus.OK.value
         # update keybinds
         elif request.method == "PUT":
+            data = request.get_json()
             conn = sqlite3.connect("game.db")
             cur = conn.cursor()
 
@@ -159,7 +180,7 @@ def settings(name):
                             backpack = ?,
                             menu = ?
                         WHERE keybinds.player_name = ?
-                        """, [request.form.get("up"), request.form.get("down"), request.form.get("left"), request.form.get("right"), request.form.get("interact"), request.form.get("backpack"), request.form.get("menu"), name])
+                        """, [data["up"], data["down"], data["left"], data["right"], data["interact"], data["backpack"], data["menu"], name])
             conn.commit()
             # error executing query
             if cur.rowcount == 0:
