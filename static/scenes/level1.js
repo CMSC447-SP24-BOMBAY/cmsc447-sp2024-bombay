@@ -1,36 +1,37 @@
-import Game from "./unused/Game.js";
-
+import Game from "./Game.js"
 export default class level1 extends Game{
+
     interactIsPressed;
     cursors;
     niko = Phaser.Physics.Arcade.Sprite;
+
     constructor(){
         super('level1')
-    }
-
-    fnDict = {
-        null: ()=>{
-            return
-        },
-        "mop": ()=>{
-            this.niko.inventory.push("mop")
-            this.wallslayer.removeTileAt(29, 14, true, true, this.wallsLayer)
-            this.wallslayer.removeTileAt(29, 15, true, true, this.wallsLayer)
-        },
-        "brownSign": ()=>{
-            this.message = ['There is a note here.', 'It says "To anyone who finds my key, Plz give back. I lost it near the table."']
-            super.dialog()
-            this.niko.checkedSign = true
-        },
-        "brownTable": ()=>{
-            if(this.niko.checkedSign == false){
-                this.message = "Just a regular table!"
-                super.dialog()
-            }
-            else{
-                this.message = "The sign was right! There was a key here! Its Red."
-                super.dialog()
-                this.niko.inventory.push("red key")
+        this.niko.checkedSign = false;
+        this.fnDict = {
+            null: ()=>{
+                return
+            },
+            "mop": ()=>{
+                this.niko.inventory.push("mop")
+                this.wallslayer.removeTileAt(29, 14, true, true, this.wallsLayer)
+                this.wallslayer.removeTileAt(29, 15, true, true, this.wallsLayer)
+            },
+            "brownSign": ()=>{
+                this.message = ['There is a note here.', 'It says "To anyone who finds my key, Plz give back. I lost it near the table."']
+                this.dialog()
+                this.niko.checkedSign = true
+            },
+            "brownTable": ()=>{
+                if(this.niko.checkedSign == false){
+                    this.message = "Just a regular table!"
+                    this.dialog()
+                }
+                else{
+                    this.message = "The sign was right! There was a key here! Its Red."
+                    this.dialog()
+                    this.inventory.push("red key")
+                }
             }
         }
     }
@@ -67,7 +68,7 @@ export default class level1 extends Game{
     }
 
     update(time, dTime){
-        super.update()
+       super.update()
     }
 }
 

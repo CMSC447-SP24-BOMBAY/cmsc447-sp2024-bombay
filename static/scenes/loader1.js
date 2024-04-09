@@ -1,4 +1,4 @@
-import loader from "./unused/loader.js"
+import loader from "./loader.js"
 
 export default class loader1 extends loader{
     constructor(){

@@ -24,6 +24,7 @@ export default class Game extends Phaser.Scene{
         this.cursors = this.input.keyboard.addKeys(keybinds)
         */
         this.cursors = this.input.keyboard.createCursorKeys()
+        this.interact = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E)
         //this.input.keyboard.addkey({'interact': 'E'}) //For interaction in interim
     }
 
@@ -103,6 +104,8 @@ export default class Game extends Phaser.Scene{
     update(time, dTime){
         //Initial check to see if input and Player exists
         if(!this.cursors || !this.niko){
+            console.log(this.cursors)
+            console.log(this.niko)
             console.log("Update is not being run")
             return
         }
@@ -134,7 +137,7 @@ export default class Game extends Phaser.Scene{
         }
         //console.log("Movement Key Pressed ", this.niko.facing)
 
-        this.input.keyboard.on('keydown-E', ()=>{
+        this.interact.on('down', ()=>{
             if(this.interactIsPressed){
                 //Prevents The game from interacting way to many times.
                 return 
@@ -165,15 +168,19 @@ export default class Game extends Phaser.Scene{
             if(this.floorTile.properties.isInteractable != "" && this.floorTile.index != -1){
                 var interact = this.floorTile.properties.isInteractable
                 console.log(JSON.stringify(interact))
-                this.fnDict[interact]()
+                if (interact in this.fnDict){
+                    this.fnDict[interact]()
+                }
             }
             if(this.wallTile.properties.isInteractable != "" && this.wallTile.index != -1){
                 var interact = this.wallTile.properties.isInteractable
                 console.log(JSON.stringify(interact))
-                this.fnDict[interact]()
+                if (interact in this.fnDict){
+                    this.fnDict[interact]()
+                }
             }
         })
-        this.input.keyboard.on('keyup-E', ()=>{this.interactIsPressed = false})
+        this.interact.on('up', ()=>{this.interactIsPressed = false})
     }
 
     dialog(){
