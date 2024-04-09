@@ -4,6 +4,7 @@ export default class Game extends Phaser.Scene{
     constructor(name){
         super(name)
         this.interactIsPressed
+        this.backpackIsPressed
         this.cursors
         this.niko = Phaser.Physics.Arcade.Sprite
     }
@@ -25,6 +26,7 @@ export default class Game extends Phaser.Scene{
         */
         this.cursors = this.input.keyboard.createCursorKeys()
         this.interact = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E)
+        this.backpack = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B)
         //this.input.keyboard.addkey({'interact': 'E'}) //For interaction in interim
     }
 
@@ -148,7 +150,6 @@ export default class Game extends Phaser.Scene{
             this.floorTile = this.map.getTileAtWorldXY(this.niko.body.x, this.niko.body.y, true, null, this.floorInteractLayer)
 
             //Find the Wall Layer of direction faced.
-            this.wallTile;
             if(this.niko.facing == "left"){
                 this.wallTile = this.map.getTileAtWorldXY(this.niko.x - 16, this.niko.y, true, null, this.wallslayer)
             }
@@ -164,7 +165,7 @@ export default class Game extends Phaser.Scene{
             
             //Now knowing the current standing tile and facing tile, we can perform interactions based on the tile 'isInteractable' string
             //  DEBUGGING ISSUE FOR LATER, sometimes game does allow unauthorized interacts so it looks for something that isnt defined in the dictionary. Will need to fix later
-            console.log(this.floorTile.index, this.wallTile.index)
+            //console.log(this.floorTile.index, this.wallTile.index)
             if(this.floorTile.properties.isInteractable != "" && this.floorTile.index != -1){
                 var interact = this.floorTile.properties.isInteractable
                 console.log(JSON.stringify(interact))
@@ -181,9 +182,20 @@ export default class Game extends Phaser.Scene{
             }
         })
         this.interact.on('up', ()=>{this.interactIsPressed = false})
+
+        this.backpack.on('down', ()=>{
+            if(this.backpackIsPressed){
+                //Prevents The game from interacting way to many times.
+                return 
+            }
+            this.backpackIsPressed = true;
+            this.openBackpack()
+        })
+        this.backpack.on('up', ()=>{this.backpackIsPressed = false})
     }
 
     dialog(){
+        this.scene.pause("level1")
         this.r = this.add.rectangle(this.niko.x, this.niko.y+200, 700, 150, 0x301934)
         this.r.setStrokeStyle(4,0xefc53f)
         this.face = this.add.image(this.niko.x-290, this.niko.y+200, 'niko_face').setScale(1.5,1.5)
@@ -195,7 +207,56 @@ export default class Game extends Phaser.Scene{
             this.face.destroy()
             this.scene.resume("level1")
         }
+
+        var keypressed = false
+        document.addEventListener("keydown", (event) => {
+            end()
+            keypressed = true
+        })
+        
+        function repeat(){
+            if(!keypressed){
+                setTimeout(repeat,0)
+            }
+        }
+        repeat()
+    }
+
+    openBackpack(){
         this.scene.pause("level1")
+        this.r = this.add.rectangle(this.niko.x, this.niko.y, 700, 500, 0x301934)
+        this.r.setStrokeStyle(4,0xefc53f)
+        const invSize = this.niko.inventory.length
+        const items = new Array(invSize)
+        var currX = this.niko.x -300
+        var currY = this.niko.y - 200
+
+        for (let i = 0; i < invSize; i++) {
+            items[i] = this.add.text(currX, currY, this.niko.inventory[i], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(1.4,1.4);
+            items[i].setInteractive();
+            items[i].on("pointerup", ()=>{
+                //Having Issue here, tryna click on mop but its not working.
+                //Issue - Have player equip the item on click of the text.
+                this.niko.equipped = this.niko.inventory[i]
+                console.log("Equipped", this.niko.equipped)
+            })
+            if(i%2 == 0){
+                currX = currX + 300
+            }
+            else{
+                currX = currX - 300
+                currY = currY + 50
+            }
+        }
+
+        //Kills the program
+        const end = () =>{
+            this.r.destroy()
+            for (let i = 0; i < invSize; i++) {
+                items[i].destroy()
+            }   
+            this.scene.resume("level1")
+        }
 
         var keypressed = false
         document.addEventListener("keydown", (event) => {
