@@ -185,20 +185,14 @@ export default class Game extends Phaser.Scene{
 
         this.input.topOnly = false //Enables you to layer objects
         //Use mouse to interact with object pop ups
-        this.input.on('pointerdown', (pointer, gameObjects)=>{
-            if(this.mouseIsClicked){
-                //Prevents The game from interacting way to many times.
-                return 
-            }
-            this.mouseIsClicked = true;
-            
-            //Use for checking objects against a dictionary
+        this.input.on('pointerup', (pointer, gameObjects)=>{
             for (let clickedOn of gameObjects){
-                console.log(clickedOn.name)
+                //In case an interactable object is not in the dictionary
+                if (clickedOn in this.fnDict){
+                    this.fnDict[clickedOn]
+                    clickedOn.setVisible(false)
+                }
             }
-        })
-        this.input.on('pointerup', (pointer)=>{
-            this.mouseIsClicked = false;
         })
 
         this.backpack.on('down', ()=>{
