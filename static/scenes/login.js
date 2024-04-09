@@ -94,7 +94,7 @@ export default class login extends Phaser.Scene{
                         console.error(error);
                     })
                 }
-                if (self.registry.get('username') !== null){
+                if (self.registry.get('username') !== undefined){
                     self.scene.start('mainMenu');
                     self.scene.stop('login');
                 }
