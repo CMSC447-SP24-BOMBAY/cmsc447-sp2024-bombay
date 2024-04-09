@@ -4,6 +4,9 @@ export default class mainMenu extends Phaser.Scene{
     }
     
     preload(){
+        //loads html elements
+        this.load.html("leaderboard", '/templates/leaderboard.html')
+
         //Loads images + Other Assets
         this.load.image("background", "/static/Assets/Menu Assets/Transparent/water.png")
         
@@ -91,6 +94,10 @@ export default class mainMenu extends Phaser.Scene{
         leadButton.on("pointerout", ()=>{
             hoverSp.setVisible(false)
         })
+        leadButton.on("pointerup", ()=>{
+            console.log("Leaderboard Button Clicked")
+            this.onLeaderboardPressed()
+        })
 
         //  Quit Button Events
         quit.setInteractive();
@@ -102,6 +109,73 @@ export default class mainMenu extends Phaser.Scene{
         })
         quit.on("pointerout", ()=>{
             hoverSp.setVisible(false)
+        })
+    }
+
+    onLeaderboardPressed(){
+        let leaderboard = this.add.dom(this.game.renderer.width/2, this.game.renderer.height/2).createFromCache("leaderboard")
+        fetch('/api/leaderboard', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const leaderboardTable = document.getElementById("leaderboard");
+            
+            if(data.error === 'Empty leaderboard'){
+                console.log("NO LEADERBOARD LOL")
+                for (let i = 0; i < 6; i++) {
+                    if(i === 0){
+                        const row = leaderboardTable.insertRow(0);
+                        const rank = row.insertCell(0);
+                        const username = row.insertCell(1);
+                        const score = row.insertCell(2);
+                        rank.textContent = "Rank";
+                        username.textContent = "Name";
+                        score.textContent = "Time";
+                    } else{
+                        const row = leaderboardTable.insertRow(i);
+                        const rank = row.insertCell(0);
+                        const username = row.insertCell(1);
+                        const score = row.insertCell(2);
+                        rank.textContent = i;
+                        username.textContent = "N/A";
+                        score.textContent = 0;
+                    }
+                }
+            }else{
+                for(let i = 0; i < 1; i++){
+                    row = leaderboardTable.insertRow(0);
+                    rank = row.insertCell(0);
+                    username = row.insertCell(1);
+                    score = row.insertCell(2);
+                    rank.textContent = "Rank";
+                    username.textContent = "Name";
+                    score.textContent = "Time";
+                }
+                data.forEach((entry, index) => {
+                    const row = leaderboardTable.insertRow(index + 1);
+                    const rank = row.insertCell(0);
+                    const username = row.insertCell(1);
+                    const score = row.insertCell(2);
+                    rank.textContent = entry.rank;
+                    username.textContent = entry.username;
+                    score.textContent = entry.score;
+                });
+            }
+        })
+        leaderboard.addListener('click');
+        var self = this;
+        leaderboard.on('click', function (event)
+        {
+            if (event.target.name === 'close-button')
+            {
+                console.log("close button clicked")
+                leaderboard.destroy();
+            }
         })
     }
 }

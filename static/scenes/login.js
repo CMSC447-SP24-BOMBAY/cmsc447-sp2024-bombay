@@ -84,7 +84,8 @@ export default class login extends Phaser.Scene{
                         } else {
                             // For other responses, proceed to parse the response as JSON
                             self.registry.set('username', inputUsername.value);
-                            return response.json();
+                            self.scene.start('mainMenu');
+                            self.scene.stop('login');
                         }
                     })
                     .then(data => {
@@ -93,10 +94,6 @@ export default class login extends Phaser.Scene{
                     .catch(error => {
                         console.error(error);
                     })
-                }
-                if (self.registry.get('username') !== undefined){
-                    self.scene.start('mainMenu');
-                    self.scene.stop('login');
                 }
             }
         });

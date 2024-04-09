@@ -17,6 +17,10 @@ def home():
 def login_form():
     return render_template('login_form.html')
 
+@app.route("/templates/leaderboard.html", methods=['GET'])
+def leaderboard_html():
+    return render_template('leaderboard.html')
+
 @app.teardown_appcontext
 def close_conn(exception):
     db = getattr(g, '_database', None)
