@@ -4,3 +4,5 @@ venv
 node_modules
 __pycache__python 
 __pycache__
+sqlite_connector/
+test_data.py
