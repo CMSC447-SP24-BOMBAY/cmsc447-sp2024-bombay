@@ -5,65 +5,34 @@ cur = conn.cursor()
 
 table_scripts = [
     """
-    CREATE TABLE IF NOT EXISTS level (
-        id          INTEGER PRIMARY KEY,
-        texturemap  BLOB
-    );
-    """,
-    """
     CREATE TABLE IF NOT EXISTS player (
-        id          INTEGER PRIMARY KEY,
-        player_name TEXT,
-        level_id    INTEGER,
-        level1_time TEXT,
-        level2_time TEXT,
-        level3_time TEXT,
-
-        FOREIGN KEY(level_id) REFERENCES level(id)
+        name        TEXT    PRIMARY KEY,
+        level_id    INTEGER DEFAULT 1,
+        level1_time TEXT    DEFAULT NULL,
+        level2_time TEXT    DEFAULT NULL,
+        level3_time TEXT    DEFAULT NULL
     );
     """,
     """
     CREATE TABLE IF NOT EXISTS leaderboard (
-        player_id   INTEGER,
-        player_score INTEGER,
+        player_name     TEXT,
+        player_score    INTEGER     DEFAULT 0,
 
-        FOREIGN KEY(player_id) REFERENCES player(id)
+        FOREIGN KEY(player_name) REFERENCES player(name)
     );
     """,
     """
     CREATE TABLE IF NOT EXISTS keybinds (
-        player_id INTEGER,
-        up          TEXT,
-        down        TEXT,
-        left        TEXT,
-        right       TEXT,
-        interact    TEXT,
-        backpack    TEXT,
-        menu        TEXT,
+        player_name TEXT,
+        up          INTEGER     DEFAULT 38,
+        down        INTEGER     DEFAULT 40,
+        left        INTEGER     DEFAULT 37,
+        right       INTEGER     DEFAULT 39,
+        interact    INTEGER     DEFAULT 69,
+        backpack    INTEGER     DEFAULT 66,
+        menu        INTEGER     DEFAULT 27,
 
-        FOREIGN KEY(player_id) REFERENCES player(id)
-    );
-    """,
-    """
-    CREATE TABLE IF NOT EXISTS dialogue (
-        id          INTEGER PRIMARY KEY,
-        level_id    INTEGER,
-        dialogue_text TEXT,
-
-        FOREIGN KEY(level_id) REFERENCES level(id)
-    );
-    """,
-    """
-    CREATE TABLE IF NOT EXISTS level_object (
-        id          INTEGER PRIMARY KEY,
-        level_id    INTEGER,
-        x_pos       INTEGER,
-        y_pos       INTEGER,
-        sprite_key  INTEGER,
-        interaction_id  INTEGER,
-        has_collision   INTEGER,
-
-        FOREIGN KEY(level_id) REFERENCES level(id)
+        FOREIGN KEY(player_name) REFERENCES player(name)
     );
     """
 ]
@@ -73,3 +42,6 @@ for script in table_scripts:
         cur.executescript(script)
     except sqlite3.Error as err:
         print(f"Error running script: {str(err)}")
+
+cur.close()
+conn.close()
