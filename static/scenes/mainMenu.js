@@ -34,6 +34,7 @@ export default class mainMenu extends Phaser.Scene{
         this.load.on("complete", ()=>{
             console.log("Completeed Load")
         })
+        console.log(this.registry.get('username'))
     }
 
     create(){
