@@ -1,84 +1,245 @@
-export default class level1 extends Phaser.Scene{
-    cursors;
-    niko = Phaser.Physics.Arcade.Sprite;
+import Game from "./Game.js"
+export default class level1 extends Game{
+
     constructor(){
         super('level1')
+        this.fnDict = {
+            null: ()=>{
+                return
+            },
+            "mop": ()=>{
+                this.niko.inventory.push("mop")
+                this.wallslayer.removeTileAt(29, 14, true, true, this.wallsLayer)
+                this.wallslayer.removeTileAt(29, 15, true, true, this.wallsLayer)
+            },
+            "brownSign": ()=>{
+                this.message = ['There is a note here.', 'It says "To anyone who finds my key, Plz give back. I lost it near the table."']
+                this.dialog()
+                this.niko.checkedSign = true
+            },
+            "brownTable": ()=>{
+                if(this.niko.checkedSign == false){
+                    this.message = "Just a regular table!"
+                    this.dialog()
+                }
+                else{
+                    this.message = "The sign was right! There was a key here! Its Red."
+                    this.dialog()
+                    if(!this.niko.inventory.includes("red key")){
+                        this.niko.inventory.push("red key")
+                    }
+                }
+            },
+            "greySign": ()=>{
+                this.message = ['Another Sign!', 'It has a little holder labeled blue key... But its empty', 'Maybe it fell somewhere around here.', "I'll just clean around here then till I find it!"]
+                this.dialog()
+                this.niko.readGreySign = true
+            },
+            "hiddenKey": ()=>{
+                if(this.niko.readGreySign && this.niko.inventory.includes("mop")){
+                    this.message = ['The sign was right!', 'After a bit of sweepin... There was a Blue Key!', '*yoink* Mine now Bi-']
+                    this.dialog()
+                    if(!this.niko.inventory.includes("blue key")){
+                        this.niko.inventory.push("blue key")
+                    }
+                }
+                else{
+                    this.message = ['This place is awfully dusty...', 'Welp! That aint my problem. No sir.', 'Absolutely no reason for me to clean this mess', 'mhm']
+                    this.dialog()
+                }
+            },
+            "unlockDoor": ()=>{
+                if(this.niko.inventory.includes("blue key") && this.niko.inventory.includes("red key") && this.niko.inventory.includes("green key")){
+                    this.message = ['Thats it!', 'All the Keys fit!', 'I can finally go back ho-', "Wait a minute... That doesn't look right..."]
+                    this.dialog()
+                    this.scene.stop("level1")
+                    this.scene.start('levelSelect')
+                }
+                else{
+                    this.message = ["Huh, that's wierd...", "It's a big door! With three colored locks on it...", "A red, green, and blue one..."]
+                    this.dialog()
+                }
+            },
+            "keg": ()=>{
+                if(this.wallTile.x == 16 && this.niko.holdingDrink == false){
+                    this.message = ["Its a wine keg!", "This one kinda tastes...", "A bit sweet?", "I think I'll bring a drink with me just in case"]
+                    this.dialog()
+                    this.niko.inventory.push("A sweet drink?")
+                    this.niko.holdingDrink = true
+                }
+                else if(this.wallTile.x == 16 && this.niko.holdingDrink == true){
+                    this.message = ["Its a wine keg!", "This one kinda tastes...", "A bit sweet?", "But I'm already holding a drink..."]
+                    this.dialog()
+                }
+                else if(this.wallTile.x == 18 && this.niko.holdingDrink == false){
+                    this.message = ["Its a wine keg!", "This one kinda tastes...", "A bit Sour?", "I think I'll bring a drink with me just in case"]
+                    this.dialog()
+                    this.niko.inventory.push("A Sour drink?")
+                    this.niko.holdingDrink = true
+                }
+                else if(this.wallTile.x == 18 && this.niko.holdingDrink == true){
+                    this.message = ["Its a wine keg!", "This one kinda tastes...", "A bit Sour?", "But I'm already holding a drink..."]
+                    this.dialog()
+                }
+                else if(this.wallTile.x == 20 && this.niko.holdingDrink == false){
+                    this.message = ["Its a wine keg!", "This one kinda tastes...", "PTOO, This one was HORRIBLE?!", "I think I'll bring a drink with me just in case"]
+                    this.dialog()
+                    this.niko.inventory.push("Smirnoff Vodka")
+                    this.niko.holdingDrink = true
+                }
+                else if(this.wallTile.x == 20 && this.niko.holdingDrink == true){
+                    this.message = ["Its a wine keg!", "This one kinda tastes...", "PTOO, This one was HORRIBLE?!", "But I'm already holding a drink..."]
+                    this.dialog()
+                }
+                else if(this.wallTile.x == 22 && this.niko.holdingDrink == false){
+                    this.message = ["Its a wine keg!", "This one kinda tastes...", "Like nothing?", "I think I'll bring a drink with me just in case"]
+                    this.dialog()
+                    this.niko.inventory.push("Water")
+                    this.niko.holdingDrink = true
+                }
+                else if(this.wallTile.x == 22 && this.niko.holdingDrink == true){
+                    this.message = ["Its a wine keg!", "This one kinda tastes...", "Like nothing?", "But I'm already holding a drink..."]
+                    this.dialog()
+                }
+            },
+            "bin": ()=>{
+                if(this.niko.holdingDrink == false){
+                    this.message = ["Its a little well!", "I can probably dispose of my trash here"]
+                    this.dialog()
+                }
+                else if(this.niko.holdingDrink == true){
+                    this.message = ['"Hasta La Vista" little drink!','','[Held drink was disposed of]']
+                    this.dialog()
+                    if(this.niko.inventory.includes("A sweet drink?")){
+                        this.niko.inventory.splice(this.niko.inventory.indexOf("A sweet drink?"), 1)
+                    }
+                    else if(this.niko.inventory.includes("A Sour drink?")){
+                        this.niko.inventory.splice(this.niko.inventory.indexOf("A Sour drink?"), 1)
+                    }
+                    else if(this.niko.inventory.includes("Smirnoff Vodka")){
+                        this.niko.inventory.splice(this.niko.inventory.indexOf("Smirnoff Vodka"), 1)
+                    }
+                    else if(this.niko.inventory.includes("Water")){
+                        this.niko.inventory.splice(this.niko.inventory.indexOf("Water"), 1)
+                    }
+                    this.niko.holdingDrink = false
+                }
+            },
+            "barrel": ()=>{
+                if(this.wallTile.x == 16 && this.niko.vodkaFilled){
+                    this.message = ["This barrel is now full of Vodka...", "Maybe just a sip won't hurt"]
+                    this.dialog()
+                }
+                else if(this.wallTile.x == 16 && this.niko.inventory.includes("Smirnoff Vodka")){
+                    this.message = ["Its a barrel!", "It has a label that reads...", "Smirnoff Vodka?", "OHHHHH, that makes much more sense.", "Welp, down it goes."]
+                    this.dialog()
+                    this.niko.inventory.splice(this.niko.inventory.indexOf("Smirnoff Vodka"), 1)
+                    this.niko.vodkaFilled = true
+                    this.niko.holdingDrink = false
+                }
+                else if(this.wallTile.x == 16 && !this.niko.inventory.includes("Smirnoff Vodka")){
+                    this.message = ["Its a barrel!", "It has a label that reads...", "Smirnoff Vodka?", "There is Vodka in this period?!"]
+                    this.dialog()
+                }
+
+                else if(this.wallTile.x == 18 && this.niko.waterFilled){
+                    this.message = ["This barrel is now full of Poisned Water...", "Who just carries around poisoned water?"]
+                    this.dialog()
+                }
+                else if(this.wallTile.x == 18 && this.niko.inventory.includes("Water")){
+                    this.message = ["Its a barrel!", "It has a label that reads...", "Poisoned Water!", "...", "Thankfully I didn't drink it yet. Down it goes!"]
+                    this.dialog()
+                    this.niko.inventory.splice(this.niko.inventory.indexOf("Water"), 1)
+                    this.niko.waterFilled = true
+                    this.niko.holdingDrink = false
+                }
+                else if(this.wallTile.x == 18 && !this.niko.inventory.includes("Water")){
+                    this.message = ["Its a barrel!", "It has a label that reads...", "Poisoned Water!", "...", "Note to self... Don't drink that..."]
+                    this.dialog()
+                }
+
+                else if(this.wallTile.x == 20 && this.niko.sweetFilled){
+                    this.message = ["This barrel is now full of Sweet Tea!", "But I already had my fill. So it's okay!"]
+                    this.dialog()
+                }
+                else if(this.wallTile.x == 20 && this.niko.inventory.includes("A sweet drink?")){
+                    this.message = ["Its a barrel!", "It has a label that reads...", "Sweet Tea!", "Oh neat!", "One more sip for the road aaaaand", "Down it goes!"]
+                    this.dialog()
+                    this.niko.inventory.splice(this.niko.inventory.indexOf("A sweet drink?"), 1)
+                    this.niko.sweetFilled = true
+                    this.niko.holdingDrink = false
+                }
+                else if(this.wallTile.x == 20 && !this.niko.inventory.includes("A sweet drink?")){
+                    this.message = ["Its a barrel!", "It has a label that reads...", "Sweet Tea!", "Oh neat!", "I'm really parched so I gotta get some of that!"]
+                    this.dialog()
+                }
+
+                else if(this.wallTile.x == 22 && this.niko.sourFilled){
+                    this.message = ["This barrel is now full of Whiskey Sour...", "Still feeling kinda tipsy~"]
+                    this.dialog()
+                }
+                else if(this.wallTile.x == 22 && this.niko.inventory.includes("A Sour drink?")){
+                    this.message = ["Its a barrel!", "The label got a bit clearer... It reads...", "Whiskey Sour!", "That was Alcohol!", "I guess that explains the wooziness...", "Lemme just pour it down..."]
+                    this.dialog()
+                    this.niko.inventory.splice(this.niko.inventory.indexOf("A Sour drink?"), 1)
+                    this.niko.sourFilled = true
+                    this.niko.holdingDrink = false
+                }
+                else if(this.wallTile.x == 22 && !this.niko.inventory.includes("A Sour drink?")){
+                    this.message = ["Its a barrel!", "A scrached up label reads...", "_his__y Sour", "I guess I need to look for something sour."]
+                    this.dialog()
+                }
+
+                if(this.niko.sourFilled && this.niko.sweetFilled && this.niko.vodkaFilled && this.niko.waterFilled){
+                    const chestTile = this.wallslayer.putTileAt(820, 24, 18, this.wallslayer)
+                    chestTile.properties.isInteractable = "chest"
+                    chestTile.properties.collides = true
+                    this.wallslayer.setCollisionByProperty({collides: true})
+                }
+            },
+            "chest": ()=>{
+                this.message = ["This chest just fell through the ceiling!", "I think the weight of all the barrels knocked it off or something.", "Pretty conveinent...", "Hey look a green key!"]
+                if(!this.niko.inventory.includes("green key")){
+                    this.niko.inventory.push("green key")
+                }
+            },
+        }
     }
 
     preload(){
-        this.cursors = this.input.keyboard.createCursorKeys()
+        super.preload()
     }
 
     create(){
+        this.delay = this.time.now
         //For the Cursors
         //This Creates the Map + sets collisions
-        const map = this.make.tilemap({key : 'dungeon'})
-        const tileset = map.addTilesetImage('dungeon3', 'tiles')
+        this.map = this.make.tilemap({key : 'dungeon'})
+        this.tileset = this.map.addTilesetImage('dungeon3', 'tiles')
+        this.tileset2 = this.map.addTilesetImage('stardewValley_assets', 'tavern')
+        const tilesetArr = [this.tileset, this.tileset2]
         
-        map.createLayer('floor', tileset)
-        const wallslayer = map.createLayer('Walls', tileset)
-        wallslayer.setCollisionByProperty({collides: true})
+        this.floorlayer = this.map.createLayer('floor', tilesetArr)
+        this.wallslayer = this.map.createLayer('Walls', tilesetArr)
+        this.floorInteractLayer = this.map.createLayer('floorInteractables', tilesetArr)
+        super.create()
 
-        //This will create the character
-        this.niko = this.physics.add.sprite(250,200,'Niko','Sun F1.png')
-        this.niko.setScale(0.5)
-        this.niko.body.setSize(16,16,true)
-        //this.niko.body.setOffset(8,8)
-        this.niko.facing = "down"
+        this.wallslayer.setCollisionByProperty({collides: true})
 
-        this.anims.create({
-            key: 'niko-idle-back',
-            frames: [{key: "Niko", frame: "Sun B1.png"}]
-        })
+        this.physics.add.collider(this.niko, this.wallslayer)
 
-        this.anims.create({
-            key: 'niko-idle-forward',
-            frames: [{key: "Niko", frame: "Sun F1.png"}]
-        })
+        this.niko.checkedSign = false;
+        this.niko.readGreySign = false;
+        this.niko.holdingDrink = false;
 
-        this.anims.create({
-            key: 'niko-idle-left',
-            frames: [{key: "Niko", frame: "Sun L1.png"}]
-        })
+        this.niko.vodkaFilled = false;
+        this.niko.waterFilled = false;
+        this.niko.sweetFilled = false;
+        this.niko.sourFilled = false;
 
-        this.anims.create({
-            key: 'niko-idle-right',
-            frames: [{key: "Niko", frame: "Sun R1.png"}]
-        })
-
-        this.anims.create({
-            key: 'niko-run-right',
-            frames: this.anims.generateFrameNames('Niko', {start: 1, end: 2, prefix: "Sun R", suffix: ".png"}),
-            repeat: -1,
-            frameRate: 10
-        })
-
-        this.anims.create({
-            key: 'niko-run-left',
-            frames: this.anims.generateFrameNames('Niko', {start: 1, end: 2, prefix: "Sun L", suffix: ".png"}),
-            repeat: -1,
-            frameRate: 10
-        })
-
-        this.anims.create({
-            key: 'niko-run-back',
-            frames: this.anims.generateFrameNames('Niko', {start: 1, end: 2, prefix: "Sun B", suffix: ".png"}),
-            repeat: -1,
-            frameRate: 10
-        })
-
-        this.anims.create({
-            key: 'niko-run-forward',
-            frames: this.anims.generateFrameNames('Niko', {start: 1, end: 3, prefix: "Sun F", suffix: ".png"}),
-            repeat: -1,
-            frameRate: 10
-        })
-
-        this.physics.add.collider(this.niko, wallslayer)
-        this.cameras.main.startFollow(this.niko, true)
         // For Debugging
         // const debugGraphics = this.add.graphics().setAlpha(0.7)
-        // wallslayer.renderDebug(debugGraphics, {
+        // this.wallslayer.renderDebug(debugGraphics, {
         //     tileColor:null,
         //     collidingTileColor: new Phaser.Display.Color(255,255,0, 255),
         //     faceColor: new Phaser.Display.Color(255, 0, 255, 255)
@@ -86,37 +247,7 @@ export default class level1 extends Phaser.Scene{
     }
 
     update(time, dTime){
-        //Initial check to see if input and Player exists
-        if(!this.cursors || !this.niko){
-            console.log("Update is not being run")
-            return
-        }
-        const speed = 100
-
-        if(this.cursors.left.isDown){
-            this.niko.anims.play('niko-run-left', true)
-            this.niko.setVelocity(-speed, 0)
-            this.niko.facing = "left"
-        }
-        else if(this.cursors.right.isDown){
-            this.niko.anims.play('niko-run-right', true)
-            this.niko.setVelocity(speed, 0)
-            this.niko.facing = "right"
-        }
-        else if(this.cursors.up.isDown){
-            this.niko.anims.play('niko-run-back', true)
-            this.niko.setVelocity(0, -speed)
-            this.niko.facing = "back"
-        }
-        else if(this.cursors.down.isDown){
-            this.niko.anims.play('niko-run-forward', true)
-            this.niko.setVelocity(0, speed)
-            this.niko.facing = "right"
-        }
-        else{
-            this.niko.anims.play('niko-idle-forward', true)
-            this.niko.setVelocity(0, 0)
-        }
+       super.update()
     }
 }
 

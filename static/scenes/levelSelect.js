@@ -66,7 +66,7 @@ export default class levelSelect extends Phaser.Scene{
             hoverSp.setVisible(false)
         })
         level1.on("pointerup", ()=>{
-            console.log("Play Button Clicked")
+            console.log("Level1 Button Clicked")
             this.scene.start('loader1')
             this.game.sound.stopAll();
             this.scene.stop('levelSelect')
