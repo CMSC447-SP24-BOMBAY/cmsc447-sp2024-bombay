@@ -188,9 +188,8 @@ export default class Game extends Phaser.Scene{
         this.input.on('pointerup', (pointer, gameObjects)=>{
             for (let clickedOn of gameObjects){
                 //In case an interactable object is not in the dictionary
-                if (clickedOn in this.fnDict){
-                    this.fnDict[clickedOn]
-                    clickedOn.setVisible(false)
+                if (clickedOn.name in this.fnDict){
+                    this.fnDict[clickedOn.name]
                 }
             }
         })
