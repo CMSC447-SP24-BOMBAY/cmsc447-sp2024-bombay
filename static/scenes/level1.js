@@ -23,11 +23,20 @@ export default class level1 extends Game{
                     this.dialog()
                 }
                 else{
-                    this.message = "The sign was right! There was a key here! Its Red."
-                    this.dialog()
-                    if(!this.niko.inventory.includes("red key")){
-                        this.niko.inventory.push("red key")
+                    if(this.paused){
+                        return ;
                     }
+                    this.table = this.physics.add.image(this.niko.x, this.niko.y, 'table').setScale(0.6);
+                    this.table.setBodySize(200,100)
+                    this.table.setOffset(400,500)
+                    this.table.setInteractive()
+                    this.paused = true
+                    this.table.on('pointerup', ()=> {
+                        // do something to the cookie
+                        this.fnDict['table']()
+                        this.table.destroy()
+                        this.paused = false
+                    }, this.table);
                 }
             },
             "greySign": ()=>{
@@ -199,15 +208,24 @@ export default class level1 extends Game{
             },
             "chest": ()=>{
                 this.message = ["This chest just fell through the ceiling!", "I think the weight of all the barrels knocked it off or something.", "Pretty conveinent...", "Hey look a green key!"]
+                this.dialog()
                 if(!this.niko.inventory.includes("green key")){
                     this.niko.inventory.push("green key")
                 }
             },
+            "table": ()=>{
+                this.message = "The sign was right! There was a key here! Its Red."
+                this.dialog()
+                if(!this.niko.inventory.includes("red key")){
+                    this.niko.inventory.push("red key")
+                }
+            }
         }
     }
 
     preload(){
         super.preload()
+        this.load.image('table', '/static/Assets/Interactable Sprites/table.jpg')
     }
 
     create(){

@@ -94,6 +94,7 @@ export default class Game extends Phaser.Scene{
         })
 
         this.cameras.main.startFollow(this.niko, true)
+        this.paused = false
         // For Debugging
         // const debugGraphics = this.add.graphics().setAlpha(0.7)
         // wallslayer.renderDebug(debugGraphics, {
@@ -104,6 +105,9 @@ export default class Game extends Phaser.Scene{
     }
 
     update(time, dTime){
+        if(this.paused == true){
+            return ;
+        }
         //Initial check to see if input and Player exists
         if(!this.cursors || !this.niko){
             console.log(this.cursors)
@@ -217,24 +221,15 @@ export default class Game extends Phaser.Scene{
             this.text.destroy()
             this.face.destroy()
             this.scene.resume("level1")
+            document.removeEventListener("keydown", end)
         }
 
-        var keypressed = false
-        document.addEventListener("keydown", (event) => {
-            end()
-            keypressed = true
-        })
-        
-        function repeat(){
-            if(!keypressed){
-                setTimeout(repeat,0)
-            }
-        }
-        repeat()
+        document.addEventListener("keydown", end)
     }
 
     openBackpack(){
         this.scene.pause("level1")
+        console.log("Backpack opened")
         this.r = this.add.rectangle(this.niko.x, this.niko.y, 700, 500, 0x301934)
         this.r.setStrokeStyle(4,0xefc53f)
         const invSize = this.niko.inventory.length
@@ -243,14 +238,16 @@ export default class Game extends Phaser.Scene{
         var currY = this.niko.y - 200
 
         for (let i = 0; i < invSize; i++) {
-            items[i] = this.add.text(currX, currY, this.niko.inventory[i], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(1.4,1.4);
-            items[i].setInteractive();
-            items[i].on("pointerup", ()=>{
+            items[i] = this.add.text(currX, currY, this.niko.inventory[i], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(1.4,1.4)
+
+            items[i].setInteractive()
+            items[i].on('pointerup', ()=>{
                 //Having Issue here, tryna click on mop but its not working.
                 //Issue - Have player equip the item on click of the text.
+                console.log("Player Clicked Item")
                 this.niko.equipped = this.niko.inventory[i]
                 console.log("Equipped", this.niko.equipped)
-            })
+            }, items[i])
             if(i%2 == 0){
                 currX = currX + 300
             }
@@ -260,27 +257,18 @@ export default class Game extends Phaser.Scene{
             }
         }
 
-        //Kills the program
+        //Kills the backpack
         const end = () =>{
             this.r.destroy()
             for (let i = 0; i < invSize; i++) {
                 items[i].destroy()
             }   
             this.scene.resume("level1")
+            console.log("Backpack closed")
+            document.removeEventListener("keydown", end)
         }
 
-        var keypressed = false
-        document.addEventListener("keydown", (event) => {
-            end()
-            keypressed = true
-        })
-        
-        function repeat(){
-            if(!keypressed){
-                setTimeout(repeat,0)
-            }
-        }
-        repeat()
+        document.addEventListener("keydown", end)
     }
 }
 
