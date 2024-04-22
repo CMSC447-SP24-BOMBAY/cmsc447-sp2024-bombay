@@ -209,19 +209,27 @@ export default class Game extends Phaser.Scene{
         this.backpack.on('up', ()=>{this.backpackIsPressed = false})
     }
 
-    dialog(){
-        this.scene.pause("level1")
+    dialog(curr = 0){
+        if(curr == 0){
+            this.scene.pause("level1")
+        }
         this.r = this.add.rectangle(this.niko.x, this.niko.y+200, 700, 150, 0x301934)
         this.r.setStrokeStyle(4,0xefc53f)
         this.face = this.add.image(this.niko.x-290, this.niko.y+200, 'niko_face').setScale(1.5,1.5)
-        this.text = this.add.text(this.niko.x-200, this.niko.y+150, this.message, { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+        this.text = this.add.text(this.niko.x-200, this.niko.y+150, this.message[curr], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
             
         const end = () =>{
             this.r.destroy()
             this.text.destroy()
             this.face.destroy()
-            this.scene.resume("level1")
             document.removeEventListener("keydown", end)
+            curr = curr + 1
+            if(curr == this.message.length){
+                this.scene.resume("level1")
+            }
+            else{
+                this.dialog(curr)
+            }
         }
 
         document.addEventListener("keydown", end)
