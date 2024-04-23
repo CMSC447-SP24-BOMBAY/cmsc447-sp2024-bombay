@@ -211,7 +211,7 @@ export default class Game extends Phaser.Scene{
 
     dialog(curr = 0){
         if(curr == 0){
-            this.scene.pause("level1")
+            this.scene.pause(this.currentLevel)
         }
         this.r = this.add.rectangle(this.niko.x, this.niko.y+200, 700, 150, 0x301934)
         this.r.setStrokeStyle(4,0xefc53f)
@@ -225,7 +225,7 @@ export default class Game extends Phaser.Scene{
             document.removeEventListener("keydown", end)
             curr = curr + 1
             if(curr == this.message.length){
-                this.scene.resume("level1")
+                this.scene.resume(this.currentLevel)
             }
             else{
                 this.dialog(curr)
@@ -236,7 +236,7 @@ export default class Game extends Phaser.Scene{
     }
 
     openBackpack(){
-        this.scene.pause("level1")
+        this.scene.pause(this.currentLevel)
         console.log("Backpack opened")
         this.r = this.add.rectangle(this.niko.x, this.niko.y, 700, 500, 0x301934)
         this.r.setStrokeStyle(4,0xefc53f)
@@ -271,7 +271,7 @@ export default class Game extends Phaser.Scene{
             for (let i = 0; i < invSize; i++) {
                 items[i].destroy()
             }   
-            this.scene.resume("level1")
+            this.scene.resume(this.currentLevel)
             console.log("Backpack closed")
             document.removeEventListener("keydown", end)
         }

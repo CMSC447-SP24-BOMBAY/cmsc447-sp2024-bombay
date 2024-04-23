@@ -3,6 +3,7 @@ export default class level1 extends Game{
 
     constructor(){
         super('level1')
+        this.currentLevel = 'level1'
         this.fnDict = {
             null: ()=>{
                 return
