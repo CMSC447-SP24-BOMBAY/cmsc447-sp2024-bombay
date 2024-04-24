@@ -32,7 +32,7 @@ export default class levelSelect extends Phaser.Scene{
         })
 
         this.load.on("complete", ()=>{
-            console.log("Completeed Load")
+            console.log("Completed Load")
         })
     }
 
