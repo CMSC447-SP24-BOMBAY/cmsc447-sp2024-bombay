@@ -60,7 +60,7 @@ export default class level1 extends Game{
                     this.message = [['Thats it!', 'All the Keys fit!', 'I can finally go back ho-', "Wait a minute... That doesn't look right..."]]
                     this.dialog()
                     this.scene.stop("level1")
-                    this.scene.start('levelSelect')
+                    this.scene.start('completed1', {time: this.endTime})
                 }
                 else{
                     this.message = [["Huh, that's wierd...", "It's a big door! With three colored locks on it...", "A red, green, and blue one..."]]
