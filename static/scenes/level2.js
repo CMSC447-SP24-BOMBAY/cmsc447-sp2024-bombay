@@ -104,9 +104,9 @@ export default class level2 extends Game{
         this.delay = this.time.now
         //For the Cursors
         //This Creates the Map + sets collisions
-        this.map = this.make.tilemap({key : 'dungeon'})
-        this.tileset = this.map.addTilesetImage('stardew', 'tiles')
-        this.tileset2 = this.map.addTilesetImage('misc', 'tavern')
+        this.map = this.make.tilemap({key : 'dungeon2'})
+        this.tileset = this.map.addTilesetImage('stardew', 'tiles2')
+        this.tileset2 = this.map.addTilesetImage('misc', 'tavern2')
         const tilesetArr = [this.tileset, this.tileset2]
         
         this.floorlayer = this.map.createLayer('floor', tilesetArr)

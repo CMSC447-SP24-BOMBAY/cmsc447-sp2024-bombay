@@ -60,7 +60,8 @@ export default class level1 extends Game{
                     this.message = [['Thats it!', 'All the Keys fit!', 'I can finally go back ho-', "Wait a minute... That doesn't look right..."]]
                     this.dialog()
                     this.scene.stop("level1")
-                    this.scene.start('completed1', {time: this.endTime})
+                    this.map.destroy()
+                    this.scene.start('completed1', {time: this.endTime, hints: this.hints})
                 }
                 else{
                     this.message = [["Huh, that's wierd...", "It's a big door! With three colored locks on it...", "A red, green, and blue one..."]]
@@ -216,6 +217,33 @@ export default class level1 extends Game{
                 this.dialog()
                 if(!this.niko.inventory.includes("red key")){
                     this.niko.inventory.push("red key")
+                }
+            },
+            "hintMachine": ()=>{
+                if(!this.hintBookInteracted){
+                    this.message = [["There is a wierd machine here!", 'It has a label on it saying "hint machine"', "There are instructions attached that says to interact when stuck"], ["[Gameplay Notice: You can use hints as many times as you want.", "However, sometimes the notes won't change.", "And using a hint, will cost you more of your overall score"]]
+                    this.dialog()
+                    this.hintBookInteracted = true
+                }
+                else if(!this.niko.inventory.includes("red key")){
+                    this.hints += 1
+                    this.message = [["Im kinda stuck of the bat", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","'Three Keys are needed to escape, First find the red key","Someone has lost this key long ago, and left a note on a brown sign'"], ['hints used:'+this.hints]]
+                    this.dialog()
+                }
+                else if(!this.niko.inventory.includes("green key")){
+                    this.hints += 1
+                    this.message = [["I got the red key now, but where are the others?", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","'A blue key was stuck in the pipes of this place","The pipes must be flushed by filling the kegs with their respective drinks'"], ['hints used:'+this.hints]]
+                    this.dialog()
+                }
+                else if(!this.niko.inventory.includes("blue key")){
+                    this.hints += 1
+                    this.message = [["Two keys down! I just need help on this last one", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","'The Green key was lost on the floor, among the dust", "Inspect the floor for out of place cracks, and inspect the grey sign'"], ['hints used:'+this.hints]]
+                    this.dialog()
+                }
+                else{
+                    this.hints += 1
+                    this.message = [["I know what to do here!", "I already have all 3 keys, I just need to put them in the key to escape!"]]
+                    this.dialog()
                 }
             }
         }

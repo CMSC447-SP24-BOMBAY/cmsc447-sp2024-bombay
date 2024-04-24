@@ -116,6 +116,10 @@ export default class Game extends Phaser.Scene{
         this.endTime = time
         this.scene.timeText.setText('Time: '+time)}
         })
+
+        //Hint Variables
+        this.hints = 0
+        this.hintBookInteracted = false
     }
 
     update(time, dTime){
