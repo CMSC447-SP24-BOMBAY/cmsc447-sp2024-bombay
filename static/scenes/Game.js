@@ -102,6 +102,24 @@ export default class Game extends Phaser.Scene{
         //     collidingTileColor: new Phaser.Display.Color(255,255,0, 255),
         //     faceColor: new Phaser.Display.Color(255, 0, 255, 255)
         // })
+
+        //The timer
+        this.scene.timeText = this.add.text(0, 0, "Time: 0", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+        this.scene.timeText.setScrollFactor(0)
+        let time=0
+        this.endTime = time
+        this.time.addEvent({
+        delay:1000,
+        repeat:-1,
+        callback:()=>{
+        time+=1
+        this.endTime = time
+        this.scene.timeText.setText('Time: '+time)}
+        })
+
+        //Hint Variables
+        this.hints = 0
+        this.hintBookInteracted = false
     }
 
     update(time, dTime){
