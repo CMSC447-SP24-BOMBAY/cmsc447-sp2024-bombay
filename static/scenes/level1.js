@@ -28,9 +28,7 @@ export default class level1 extends Game{
                         return ;
                     }
                     this.table = this.physics.add.image(this.niko.x, this.niko.y, 'table').setScale(0.6);
-                    this.table.setBodySize(200,100)
-                    this.table.setOffset(400,500)
-                    this.table.setInteractive()
+                    this.table.setInteractive(new Phaser.Geom.Rectangle(400, 500, 200, 100), Phaser.Geom.Rectangle.Contains)
                     this.paused = true
                     this.table.on('pointerup', ()=> {
                         this.fnDict['table']()
