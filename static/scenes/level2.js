@@ -243,11 +243,16 @@ export default class level2 extends Game{
                     this.dialog()
                     this.computer = 4
                 }
+                //Matching Diner/Drink
                 else if(this.computer == 4){
                     this.message = [["The computer is showing a new message!", "But it is mostly Giberish..."], ['[12] -> "Ruzp ftq Mjq. Ndqmw Ftq Nqmd."', 'Like what does that even mean?', 'Is this encoded?']]
                     this.dialog()
                 }
                 else if(this.computer == 5){
+                    this.message = [["The computer is showing a new message!", "But it is mostly Giberish..."], ['[12] -> "Ruzp ftq Mjq. Ndqmw Ftq Nqmd."', 'Like what does that even mean?', 'Is this encoded?']]
+                    this.dialog()
+                }
+                else if(this.computer == 6){
                     this.message = [["The computer has a new message", "We better be done by now..."],['It reads "The Time Machine is Ready!, Enter the Time Machine."', "Neat! This time for sure I'll get home!"]]
                     this.dialog()
                 }
