@@ -207,8 +207,6 @@ export default class level2 extends Game{
                     this.dialog()
                 } 
             },
-
-
             //COMPUTER
             "brownTable": ()=>{
                 //Intro Message
@@ -705,7 +703,7 @@ export default class level2 extends Game{
                 }
             },
             "bearHead": ()=>{
-                if(this.computer == 4 && this.niko.inventory.includes("axe")){
+                if(this.computer == 5 && this.niko.inventory.includes("axe")){
                     this.message = [["If I deciphered the message correctly, then I need to cut this bear's head off!"],["*SWING*"],["Huh, would you look at that", "There was a button underneath!", "*Presses Button*"],["***COMPUTER PING***", "I think that did it!"]]
                     this.dialog()
                     this.removedHead = true
