@@ -441,7 +441,7 @@ export default class level2 extends Game{
             "timeMachine": ()=>{
                 if(this.computer == 5){
                     this.scene.stop("level2")
-                    this.scene.start('levelSelect')
+                    this.scene.start('completed2', {time: this.endTime, hints: this.hints})
                 }
                 else{
                     this.message = [["There is a label on the side of this machine...","It reads 'time machine'"],["Will I be able to go home in this?!"]]
