@@ -750,10 +750,10 @@ export default class level2 extends Game{
                 if(this.computer == 4){
                     if ((this.niko.inventory.filter(i => i === "quarter").length) == 4){
                         this.computer = 5
-                        this.message = [["Powered up and ready to activate!", "Please return to the computer to activate the time machine"]]
+                        this.message = [["Payment accepted!", "Powered up and ready to activate!", "Please return to the computer to activate the time machine"]]
                         this.dialog()
                         this.niko.inventory.splice
-                        while (!this.niko.inventory.includes("quarter")){
+                        while (this.niko.inventory.includes("quarter")){
                             const index = this.niko.inventory.indexOf("quarter")
                             this.niko.inventory.splice(index, 1)
                         }
@@ -794,17 +794,17 @@ export default class level2 extends Game{
                     this.dialog()
                 }
                 else if(this.computer == 4){
-                    this.hint +=1
-                    this.message == [["Well where am I supposed to get money from?", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*", "You can go to the cash register for instructions on how to earn money", "With those instructions you should gather different food orders", "from this room and deliver them to their corresponding table" ],["If all the tables have been served and you still dont have enough money", "you should look around the room for something you missed"], ['hints used:'+this.hints]]
+                    this.hints +=1
+                    this.message = [["Well where am I supposed to get money from?", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*", "You can go to the cash register for instructions on how to earn money", "With those instructions you should gather different food orders", "from this room and deliver them to their corresponding table" ],["If all the tables have been served and you still dont have enough money", "you should look around the room for something you missed"], ['hints used:'+this.hints]]
                     this.dialog()
                 }
                 else if (this.computer == 5){
-                    this.hint += 1
-                    this.message == [["What does the computer's message even mean...", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","The computers message is encoded","To decipher it you should use a code thats been mentioned in the room","The decoded message will be an instruction to activate the time machine"], ['hints used:'+this.hints]]
+                    this.hints += 1
+                    this.message = [["What does the computer's message even mean...", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","The computers message is encoded","To decipher it you should use a code thats been mentioned in the room","The decoded message will be an instruction to activate the time machine"], ['hints used:'+this.hints]]
                     this.dialog()     
                 }
                 else if(this.computer == 6){
-                    this.message == [["What should I do now...", "*BOOP*"],["*Machine Whirring*"," WHY ARE YOU STILL HERE YOU DID EVERYTHING!"]]
+                    this.message = [["What should I do now...", "*BOOP*"],["*Machine Whirring*"," WHY ARE YOU STILL HERE YOU DID EVERYTHING!"]]
                     this.dialog()     
                 }
             }
