@@ -239,9 +239,106 @@ export default class level2 extends Game{
                 }
                 //Pool Table puzzle
                 else if(this.computer == 3){
-                    this.message = [["the pin was right"]]
-                    this.dialog()
-                    this.computer = 4
+                    if(!this.niko.numpadIntro){
+                        this.message = [["The computer is now asking for a pin.", "Where am I gonna find a pin code here?"], ["And why is a time machine so complicated!"], ["..."],["Actually scratch that. It kinda makes sense now", "Still very inconvenient"]]
+                        this.dialog()
+                        this.niko.numpadIntro = true
+                    }
+                    else{
+                        this.combination = []
+                        this.paused = true
+
+                        this.button0 = this.physics.add.image(this.niko.x, this.niko.y+200, '0')
+                        this.button0.setInteractive()
+                        this.button0.on('pointerup', ()=> {
+                            this.combination.push(0)
+                        }, this.button0)
+
+                        this.button1 = this.physics.add.image(this.niko.x-100, this.niko.y-100, '1')
+                        this.button1.setInteractive()
+                        this.button1.on('pointerup', ()=> {
+                            this.combination.push(1)
+                        }, this.button1)
+
+                        this.button2 = this.physics.add.image(this.niko.x, this.niko.y-100, '2')
+                        this.button2.setInteractive()
+                        this.button2.on('pointerup', ()=> {
+                            this.combination.push(2)
+                        }, this.button2)
+
+                        this.button3 = this.physics.add.image(this.niko.x+100, this.niko.y-100, '3')
+                        this.button3.setInteractive()
+                        this.button3.on('pointerup', ()=> {
+                            this.combination.push(3)
+                        }, this.button3)
+
+                        this.button4 = this.physics.add.image(this.niko.x-100, this.niko.y, '4')
+                        this.button4.setInteractive()
+                        this.button4.on('pointerup', ()=> {
+                            this.combination.push(4)
+                        }, this.button4)
+
+                        this.button5 = this.physics.add.image(this.niko.x, this.niko.y, '5')
+                        this.button5.setInteractive()
+                        this.button5.on('pointerup', ()=> {
+                            this.combination.push(5)
+                        }, this.button5)
+
+                        this.button6 = this.physics.add.image(this.niko.x+100, this.niko.y, '6')
+                        this.button6.setInteractive()
+                        this.button6.on('pointerup', ()=> {
+                            this.combination.push(6)
+                        }, this.button6)
+
+                        this.button7 = this.physics.add.image(this.niko.x-100, this.niko.y+100, '7')
+                        this.button7.setInteractive()
+                        this.button7.on('pointerup', ()=> {
+                            this.combination.push(7)
+                        }, this.button7)
+
+                        this.button8 = this.physics.add.image(this.niko.x, this.niko.y+100, '8')
+                        this.button8.setInteractive()
+                        this.button8.on('pointerup', ()=> {
+                            this.combination.push(8)
+                        }, this.button8)
+
+                        this.button9 = this.physics.add.image(this.niko.x+100, this.niko.y+100, '9')
+                        this.button9.setInteractive()
+                        this.button9.on('pointerup', ()=> {
+                            this.combination.push(9)
+                        }, this.button9)
+
+                        const repeat = () =>{
+                            if(this.combination.length != 4){
+                                setTimeout(repeat, 2)
+                            }
+                            else{
+                                this.paused = false
+                                const pin = [4,9,8,6]
+                                if(JSON.stringify(pin) == JSON.stringify(this.combination)){
+                                    this.message = [["*Ping*", "Nice! The computer accepted the Pin!"], ["Still don't know how an arbitrary set of pool balls", "somehow made the pin of a time machine"], ["But hey! I ain't complaining!"]]
+                                    this.dialog()
+                                    this.computer = 4
+                                }
+                                else{
+                                    this.message = [["*Womp Womp*", "Dangit, it doesn't accept the pin..."], ["..."],["The the computer say 'womp womp'?", "Neat"]]
+                                    this.dialog()
+                                }
+                                this.button0.destroy()
+                                this.button1.destroy()
+                                this.button2.destroy()
+                                this.button3.destroy()
+                                this.button4.destroy()
+                                this.button5.destroy()
+                                this.button6.destroy()
+                                this.button7.destroy()
+                                this.button8.destroy()
+                                this.button9.destroy()
+                            }
+                        }
+                
+                        repeat()
+                    }
                 }
                 //Matching Diner/Drink
                 else if(this.computer == 4){
@@ -356,6 +453,16 @@ export default class level2 extends Game{
 
     preload(){
         super.preload()
+        this.load.image('0', '/static/Assets/numpad/0.PNG')
+        this.load.image('1', '/static/Assets/numpad/1.PNG')
+        this.load.image('2', '/static/Assets/numpad/2.PNG')
+        this.load.image('3', '/static/Assets/numpad/3.PNG')
+        this.load.image('4', '/static/Assets/numpad/4.PNG')
+        this.load.image('5', '/static/Assets/numpad/5.PNG')
+        this.load.image('6', '/static/Assets/numpad/6.PNG')
+        this.load.image('7', '/static/Assets/numpad/7.PNG')
+        this.load.image('8', '/static/Assets/numpad/8.PNG')
+        this.load.image('9', '/static/Assets/numpad/9.PNG')
     }
 
     create(){
@@ -382,7 +489,7 @@ export default class level2 extends Game{
         //Now comes the level specific puzzles.
         
         this.removedHead = 0
-        this.computer = 0
+        this.computer = 3
 
         //Stray Puzzle Pieces (Can be found around the map) COMPUTER = 0-2
         this.niko.strayList = 0
@@ -390,14 +497,15 @@ export default class level2 extends Game{
         this.niko.cleanSmallPlant = false
         this.niko.cleanFirePlace = false
         //Pool Table Puzzle COMPUTER = 3
+        this.niko.numpadIntro = false
 
-        //Combination COMPUTER = 
+        //Combination COMPUTER = 4
 
-        //Deliver Drinks COMPUTER = 
+        //Deliver Drinks COMPUTER = 5
 
-        //Break the Bear COMPUTER = 
+        //Break the Bear COMPUTER = 6
 
-        //COMPUTER = 5 is the end
+        //COMPUTER = 6 is the end
     }
 
     update(time, dTime){
