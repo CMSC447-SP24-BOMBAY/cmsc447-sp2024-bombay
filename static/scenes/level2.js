@@ -225,7 +225,7 @@ export default class level2 extends Game{
 
                 //checks for full password
                 else if(this.computer == 2){
-                    if (this.strayList = 2){
+                    if (this.strayList == 2){
                         this.message = [["Maybe I should check the table again for more clues"]]
                         this.dialog()
                     }
@@ -345,7 +345,7 @@ export default class level2 extends Game{
                 }
                 //Matching Diner/Drink
                 else if(this.computer == 4){
-                    this.message = [["The computer has a new message!"], ["Please enter 1 dollar into time machine to continue"],["You can check the cash reggister for any extra money"],["ARE YOU KIDDING ME???", "ITS A TIME MACHINE MACHINE IN A BAR????", "IM NOT AT THE LAUNDROMAT"]]
+                    this.message = [["The computer has a new message!"], ["Please enter 1 dollar into time machine to continue"],["You can check the cash register for any extra money"],["ARE YOU KIDDING ME???", "ITS A TIME MACHINE MACHINE IN A BAR????", "IM NOT AT THE LAUNDROMAT"]]
                     this.dialog()
                 }
                 else if(this.computer == 5){
@@ -390,8 +390,14 @@ export default class level2 extends Game{
                 }
             },
             "wideBrownBookshelf": ()=>{
-                this.message = [["There is a book that looks out of place...", 'The cover reads...'], ['"Time Travelling for dummies, like you!"', "For security reasons, a time machine may be under many passwords", "This is mostly for security... and taxes.", "One such puzzle is often a cipher."], ["One such cipher we use is the Ceasar Cipher", "Where we take a coded string of characters, and shift them to the right!", "The code can be identified by a mess of letters and a number"], ["Huh, for time travellers, that kinda seems outdated", "Then again, this seems like useful information to have. Handy!"]]
-                this.dialog()
+                if(this.computer == 5){
+                    this.message = [["There is a book that looks out of place...", 'The cover reads...'], ['"Time Travelling for dummies, like you!"', "For security reasons, a time machine may be under many passwords", "This is mostly for security... and taxes.", "One such puzzle is often a cipher."], ["One such cipher we use is the Ceasar Cipher", "Where we take a coded string of characters, and shift them to the right!", "The code can be identified by a mess of letters and a number"], ["This must be the way to decode the computer's message!", "I just need to shift every letter right by 12"]]
+                    this.dialog()                   
+                }
+                else{
+                    this.message = [["There is a book that looks out of place...", 'The cover reads...'], ['"Time Travelling for dummies, like you!"', "For security reasons, a time machine may be under many passwords", "This is mostly for security... and taxes.", "One such puzzle is often a cipher."], ["One such cipher we use is the Ceasar Cipher", "Where we take a coded string of characters, and shift them to the right!", "The code can be identified by a mess of letters and a number"], ["Huh, for time travellers, that kinda seems outdated", "Then again, this seems like useful information to have. Handy!"]]
+                    this.dialog()
+                }
             },
             //order puzzle
             "cashRegister": ()=>{
@@ -686,6 +692,8 @@ export default class level2 extends Game{
                     this.dialog()
                 }               
             },
+
+            //Bear/Cipher puzzle
             "axe": ()=>{
                 this.message = [["I might need this axe...", "But I can't carry both the mop and axe, its too heavy."], ["I guess I'll just leave the mop here for now."]]
                 this.dialog()
@@ -785,9 +793,20 @@ export default class level2 extends Game{
                     this.message = [["I don't know what the painting means... ", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*", "The numbers on the painting correspond to the order of the pool tables", "In the painting the top left pool table has the number 3 on it","So the top left pool table has the third digit of the pin" ], ['hints used:'+this.hints]]
                     this.dialog()
                 }
-
-
-
+                else if(this.computer == 4){
+                    this.hint +=1
+                    this.message == [["Well where am I supposed to get money from?", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*", "You can go to the cash register for instructions on how to earn money", "With those instructions you should gather different food orders", "from this room and deliver them to their corresponding table" ],["If all the tables have been served and you still dont have enough money", "you should look around the room for something you missed"], ['hints used:'+this.hints]]
+                    this.dialog()
+                }
+                else if (this.computer == 5){
+                    this.hint += 1
+                    this.message == [["What does the computer's message even mean...", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","The computers message is encoded","To decipher it you should use a code thats been mentioned in the room","The decoded message will be an instruction to activate the time machine"], ['hints used:'+this.hints]]
+                    this.dialog()     
+                }
+                else if(this.computer == 6){
+                    this.message == [["What should I do now...", "*BOOP*"],["*Machine Whirring*"," WHY ARE YOU STILL HERE YOU DID EVERYTHING!"]]
+                    this.dialog()     
+                }
             }
         }
     }
