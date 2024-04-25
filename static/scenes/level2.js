@@ -342,8 +342,7 @@ export default class level2 extends Game{
                 }
                 //Matching Diner/Drink
                 else if(this.computer == 4){
-                    this.message = [["The computer is showing a new message!", "But it is mostly Giberish..."], ['[12] -> "Ruzp ftq Mjq. Ndqmw Ftq Nqmd."', 'Like what does that even mean?', 'Is this encoded?']]
-                    this.dialog()
+                    //The table matching puzzle here
                 }
                 else if(this.computer == 5){
                     this.message = [["The computer is showing a new message!", "But it is mostly Giberish..."], ['[12] -> "Ruzp ftq Mjq. Ndqmw Ftq Nqmd."', 'Like what does that even mean?', 'Is this encoded?']]
@@ -385,6 +384,10 @@ export default class level2 extends Game{
                         this.dialog() 
                     }
                 }
+            },
+            "wideBrownBookshelf": ()=>{
+                this.message = [["There is a book that looks out of place...", 'The cover reads...'], ['"Time Travelling for dummies, like you!"', "For security reasons, a time machine may be under many passwords", "This is mostly for security... and taxes.", "One such puzzle is often a cipher."], ["One such cipher we use is the Ceasar Cipher", "Where we take a coded string of characters, and shift them to the right!", "The code can be identified by a mess of letters and a number"], ["Huh, for time travellers, that kinda seems outdated", "Then again, this seems like useful information to have. Handy!"]]
+                this.dialog()
             },
             "axe": ()=>{
                 this.message = [["I might need this axe...", "But I can't carry both the mop and axe, its too heavy."], ["I guess I'll just leave the mop here for now."]]
