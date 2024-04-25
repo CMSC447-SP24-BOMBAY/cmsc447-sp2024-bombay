@@ -207,8 +207,6 @@ export default class level2 extends Game{
                     this.dialog()
                 } 
             },
-
-
             //COMPUTER
             "brownTable": ()=>{
                 //Intro Message
