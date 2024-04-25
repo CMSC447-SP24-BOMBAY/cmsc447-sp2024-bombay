@@ -360,8 +360,8 @@ export default class level2 extends Game{
         this.map = this.make.tilemap({key : 'dungeon2'})
         this.tileset = this.map.addTilesetImage('stardew', 'tiles2')
         this.tileset2 = this.map.addTilesetImage('misc', 'tavern2')
-        this.tileset3 = this.map.addTilesetImage('PoolTable (1)', 'pool2')
-        const tilesetArr = [this.tileset, this.tileset2]
+        this.tileset3 = this.map.addTilesetImage('poolTable', 'pool2')
+        const tilesetArr = [this.tileset, this.tileset2, this.tileset3]
         
         this.floorlayer = this.map.createLayer('floor', tilesetArr)
         this.wallslayer = this.map.createLayer('Walls', tilesetArr)
