@@ -387,6 +387,10 @@ export default class level2 extends Game{
                     }
                 }
             },
+            "wideBrownBookshelf": ()=>{
+                this.message = [["There is a book that looks out of place...", 'The cover reads...'], ['"Time Travelling for dummies, like you!"', "For security reasons, a time machine may be under many passwords", "This is mostly for security... and taxes.", "One such puzzle is often a cipher."], ["One such cipher we use is the Ceasar Cipher", "Where we take a coded string of characters, and shift them to the right!", "The code can be identified by a mess of letters and a number"], ["Huh, for time travellers, that kinda seems outdated", "Then again, this seems like useful information to have. Handy!"]]
+                this.dialog()
+            },
             //order puzzle
             "cashRegister": ()=>{
                 if (this.computer < 4){
