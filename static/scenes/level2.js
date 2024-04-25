@@ -12,7 +12,7 @@ export default class level2 extends Game{
             // SCATTERED PUZZLE PIECES
             "brokenTable": ()=>{
                 if(this.strayList == 0){
-                    this.message = [["Huh... There's ripped up note here... it says 'Before Closing : remember ", "to check cushions for spare change'"]]
+                    this.message = [["Huh... There's ripped up note here... it says"],[ "Before Closing :", "Employees remember to check cushions for spare change or any lost items"]]
                     this.dialog() 
                     this.strayList = 1                  
                 }
@@ -21,7 +21,7 @@ export default class level2 extends Game{
                     this.dialog()
                 }
                 else if (this.strayList == 2){
-                    this.message = [["Oh look there's a sticky note, it says to dust the plants and, ",  "sweep the chimney"]]
+                    this.message = [["It looks like I missed another piece of the note"],[ "It says 'Also dust the plants and sweep the chimney'"]]
                     this.dialog()
                     this.niko.inventory.splice(this.niko.inventory.indexOf("Password"), 1)
                     this.niko.inventory.push("Password Piece #1")
@@ -43,7 +43,7 @@ export default class level2 extends Game{
                     this.dialog()
                 }
                 else{
-                    this.message = [["Ohh there's a note in here, It says 'password is : abc'"]]
+                    this.message = [["There's a note in here, It says 'password is : time'"],["Kinda feels on the nose for a time machine..."]]
                     this.dialog()
                     this.niko.inventory.push("Password")
                     this.computer = 1
@@ -59,7 +59,7 @@ export default class level2 extends Game{
                     this.dialog()
                 }
                 else{
-                    this.message = [["ooh I feel something... YES a quarter"]]
+                    this.message = [["I feel something in here... oh its just a quarter"]]
                     this.dialog()
                     this.niko.inventory.push("quarter")
                     this.foundBlackCouch = true
@@ -71,7 +71,7 @@ export default class level2 extends Game{
 
                         //if they get a piece check how many they have
                         if (this.niko.inventory.includes("Password Piece #3")){
-                            this.message = [["Let me clean up this dirt spill..., Its the last piece!"]]
+                            this.message = [["I should probably clean up this spilled dirt..."],["Theres something in here...", "Its the last piece!"]]
                             this.dialog()
                             this.niko.inventory.splice(this.niko.inventory.indexOf("Password Piece #1"), 1)
                             this.niko.inventory.splice(this.niko.inventory.indexOf("Password Piece #2"), 1)
@@ -79,12 +79,12 @@ export default class level2 extends Game{
                             this.niko.inventory.push("Full Password")   
                         }
                         else if(this.niko.inventory.includes("Password Piece #2")){
-                            this.message = [["Let me clean up this dirt spill..., There's another piece!"]]
+                            this.message = [["I should probably clean up this spilled dirt..."],["Theres something in here...", "Its another piece of the password!"]]
                             this.dialog()
                             this.niko.inventory.push("Password Piece #3")
                         }
                         else{
-                            this.message = [["Let me clean up this dirt spill..., There's another piece!"]]
+                            this.message = [["I should probably clean up this spilled dirt..."],["Theres something in here...", "Its another piece of the password!"]]
                             this.dialog()
                             this.niko.inventory.push("Password Piece #2")
                         }
@@ -95,7 +95,7 @@ export default class level2 extends Game{
                         this.dialog()
                     }
                     else{
-                        this.message = [["I probably should get something to clean this"]]
+                        this.message = [["I dont have anything to clean this up..."]]
                         this.dialog()
                     }
                 }
@@ -115,7 +115,7 @@ export default class level2 extends Game{
                             
                             //if they get a piece check how many they have
                             if (this.niko.inventory.includes("Password Piece #3")){
-                                this.message = [["There seems to be another piece here, I think this is the last piece!"]]
+                                this.message = [["Oh it looks like theres something in here..",  "I think this is the last piece!"]]
                                 this.dialog()
                                 this.niko.inventory.splice(this.niko.inventory.indexOf("Password Piece #1"), 1)
                                 this.niko.inventory.splice(this.niko.inventory.indexOf("Password Piece #2"), 1)
@@ -123,12 +123,12 @@ export default class level2 extends Game{
                                 this.niko.inventory.push("Full Password")   
                             }
                             else if(this.niko.inventory.includes("Password Piece #2")){
-                                this.message = [["There seems to be a piece of paper here"]]
+                                this.message = [["Oh it looks like theres something in here..", "Its another piece of the password"]]
                                 this.dialog()
                                 this.niko.inventory.push("Password Piece #3")
                             }
                             else{
-                                this.message = [["There seems to be a piece of paper here"]]
+                                this.message = [["Oh it looks like theres something in here..", "Its another piece of the password"]]
                                 this.dialog()
                                 this.niko.inventory.push("Password Piece #2")
                             }
@@ -136,12 +136,12 @@ export default class level2 extends Game{
 
                         }
                         else if(this.cleanBigPlant == true){
-                            this.message = [["Nothing else here"]]
+                            this.message = [["Everything looks all good here"]]
                             this.dialog()
                         }
                         //if they dont have the mop
                         else{
-                            this.message = [["This plant looks dusty, I should probably get something to clean this"]]
+                            this.message = [["This plant looks a bit dusty, I should probably get something to clean this"]]
                             this.dialog()
                         }
                     }
@@ -162,7 +162,7 @@ export default class level2 extends Game{
                     if (this.niko.inventory.includes("mop") && this.cleanFirePlace == false){
                         //if they get a piece check how many they have
                         if (this.niko.inventory.includes("Password Piece #3")){
-                            this.message = [["This fireplace is so dusty, There's the last piece!"]]
+                            this.message = [["Theres alot of soot here... *COUGH* *COUGH*"],[ "Hey... there's the last piece!"]]
                             this.dialog()
                             this.niko.inventory.splice(this.niko.inventory.indexOf("Password Piece #1"), 1)
                             this.niko.inventory.splice(this.niko.inventory.indexOf("Password Piece #2"), 1)
@@ -170,12 +170,12 @@ export default class level2 extends Game{
                             this.niko.inventory.push("Full Password")   
                         }
                         else if(this.niko.inventory.includes("Password Piece #2")){
-                            this.message = [["This fireplace is so dusty, There's a piece here"]]
+                            this.message = [["Theres alot of soot here... *COUGH* *COUGH*"],[ "Hey... there's another piece"]]
                             this.dialog()
                             this.niko.inventory.push("Password Piece #3")
                         }
                         else{
-                            this.message = [["This fireplace is so dusty, There's a piece here"]]
+                            this.message = [["Theres alot of soot here... *COUGH* *COUGH*"],[ "Hey... there's another piece"]]
                             this.dialog()
                             this.niko.inventory.push("Password Piece #2")
                         }
@@ -186,7 +186,7 @@ export default class level2 extends Game{
                         this.dialog()
                     }
                     else{
-                        this.message = [["I dont have anything to clean this"]]
+                        this.message = [["I dont have anything I can use to clean this"]]
                         this.dialog()
                     }
                 }
@@ -203,7 +203,7 @@ export default class level2 extends Game{
                     this.dialog()
                 }
                 else if (this.computer == 3){
-                    this.message = [["I wonder what this means"]]
+                    this.message = [["I wonder what this painting means"]]
                     this.dialog()
                 } 
             },
@@ -213,13 +213,13 @@ export default class level2 extends Game{
             "brownTable": ()=>{
                 //Intro Message
                 if(this.computer == 0){
-                    this.message = [["Looks like I need a password to open this"]]
+                    this.message = [["Looks like I need a password to open the computer..."]]
                     this.dialog()                  
                 }
 
                 //Once they get first password piece tells them its incomplete
                 else if(this.computer == 1){
-                    this.message = [["Ok lets put in the password... Huh that didn't work...", "Oh the note is ripped, maybe I should check the table again for more clues"]]
+                    this.message = [["Ok lets put in the password..."],[ "Huh that didn't work...", "Oh the note is ripped, maybe I should check the table again for more clues"]]
                     this.dialog()
                     this.computer = 2
                     this.strayList = 2                    
@@ -227,7 +227,11 @@ export default class level2 extends Game{
 
                 //checks for full password
                 else if(this.computer == 2){
-                    if (this.niko.inventory.includes("Full Password")){
+                    if (this.strayList = 2){
+                        this.message = [["Maybe I should check the table again for more clues"]]
+                        this.dialog()
+                    }
+                    else if (this.niko.inventory.includes("Full Password")){
                         this.message = [["The password was right!"," But it looks like the computer needs something else..."]]
                         this.dialog()
                         this.computer = 3
@@ -343,7 +347,7 @@ export default class level2 extends Game{
                 }
                 //Matching Diner/Drink
                 else if(this.computer == 4){
-                    this.message = [["The computer has a new message"], ["Please enter 1 dollar into time machine to continue", "Check Register for any extra money"],["ARE YOU KIDDING ME???", "ITS A TIME MACHINE MACHINE IN A BAR????", "IM NOT AT THE LAUNDROMAT"]]
+                    this.message = [["The computer has a new message!"], ["Please enter 1 dollar into time machine to continue"],["You can check the cash reggister for any extra money"],["ARE YOU KIDDING ME???", "ITS A TIME MACHINE MACHINE IN A BAR????", "IM NOT AT THE LAUNDROMAT"]]
                     this.dialog()
                 }
                 else if(this.computer == 5){
@@ -394,17 +398,17 @@ export default class level2 extends Game{
             //order puzzle
             "cashRegister": ()=>{
                 if (this.computer < 4){
-                    this.message = [["Nothing weird here"]]
+                    this.message = [["Its Locked"]]
                     this.dialog()
                 }
                 else if (this.computer == 4){
                     if (this.cashRegisterChecked == false){
                         this.cashRechisterChecked = true
-                        this.message = [["Maybe if I hit this cash register REALLLLY hard it'll open", "*BANG* *BANG* *BANG*"],["Well that was easy..", "Doesn't look like there's any money in here but there is an", "emplyees handbook"], ["Employees Handbook : ", "Make sure all tables are served, As a reminder", "We keep wine in the keg, juice, in the barrel next to that", "Chips are in the big barrel at the bottom, and Cheese is next to that", "Remember you can use the trash can to get rid of any food in you hands"]]
+                        this.message = [["Dang it, its locked..."], ["Maybe if I hit this cash register REALLLLY hard it'll open", "*BANG* *BANG* *BANG*"],["Well that was easy..", "Doesn't look like there's any money in here but there is an", "emplyee's handbook"], ["Employee's Handbook : ", "Make sure all tables are served, As a reminder:", "Wine is kept in the keg, Juice is in the barrel next to that", "Chips are in the big barrel at the bottom, and Cheese is next to that", "Remember you can use the trash can to get rid of food in you hands"]]
                         this.dialog()
                     }
                     else{
-                        message =  [["Employees Handbook : ", "Make sure all tables are serves, As a reminder", "We keep wine in the keg, juice, in the barrel next to that", "Chips are in the big barrel at the bottom, and cheese is next to that", "Remember you can use the metal trash can to get rid of any food in you hands"]]
+                        message =  [["Employees Handbook : ", "Make sure all tables are served, As a reminder:", "Wine is kept in the keg, Juice is in the barrel next to that", "Chips are in the big barrel at the bottom, and Cheese is next to that", "Remember you can use the trash can to get rid of food in you hands"]]
                         this.dialog()
                     }
                 }
@@ -415,32 +419,35 @@ export default class level2 extends Game{
                     if (this.wallTile.x == 38 && this.wallTile.y == 21){
                         if (this.servedTopLeft != true){
                             if (this.foodInHand == 0){
-                                this.message = [["This table has a receipt for one order of wine, one order of juice" , "and two orders of cheese"]]
+                                this.message = [["This table has a receipt for a bottle of wine, a juice box" , "and two orders of cheese"]]
                                 this.dialog()
                             }
                             else if (this.foodInHand < 4){
-                                this.message = [["Looks like I dont have the full order yet"],["This table has a receipt for one order of wine, one order of juice" , "and two orders of cheese"]]
+                                this.message = [["Looks like I dont have the full order yet"],["This table has a receipt for a bottle of wine, a juice box" , "and two orders of cheese"]]
                                 this.dialog()
                             }
                             //Gets rid of food and gives quarter
                             else if(this.foodInHand == 4){
                                 if (this.niko.inventory.includes("wine") && this.niko.inventory.includes("juice") && (this.niko.inventory.filter(i => i === "cheese").length) == 2){
-                                    this.message = [["Looks like I got the full order"], ["Hey look!", "A quarter"]]
+                                    this.message = [["Looks like I got the full order"], ["Hey look!", "I wonder how this quarter got here"]]
                                     this.dialog()
                                     while (this.foodInHand != 0){
                                         if (this.niko.inventory.includes("wine")) {
                                             const index = this.niko.inventory.indexOf("wine")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
-                                        } else if (this.niko.inventory.includes("juice")) {
+                                        } 
+                                        else if (this.niko.inventory.includes("juice")) {
                                             const index = this.niko.inventory.indexOf("juice")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
-                                        } else if (this.niko.inventory.includes("chips")) {
+                                        } 
+                                        else if (this.niko.inventory.includes("chips")) {
                                             const index = this.niko.inventory.indexOf("chips")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
-                                        } else if (this.niko.inventory.includes("cheese")) {
+                                        } 
+                                        else if (this.niko.inventory.includes("cheese")) {
                                             const index = this.niko.inventory.indexOf("cheese")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
@@ -451,7 +458,7 @@ export default class level2 extends Game{
                                     this.servedTopLeft = true
                                 }
                                 else{
-                                    this.message = [["I don't have the right order... I think I need to restart"],["This table has a receipt for one order of wine, one order of juice" , "and two orders of cheese"]]
+                                    this.message = [["I don't have the right order... I think I need to restart"],["This table has a receipt for a bottle of wine, a juice box" , "and two orders of cheese"]]
                                     this.dialog()
                                 }
                             }
@@ -465,32 +472,35 @@ export default class level2 extends Game{
                     else if (this.wallTile.x == 43 && this.wallTile.y == 21){
                         if (this.servedTopRight != true){
                             if (this.foodInHand == 0){
-                                this.message = [["This table has a receipt for two orders of wine and two orders of chips"]]
+                                this.message = [["This table has a receipt for two bottles of wine and two bags of chips"]]
                                 this.dialog()
                             }
                             else if (this.foodInHand < 4){
-                                this.message = [["Looks like I dont have the full order yet"], ["This table has a receipt for two orders of wine and two orders of chips"]]
+                                this.message = [["Looks like I dont have the full order yet"], ["This table has a receipt for two bottles of wine and two bags of chips"]]
                                 this.dialog()
                             }
                             //Gets rid of food and gives quarter
                             else if(this.foodInHand == 4){
                                 if ((this.niko.inventory.filter(i => i === "wine").length) == 2 && (this.niko.inventory.filter(i => i === "chips").length) == 2){
-                                    this.message = [["Looks like I got the full order"], ["Hey look!", "A quarter"]]
+                                    this.message = [["Looks like I got the full order"], ["Not sure where this quarte came from...", "But I'll take it!"]]
                                     this.dialog()
                                     while (this.foodInHand != 0){
                                         if (this.niko.inventory.includes("wine")) {
                                             const index = this.niko.inventory.indexOf("wine")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
-                                        } else if (this.niko.inventory.includes("juice")) {
+                                        } 
+                                        else if (this.niko.inventory.includes("juice")) {
                                             const index = this.niko.inventory.indexOf("juice")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
-                                        } else if (this.niko.inventory.includes("chips")) {
+                                        } 
+                                        else if (this.niko.inventory.includes("chips")) {
                                             const index = this.niko.inventory.indexOf("chips")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
-                                        } else if (this.niko.inventory.includes("cheese")) {
+                                        }
+                                        else if (this.niko.inventory.includes("cheese")) {
                                             const index = this.niko.inventory.indexOf("cheese")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
@@ -501,7 +511,7 @@ export default class level2 extends Game{
                                     this.servedTopRight = true
                                 }
                                 else{
-                                    this.message = [["I don't have the right order... I think I need to restart"], ["This table has a receipt for two orders of wine and two orders of chips"]]
+                                    this.message = [["I don't have the right order... I think I need to restart"], ["This table has a receipt for two bottles of wine and two bags of chips"]]
                                     this.dialog()
                                 }
                             }
@@ -515,7 +525,7 @@ export default class level2 extends Game{
                     else if (this.wallTile.x == 43 && this.wallTile.y == 25){
                         if (this.servedBottomRight != true){
                             if (this.foodInHand == 0){
-                                this.message = [["This table has a receipt for four orders of cheese"]]
+                                this.message = [["This table has a receipt for four orders of cheese"], ["Kinda strange... but ok..."]]
                                 this.dialog()
                             }
                             else if (this.foodInHand < 4){
@@ -532,15 +542,18 @@ export default class level2 extends Game{
                                             const index = this.niko.inventory.indexOf("wine")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
-                                        } else if (this.niko.inventory.includes("juice")) {
+                                        } 
+                                        else if (this.niko.inventory.includes("juice")) {
                                             const index = this.niko.inventory.indexOf("juice")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
-                                        } else if (this.niko.inventory.includes("chips")) {
+                                        }
+                                        else if (this.niko.inventory.includes("chips")) {
                                             const index = this.niko.inventory.indexOf("chips")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
-                                        } else if (this.niko.inventory.includes("cheese")) {
+                                        } 
+                                        else if (this.niko.inventory.includes("cheese")) {
                                             const index = this.niko.inventory.indexOf("cheese")
                                             this.niko.inventory.splice(index, 1)
                                             this.foodInHand -= 1
@@ -572,27 +585,36 @@ export default class level2 extends Game{
                 }
             },
             "bin": ()=>{
-                while (this.foodInHand != 0){
-                    if (this.niko.inventory.includes("wine")) {
-                        const index = this.niko.inventory.indexOf("wine")
-                        this.niko.inventory.splice(index, 1)
-                        this.foodInHand -= 1
-                    } else if (this.niko.inventory.includes("juice")) {
-                        const index = this.niko.inventory.indexOf("juice")
-                        this.niko.inventory.splice(index, 1)
-                        this.foodInHand -= 1
-                    } else if (this.niko.inventory.includes("chips")) {
-                        const index = this.niko.inventory.indexOf("chips")
-                        this.niko.inventory.splice(index, 1)
-                        this.foodInHand -= 1
-                    } else if (this.niko.inventory.includes("cheese")) {
-                        const index = this.niko.inventory.indexOf("cheese")
-                        this.niko.inventory.splice(index, 1)
-                        this.foodInHand -= 1
+                if (this.foodInHand > 0){
+                    while (this.foodInHand != 0){
+                        if (this.niko.inventory.includes("wine")) {
+                            const index = this.niko.inventory.indexOf("wine")
+                            this.niko.inventory.splice(index, 1)
+                            this.foodInHand -= 1
+                        } 
+                        else if (this.niko.inventory.includes("juice")) {
+                            const index = this.niko.inventory.indexOf("juice")
+                            this.niko.inventory.splice(index, 1)
+                            this.foodInHand -= 1
+                        } 
+                        else if (this.niko.inventory.includes("chips")) {
+                            const index = this.niko.inventory.indexOf("chips")
+                            this.niko.inventory.splice(index, 1)
+                            this.foodInHand -= 1
+                        } 
+                        else if (this.niko.inventory.includes("cheese")) {
+                            const index = this.niko.inventory.indexOf("cheese")
+                            this.niko.inventory.splice(index, 1)
+                            this.foodInHand -= 1
+                        }
                     }
+                    this.message = [["Ok let me get rid of this food"]]
+                    this.dialog()
                 }
-                this.message = [["Ok now I have no food in my hand "]]
-                this.dialog()
+                else{
+                    this.message = [["I dont have any food to get rid of..."]]
+                    this.dialog()
+                }
             },
             "keg": ()=>{
                 if (this.cashRechisterChecked == true){
@@ -705,11 +727,11 @@ export default class level2 extends Game{
                 }
             },
             "bearHead": ()=>{
-                if(this.computer == 4 && this.niko.inventory.includes("axe")){
+                if(this.computer == 5 && this.niko.inventory.includes("axe")){
                     this.message = [["If I deciphered the message correctly, then I need to cut this bear's head off!"],["*SWING*"],["Huh, would you look at that", "There was a button underneath!", "*Presses Button*"],["***COMPUTER PING***", "I think that did it!"]]
                     this.dialog()
                     this.removedHead = true
-                    this.computer = 5
+                    this.computer = 6
                     this.wallslayer.removeTileAt(38, 16, true, true, this.wallsLayer)
                     this.wallslayer.removeTileAt(37, 16, true, true, this.wallsLayer)
                 }
@@ -722,7 +744,7 @@ export default class level2 extends Game{
                 if(this.computer == 4){
                     if ((this.niko.inventory.filter(i => i === "quarter").length) == 4){
                         this.computer = 5
-                        this.message = [["Powered up and ready to activate!", "Please return to computer for final step"]]
+                        this.message = [["Powered up and ready to activate!", "Please return to the computer to activate the time machine"]]
                         this.dialog()
                         this.niko.inventory.splice
                         while (!this.niko.inventory.includes("quarter")){
