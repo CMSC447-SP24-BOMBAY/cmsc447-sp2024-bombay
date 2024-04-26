@@ -5,6 +5,8 @@ export default class levelSelect extends Phaser.Scene{
     
     preload(){
         //Loads images + Other Assets
+        this.load.image("lightbulb", "/static/Assets/cutScenes/lightbulb.png")
+
         this.load.image("levelSelect_bg", "/static/Assets/Menu Assets/Transparent/levelSelect.jpg")
         
         this.load.image("level1", '/static/Assets/Menu Assets/Transparent/level_1_transparent.png')
@@ -40,6 +42,7 @@ export default class levelSelect extends Phaser.Scene{
         //Creates all the images
         this.add.image(this.game.renderer.width/1.25 ,this.game.renderer.height/1.5 , "levelSelect_bg").setScale(0.75,0.75)
         let level1 = this.add.image(this.game.renderer.width/1.5 ,this.game.renderer.height/6, "level1").setScale(0.5, 0.5)
+        let anim1 = this.add.image(this.game.renderer.width/1.5+200 ,this.game.renderer.height/6, "lightbulb").setScale(0.05, 0.05)
         let level2 = this.add.image(this.game.renderer.width/1.5 ,this.game.renderer.height/3, "level2").setScale(0.5, 0.5)
         let level3 = this.add.image(this.game.renderer.width/1.5 ,this.game.renderer.height/2, "level3").setScale(0.5, 0.5)
         let quit = this.add.image(this.game.renderer.width/1.5 ,this.game.renderer.height/1.6, "quit").setScale(0.35,0.35)
@@ -68,6 +71,14 @@ export default class levelSelect extends Phaser.Scene{
         level1.on("pointerup", ()=>{
             console.log("Level1 Button Clicked")
             this.scene.start('loader1')
+            this.game.sound.stopAll();
+            this.scene.stop('levelSelect')
+        })
+
+        anim1.setInteractive();
+        anim1.on("pointerup", ()=>{
+            console.log("Cutscene 1 Clicked")
+            this.scene.start('cutscenes1')
             this.game.sound.stopAll();
             this.scene.stop('levelSelect')
         })

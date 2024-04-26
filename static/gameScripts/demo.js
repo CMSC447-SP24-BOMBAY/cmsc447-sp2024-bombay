@@ -8,12 +8,13 @@ import level1 from "../scenes/level1.js";
 import loader2 from "../scenes/loader2.js";
 import level2 from "../scenes/level2.js";
 import completed1 from "../scenes/completed1.js";
+import cutscenes1 from "../scenes/cutscenes1.js";
 
 var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    scene: [login, mainMenu, levelSelect, loader1, level1, loader2, level2, completed1],
+    scene: [login, mainMenu, levelSelect, loader1, level1, loader2, level2, completed1, cutscenes1],
     
     physics:{
         default: 'arcade',
