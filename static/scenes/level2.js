@@ -248,6 +248,9 @@ export default class level2 extends Game{
                         this.niko.numpadIntro = true
                     }
                     else{
+                        if(this.paused){
+                            return ;
+                        }
                         this.combination = []
                         this.paused = true
 
