@@ -112,6 +112,12 @@ export default class levelSelect extends Phaser.Scene{
         level3.on("pointerout", ()=>{
             hoverSp.setVisible(false)
         })
+        level3.on("pointerup", ()=>{
+            console.log("Level3 Button Clicked")
+            this.scene.start('loader3')
+            this.game.sound.stopAll();
+            this.scene.stop('levelSelect')
+        })
 
         //  Quit Button Events
         quit.setInteractive();
