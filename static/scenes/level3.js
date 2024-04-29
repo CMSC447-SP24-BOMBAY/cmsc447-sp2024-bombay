@@ -195,6 +195,169 @@ export default class level3 extends Game{
                     this.dialog()
                 }
             },
+            "largeTV": ()=>{
+                if(!this.interactLargeTV){
+                    this.message = [["There is a note on this TV...", "It reads..."], ["In order to increase the room power again,", "The blast furnace next to this TV must be turned on"], ["A sequence will appear on this TV that will indicate the order"]]
+                    this.dialog()
+                    this.interactLargeTV = true
+                }
+                else{
+                    if(this.paused){
+                        return ;
+                    }
+                    else{
+                        this.paused = true
+                        const pos1 = () =>{
+                            this.star = this.physics.add.image(this.niko.x-100, this.niko.y-100, 'star').setScale(0.3)
+                            setTimeout(pos2, 1000)
+                        }
+                        const pos2 = () =>{
+                            this.star.setX(this.niko.x+100)
+                            setTimeout(pos3, 1000)
+                        }
+                        const pos3 = () =>{
+                            this.star.setX(this.niko.x + 200)
+                            this.star.setY(this.niko.y)
+                            setTimeout(pos4, 1000)
+                        }
+                        const pos4 = () =>{
+                            this.star.setX(this.niko.x - 200)
+                            setTimeout(pos5, 1000)
+                        }
+                        const pos5 = () =>{
+                            this.star.setX(this.niko.x+100)
+                            this.star.setY(this.niko.y + 100)
+                            setTimeout(pos6, 1000)
+                        }
+                        const pos6 = () =>{
+                            this.star.setX(this.niko.x - 100)
+                            setTimeout(end, 1000)
+                        }
+                        const end = () =>{
+                            this.paused = false
+                            this.star.destroy()
+                        }
+                        pos1()
+                        
+                    }
+                }
+            },
+            "starFurnace": ()=>{
+                if(!this.interactLargeTV){
+                    this.message = [["Jeezus... Thats a big ah furnace...", "I wonder what it's for?"], ["It looks kinda old fashioned... Still neat!"]]
+                    this.dialog()
+                }
+                else if(this.interactLargeTV && !this.furnaceUnlocked){
+                    if(this.paused){
+                        return ;
+                    }
+                    else{
+                        this.paused = true
+                        this.combination = []
+
+                        this.star1 = this.physics.add.image(this.niko.x-100, this.niko.y-100, 'star').setScale(0.3)
+                        this.star1.setInteractive()
+                        this.star1.on('pointerup', ()=> {
+                            this.combination.push(1)
+                        }, this.star1)
+
+                        this.star2 = this.physics.add.image(this.niko.x+100, this.niko.y-100, 'star').setScale(0.3)
+                        this.star2.setInteractive()
+                        this.star2.on('pointerup', ()=> {
+                            this.combination.push(2)
+                        }, this.star2)
+
+                        this.star3 = this.physics.add.image(this.niko.x+200, this.niko.y, 'star').setScale(0.3)
+                        this.star3.setInteractive()
+                        this.star3.on('pointerup', ()=> {
+                            this.combination.push(3)
+                        }, this.star3)
+
+                        this.star4 = this.physics.add.image(this.niko.x-200, this.niko.y, 'star').setScale(0.3)
+                        this.star4.setInteractive()
+                        this.star4.on('pointerup', ()=> {
+                            this.combination.push(4)
+                        }, this.star4)
+
+                        this.star5 = this.physics.add.image(this.niko.x+100, this.niko.y+100, 'star').setScale(0.3)
+                        this.star5.setInteractive()
+                        this.star5.on('pointerup', ()=> {
+                            this.combination.push(5)
+                        }, this.star5)
+
+                        this.star6 = this.physics.add.image(this.niko.x-100, this.niko.y+100, 'star').setScale(0.3)
+                        this.star6.setInteractive()
+                        this.star6.on('pointerup', ()=> {
+                            this.combination.push(6)
+                        }, this.star6)
+
+                        const repeat = () =>{
+                            if(this.combination.length != 6){
+                                setTimeout(repeat, 2)
+                            }
+                            else{
+                                this.paused = false
+                                const pin = [1,2,3,4,5,6]
+                                if(JSON.stringify(pin) == JSON.stringify(this.combination)){
+                                    this.message = [["*WHOOSH*"], ["Jeez man?!", "Fire just blared out!"], ["Oh neat! There is a now a button to turn on level2 power!"]]
+                                    this.dialog()
+                                    this.furnaceUnlocked = true
+                                }
+                                else{
+                                    this.message = [["*Womp Womp*", "Dangit, it doesn't accept the combination..."], ["..."],["At this point, I'm expecting everything to womp womp"]]
+                                    this.dialog()
+                                }
+                                this.star1.destroy()
+                                this.star2.destroy()
+                                this.star3.destroy()
+                                this.star4.destroy()
+                                this.star5.destroy()
+                                this.star6.destroy()
+                            }
+                        }
+                        repeat()
+                    }
+                }
+                else{
+                    this.roomPower = 2
+                    this.message = [["Aiight, lemme switch on to more power!", "Come on Level 2!"]]
+                    this.dialog()
+                    this.darkness.setScale(9)
+                }
+            },
+            "purpleTablet": ()=>{
+                if(this.roomPower < 2){
+                    this.message = [["There is a note on this tablet here..."], ["I can only open the door to the outer labs", "only if the room has level 2 power..."], ["I need more???"]]
+                    this.dialog()
+                }
+                else if(!this.tabletUnlocked && this.roomPower >=2){
+                    this.tabletUnlocked = true
+                    this.message = [["Neato! I can turn open the door to the next layers!"]]
+                    this.dialog()
+
+                    this.wallslayer.removeTileAt(54, 24, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(54, 25, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(54, 26, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(54, 27, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(54, 28, true, true, this.wallsLayer)
+
+                    this.wallslayer.removeTileAt(23, 24, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(23, 25, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(23, 26, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(23, 27, true, true, this.wallsLayer)
+
+                    this.wallslayer.removeTileAt(23, 31, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(23, 32, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(23, 33, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(23, 34, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(23, 35, true, true, this.wallsLayer)
+                    this.wallslayer.removeTileAt(23, 36, true, true, this.wallsLayer)
+                }
+                else{
+                    this.message = [["I already opened the doors...", "I don't really need this anymore"], ["..."], ["Can I pirate Kung Fu Panda 4 on this?"]]
+                    this.dialog()
+                }
+            }
         }
     }
 
@@ -211,6 +374,7 @@ export default class level3 extends Game{
         this.load.image('8', '/static/Assets/numpad/8.PNG')
         this.load.image('9', '/static/Assets/numpad/9.PNG')
         this.load.image('blackout', '/static/Assets/Map Sprites/blackScreen.png')
+        this.load.image('star', '/static/Assets/Map Sprites/star.png')
     }
 
     create(){
@@ -252,6 +416,9 @@ export default class level3 extends Game{
         this.obtainedRed = false
         this.interactLaptop = false
         this.unlockedLaptop = false
+        this.interactLargeTV = false
+        this.furnaceUnlocked = false
+        this.tabletUnlocked = false
     }
 
     update(time, dTime){
