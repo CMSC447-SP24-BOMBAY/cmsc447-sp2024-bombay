@@ -357,6 +357,164 @@ export default class level3 extends Game{
                     this.message = [["I already opened the doors...", "I don't really need this anymore"], ["..."], ["Can I pirate Kung Fu Panda 4 on this?"]]
                     this.dialog()
                 }
+            },
+            "cola": ()=>{
+                if(!this.interactCola){
+                    this.message = [["Its a Coca Cola Machine ™", "But it looks like there is some clear stone stuck in there..."], ["I might need that. But how can I knock it out?", "..."], ["The floor looks pretty dusty around here...", "Maybe if I sweep around, I might find some spare change!"]]
+                    this.dialog()
+                    this.interactCola = true
+                }
+                else if(this.interactCola && !this.obtainedQuarter){
+                    this.message = [["I still need to find a quarter around here..."],["HOLD ON A MINUTE!","THEY ALSO GOT A SPONGEBOB POPSICLE IN THERE TOO!"]]
+                    this.dialog()
+                }
+                else if(this.niko.inventory.includes("Refined Clear Stone")){
+                    this.message = [["I cleaned the area but I couldnt find a spare quarter..."], ["*sobs*", "My Spongebob Popsicle..."]]
+                    this.dialog()
+                }
+                else if(this.interactCola && this.obtainedQuarter){
+                    this.message = [["Alrighty, lemme just pop this quarter in rq!", "..."], ["..."], ["its uh, not giving me the stone... It got stuck", "Are you serious!", "*Kicks machine*"], ["Oh hey it popped out!"]]
+                    this.dialog()
+                    this.niko.inventory.push("Refined Clear Stone")
+                    const index = this.niko.inventory.indexOf("Quarter")
+                    this.niko.inventory.splice(index, 1)
+                }
+            },
+            "mopAway": ()=>{
+                if(!this.interactCola){
+                    this.message = [["This place is hella dusty...", "I could mop this but..."], ["That ain't my job so... XD"]]
+                    this.dialog()
+                }
+                else if(this.floorTile.x == 69 && this.floorTile.y == 46){
+                    this.message = [["Poggers! There was a quarter here!"]]
+                    this.dialog()
+                    this.obtainedQuarter = true
+                    this.niko.inventory.push("Quarter")
+                    this.floorInteractLayer.removeTileAt(this.floorTile.x, this.floorTile.y, true, true, this.floorInteractLayer)
+                }
+                else{
+                    this.floorInteractLayer.removeTileAt(this.floorTile.x, this.floorTile.y, true, true, this.floorInteractLayer)
+                }
+            },
+            "bustedSafe": () =>{
+                if(this.roomPower >=2){
+                    this.message = [["There is some really shiny stone at the back of this safe.", "Lemme see if I can-", "*reaches into safe*"], ["*Bzzt Bzzt*", "- High_Power_Security_Gate_Active -"], ["A security gate? How do I lower the power here?"]]
+                    this.dialog()
+                }
+                else if(!this.niko.inventory.includes("Light Blue Refined Stone") && this.roomPower < 2){
+                    this.message = [["Oh neat, the security system here seems to be powered off!"], ["Prolly cuz of how much power these rooms have.", "But hey! Would ya look at that", "Another one of em shiny looking stones!"]]
+                    this.dialog()
+                    this.niko.inventory.push("Light Blue Refined Stone")
+                }
+                else{
+                    this.message = [["I already got the stone from here...", "I wonder what is in the rest of the safes?"]]
+                    this.dialog()
+                }
+            },
+            "safe": ()=>{
+                this.message = [["Its a big safe.", "Lemme try to open this..."], ["*HNGGGG HNGGGGGGG*"], ["Nope! It aint budging"]]
+                this.dialog()
+            },
+            "miniTV": ()=>{
+                if(!this.interactMiniTV){
+                    this.message = [["Its a tiny TV!", "Lemme turn it on!"], ["*Bzzt* *Bzzt*"], ["Its... Its just repeating the same sequence of Sun and Moon over and over."]]
+                    this.dialog()
+                    this.interactMiniTV = true
+                }
+                else if(!this.niko.inventory.includes("Refined Orange Stone")){
+                    if(this.paused){
+                        return ;
+                    }
+                    else{
+                        this.paused = true
+                        const pos1 = () =>{
+                            this.starTV = this.physics.add.image(this.niko.x-100, this.niko.y-100, 'star').setScale(0.3).setVisible(1)
+                            this.moonTV = this.physics.add.image(this.niko.x, this.niko.y, 'moon').setScale(0.3).setVisible(0)
+                            setTimeout(pos2, 1000)
+                        }
+                        const pos2 = () =>{
+                            this.starTV.setX(this.niko.x+100)
+                            setTimeout(pos3, 1000)
+                        }
+                        const pos3 = () =>{
+                            this.starTV.setVisible(0)
+                            this.moonTV.setX(this.niko.x + 200).setVisible(1)
+                            this.moonTV.setY(this.niko.y)
+                            setTimeout(pos4, 1000)
+                        }
+                        const pos4 = () =>{
+                            this.moonTV.setX(this.niko.x - 200)
+                            setTimeout(pos5, 1000)
+                        }
+                        const pos5 = () =>{
+                            this.moonTV.setVisible(0)
+                            this.starTV.setVisible(1)
+                            this.starTV.setX(this.niko.x+100)
+                            this.starTV.setY(this.niko.y + 100)
+                            setTimeout(pos6, 1000)
+                        }
+                        const pos6 = () =>{
+                            this.starTV.setX(this.niko.x - 100)
+                            setTimeout(end, 1000)
+                        }
+                        const end = () =>{
+                            this.paused = false
+                            this.starTV.destroy()
+                            this.moonTV.destroy()
+                        }
+                        pos1()
+                    }
+                }
+                else{
+                    this.message = [["I already got the Orange Refined Stone..."], ["Does this TV have Netflix?"]]
+                    this.dialog()
+                }
+            },
+            "star": ()=>{
+                if(!this.interactStar){
+                    this.message = [["It looks like an arcade machine with a star on the side.", "It only has one button though"]]
+                    this.dialog()
+                    this.interactStar = true
+                }
+                else{
+                    this.message = [["Lemme just push this button.", "Neat, it seems to have add a star to some sequence"]]
+                    this.dialog()
+                    this.miniTVCombination.push(0)
+                }
+            },
+            "moon": ()=>{
+                if(!this.interactStar){
+                    this.message = [["It looks like an arcade machine with a moon on the side.", "It only has one button though"]]
+                    this.dialog()
+                    this.interactStar = true
+                }
+                else{
+                    this.message = [["Lemme just push this button.", "Neat, it seems to have add a moon to some sequence"]]
+                    this.dialog()
+                    this.miniTVCombination.push(1)
+                }
+            },
+            "brokenTimeMachine": ()=>{
+                const code = [0,0,1,1,0,0]
+                if(!this.interactBrokenTimeMachine){
+                    this.message = [["It looks like a busted version of the time machine I used to get here!"], ["Oh neat! There is a Refined Orange Stone inside...", "But its locked behind some combination"], ["There aren't even any inputs here on this machine.", "How do I even open it? All that is here is a confimation button."]]
+                    this.dialog()
+                    this.interactBrokenTimeMachine = true
+                }
+                else if(this.niko.inventory.includes("Refined Orange Stone")){
+                    this.message = [["I already got the Refined Orange Stone", "Still I wonder..."], ["Who was it that used this time machine then?"]]
+                    this.dialog()
+                }
+                else if(JSON.stringify(this.miniTVCombination) != JSON.stringify(code)){
+                    this.message = [["It doesn't seem that whatever I did got the right combination..."], ["Lemme just hit the reset."]]
+                    this.dialog()
+                    this.miniTVCombination = []
+                }
+                else{
+                    this.message = [["Nice! It seems that I got the combination correct!"], ["The busted time machine is open now!", "Lemme just take that refined Orange Stone rq"]]
+                    this.dialog()
+                    this.niko.inventory.push("Refined Orange Stone")
+                }
             }
         }
     }
@@ -375,6 +533,7 @@ export default class level3 extends Game{
         this.load.image('9', '/static/Assets/numpad/9.PNG')
         this.load.image('blackout', '/static/Assets/Map Sprites/blackScreen.png')
         this.load.image('star', '/static/Assets/Map Sprites/star.png')
+        this.load.image('moon', '/static/Assets/Map Sprites/moon.png')
     }
 
     create(){
@@ -414,11 +573,22 @@ export default class level3 extends Game{
         //Puzzle Specific pieces
         this.roomPower = 0
         this.obtainedRed = false
+
         this.interactLaptop = false
         this.unlockedLaptop = false
+
         this.interactLargeTV = false
         this.furnaceUnlocked = false
         this.tabletUnlocked = false
+
+        this.interactCola = false
+        this.obtainedQuarter = false
+
+        this.interactMiniTV = false
+        this.miniTVCombination = []
+        this.interactStar = false
+        this.interactMoon = false
+        this.interactBrokenTimeMachine = false
     }
 
     update(time, dTime){
