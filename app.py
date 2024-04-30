@@ -223,15 +223,15 @@ def leaderboard():
                               FROM leaderboard
                               LEFT JOIN player
                               ON leaderboard.player_name = player.name
-                              ORDER BY leaderboard.player_score DESC LIMIT ?
+                              ORDER BY leaderboard.player_score ASC LIMIT ?
                               """, [LEADERBOARD_TOP])
             res = res.fetchall()
             # validate query result
             if res:
                 # format leaderboard response
-                response = {}
-                for row, n in zip(res, range(LEADERBOARD_TOP)):
-                    response[n + 1] = f"{row[0]}: {row[1]}"
+                response = []
+                for rank, (username, score) in enumerate(res, start=1):
+                    response.append({'rank': rank, 'user': username, 'score': score})
             # error executing query
             else:
                 cur.close()
@@ -241,6 +241,35 @@ def leaderboard():
             cur.close()
             conn.close()
             return jsonify(response), HTTPStatus.OK.value
+    except sqlite3.Error as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+    except Exception as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+
+@app.route("/api/leaderboard/<name>/<score>", methods=["POST"])
+@cross_origin()
+def leaderboard_post(name, score):
+    try:
+        # post player score to leaderboard
+        if request.method == "POST":
+            conn = sqlite3.connect("game.db")
+            cur = conn.cursor()
+
+            # execute query
+            cur.execute("""
+                        INSERT INTO leaderboard (player_name, player_score)
+                        VALUES (?, ?)
+                        """, [name, score])
+            conn.commit()
+            # error executing query
+            if cur.rowcount == 0:
+                cur.close()
+                conn.close()
+                raise Exception("Error updating leaderboard")
+
+            cur.close()
+            conn.close()
+            return jsonify({str(HTTPStatus.OK.value):"Leaderboard updated"})
     except sqlite3.Error as e:
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
     except Exception as e:

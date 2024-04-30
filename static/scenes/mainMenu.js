@@ -123,6 +123,7 @@ export default class mainMenu extends Phaser.Scene{
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            console.log(typeof data);
             const leaderboardTable = document.createElement('table');
             leaderboardTable.className = 'table table-striped';
 
@@ -154,19 +155,26 @@ export default class mainMenu extends Phaser.Scene{
                 leaderboardTable.appendChild(lbody);
 
             }else{
-                data.forEach((entry, index) => {
+                data.forEach((entry) => {
                     const lbodyRow = document.createElement('tr');
                     const rank = document.createElement('td');
                     const user = document.createElement('td');
                     const score = document.createElement('td');
-                    rank.textContent = index + 1;
-                    lbodyRow.appendChild(rank);
-                    user.textContent = entry.username;
-                    lbodyRow.appendChild(user);
+                
+                    // Set the text content of each cell to the corresponding property of the entry
+                    rank.textContent = entry.rank;
+                    user.textContent = entry.user;
                     score.textContent = entry.score;
+                
+                    // Append each cell to the row
+                    lbodyRow.appendChild(rank);
+                    lbodyRow.appendChild(user);
                     lbodyRow.appendChild(score);
+                
+                    // Append the row to the table body
                     lbody.appendChild(lbodyRow);
-                });
+                    leaderboardTable.appendChild(lbody);
+                });                
             }
             const leaderboardDiv = document.getElementById('leaderboardContainer');
             leaderboardDiv.appendChild(leaderboardTable);
