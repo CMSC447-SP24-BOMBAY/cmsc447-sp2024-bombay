@@ -141,6 +141,35 @@ def player(name):
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
 
 
+@app.route("/api/settings/<name>/<keybind>/<int:newbind>", methods=["PUT"])
+@cross_origin()
+def settings_update(name, keybind, newbind):
+    try:
+        if request.method == "PUT":
+            conn = sqlite3.connect("game.db")
+            cur = conn.cursor()
+
+            # execute query
+            cur.execute(f"""
+                        UPDATE keybinds
+                        SET
+                            {keybind} = ?
+                        WHERE keybinds.player_name = ?
+                        """, [newbind, name])
+            conn.commit()
+            # error executing query
+            if cur.rowcount == 0:
+                cur.close()
+                conn.close()
+                raise Exception("Error updating keybinds")
+
+            cur.close()
+            conn.close()
+            return jsonify({str(HTTPStatus.OK.value):"Keybinds updated"})
+    except sqlite3.Error as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+    except Exception as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
 # settings endpoint
 @app.route("/api/settings/<name>", methods=["GET", "PUT"])
 @cross_origin()
