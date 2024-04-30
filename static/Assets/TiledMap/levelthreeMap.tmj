@@ -39689,7 +39689,7 @@
                         {
                          "name":"isInteractable",
                          "type":"string",
-                         "value":""
+                         "value":"bigPurpleThing"
                         }]
                 }, 
                 {
@@ -39703,7 +39703,7 @@
                         {
                          "name":"isInteractable",
                          "type":"string",
-                         "value":""
+                         "value":"bigPurpleThing"
                         }]
                 }, 
                 {
@@ -40025,7 +40025,7 @@
                         {
                          "name":"isInteractable",
                          "type":"string",
-                         "value":""
+                         "value":"bigPurpleThing"
                         }]
                 }, 
                 {
@@ -40039,7 +40039,7 @@
                         {
                          "name":"isInteractable",
                          "type":"string",
-                         "value":""
+                         "value":"bigPurpleThing"
                         }]
                 }, 
                 {

@@ -515,7 +515,98 @@ export default class level3 extends Game{
                     this.dialog()
                     this.niko.inventory.push("Refined Orange Stone")
                 }
-            }
+            },
+            "repositories": ()=>{
+                this.message = [["Just a bunch of organized chemicals"]]
+                this.dialog()
+            },
+            "fishTank": ()=>{
+                this.message = [["FISHIES :)"], ["wait."], ["If no one else is here...", "WHO IS FEEDING THE FISHIES?! (⚆ᗝ⚆)"]]
+                this.dialog()
+            },
+            "elementHint": ()=>{
+                this.message = [["There is a note here on where to find all the refined stones!"], ["All it says is that the location of these refined stones", "correlate to the paintings under each raw component,", "and the room where the painting is."], ["Not particularly helpful but sure!"]]
+                this.dialog()
+            },
+            "blueTable": ()=>{
+                this.message = [["Its just a table full of lab components..."], ["I have no idea what these are for..."]]
+                this.dialog()
+            },
+            "redTable": ()=>{
+                this.message = [["Its a table full of lunchables..."], ["WAIT LUNCHABLES! (ﾉ◕ヮ◕)ﾉ*:・ﾟ✧"]]
+                this.dialog()
+            },
+            "bigPurpleThing": ()=>{
+                this.message = [["I at first thought this was some big cool structure..."], ["But on closer inspection, its made out of plastic..."]]
+                this.dialog()
+            },
+            "hiddenHint": ()=>{
+                this.message = [["There is another out of place book!", "But it seems to be in another cipher.", "Is it the same one as last time?"], ['It reads "[5] -> Ymj bfqq yt ymj wnlmy nx kfpj."']]
+                this.dialog()
+            },
+            "rgbHint": ()=>{
+                this.message = [["Its another cipher puzzle.", "You'd think that the future people would come up with better puzzles"], ['This tablet reads "[4] <- Pda knzan eo Naz, Cnaaj, Cnaaj, Naz, Xhqa.', 'Pdaj dep pda fqgaxkt pk ykjbeni."']]
+                this.dialog()
+                this.interactRGB = true
+            },
+            "jukebox": ()=>{
+                const code = [1,2,2,1,3]
+                if(!this.interactRGB){
+                    this.message = [["Just a regular jukebox...", "I wonder why its here?"]]
+                    this.dialog()
+                }
+                else if(this.interactRGB && this.RBGcombination.length == 0){
+                    this.message = [["I probably need to interact with the totems to attempt a combination"]]
+                    this.dialog()
+                }
+                else if(this.niko.inventory.includes("Refined Green Stone")){
+                    this.message = [["I already got the Refined Green Stone", "Still I wonder..."], ["Why are there a bunch of primative things in the future?"]]
+                    this.dialog()
+                }
+                else if(JSON.stringify(this.RBGcombination) != JSON.stringify(code)){
+                    this.message = [["It doesn't seem that whatever I did got the right combination..."], ["Let me just try this again."]]
+                    this.dialog()
+                    this.RBGcombination = []
+                }
+                else{
+                    this.message = [["Neato! I got the combination of totems correct!"], ["The jukebox just dispensed a Refined Green Stone!"]]
+                    this.dialog()
+                    this.niko.inventory.push("Refined Green Stone")
+                }
+            },
+            "redTotem": ()=>{
+                if(!this.interactRGB){
+                    this.message = [["Its an ugly little totem with a red scarf.", "The red is not doing any favors for it."]]
+                    this.dialog()
+                }
+                else{
+                    this.message = [["There was a button on the nose.", "It looked at me wierd, imma punch it "]]
+                    this.dialog()
+                    this.RBGcombination.push(1)
+                }
+            },
+            "greenTotem": ()=>{
+                if(!this.interactRGB){
+                    this.message = [["Its a cute little totem with a green scarf.", "Thats kinda cute."]]
+                    this.dialog()
+                }
+                else{
+                    this.message = [["There was a little button under the scarf.", "Let me hit it rq."]]
+                    this.dialog()
+                    this.RBGcombination.push(2)
+                }
+            },
+            "blueTotem": ()=>{
+                if(!this.interactRGB){
+                    this.message = [["Its a little totem with a blue scarf.", "Just a totem."]]
+                    this.dialog()
+                }
+                else{
+                    this.message = [["There was a button hidden on the head.", "Imma smack it."]]
+                    this.dialog()
+                    this.RBGcombination.push(3)
+                }
+            },
         }
     }
 
@@ -589,6 +680,9 @@ export default class level3 extends Game{
         this.interactStar = false
         this.interactMoon = false
         this.interactBrokenTimeMachine = false
+
+        this.interactRGB = false
+        this.RBGcombination = []
     }
 
     update(time, dTime){
