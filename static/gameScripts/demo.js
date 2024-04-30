@@ -18,6 +18,11 @@ var config = {
     height: 600,
     scene: [login, mainMenu, levelSelect, loader1, level1, loader2, level2, completed1, cutscenes1, loader3, level3],
     
+    parent: 'canvas_body',
+    dom: {
+        createContainer: true
+    },
+
     physics:{
         default: 'arcade',
         arcade:{

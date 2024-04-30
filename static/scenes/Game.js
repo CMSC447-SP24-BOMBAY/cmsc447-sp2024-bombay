@@ -11,23 +11,30 @@ export default class Game extends Phaser.Scene{
     }
 
     preload(){
-        // keybinds
-
-        //TODO: Once login is added, use this with user information to get user's keybinds
-        /*
-        fetch('/api/settings/', {
+        //Fetch the keybinds for the curret player and setting the corresponding buttons
+        const url = '/api/settings/' + this.registry.get('username')
+        fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
         })
-        .then(result => {keybinds = result})
+        .then(response => response.json())
+        .then(result => {
+            this.backpack = this.input.keyboard.addKey(result['backpack'])
+            this.interact = this.input.keyboard.addKey(result['interact'])
+            this.up = this.input.keyboard.addKey(result['up'])
+            this.down = this.input.keyboard.addKey(result['down'])
+            this.left = this.input.keyboard.addKey(result['left'])
+            this.right = this.input.keyboard.addKey(result['right'])
+            this.menu = this.input.keyboard.addKey(result['menu'])
+        })
         .catch(error => {console.error('Error:', error)})
-        this.cursors = this.input.keyboard.addKeys(keybinds)
-        */
-        this.cursors = this.input.keyboard.createCursorKeys()
+        //this.cursors = this.input.keyboard.addKeys(keybinds)
+        /*this.cursors = this.input.keyboard.createCursorKeys()
         this.interact = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E)
         this.backpack = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B)
+        */
     }
 
     create(){
@@ -127,7 +134,7 @@ export default class Game extends Phaser.Scene{
             return ;
         }
         //Initial check to see if input and Player exists
-        if(!this.cursors || !this.niko){
+        if(!this.niko){
             console.log(this.cursors)
             console.log(this.niko)
             console.log("Update is not being run")
@@ -135,22 +142,22 @@ export default class Game extends Phaser.Scene{
         }
         const speed = 100
 
-        if(this.cursors.left.isDown){
+        if(this.left.isDown){
             this.niko.anims.play('niko-run-left', true)
             this.niko.setVelocity(-speed, 0)
             this.niko.facing = "left"
         }
-        else if(this.cursors.right.isDown){
+        else if(this.right.isDown){
             this.niko.anims.play('niko-run-right', true)
             this.niko.setVelocity(speed, 0)
             this.niko.facing = "right"
         }
-        else if(this.cursors.up.isDown){
+        else if(this.up.isDown){
             this.niko.anims.play('niko-run-back', true)
             this.niko.setVelocity(0, -speed)
             this.niko.facing = "up"
         }
-        else if(this.cursors.down.isDown){
+        else if(this.down.isDown){
             this.niko.anims.play('niko-run-forward', true)
             this.niko.setVelocity(0, speed)
             this.niko.facing = "down"
@@ -190,14 +197,12 @@ export default class Game extends Phaser.Scene{
             //console.log(this.floorTile.index, this.wallTile.index)
             if(this.floorTile.properties.isInteractable != "" && this.floorTile.index != -1){
                 var interact = this.floorTile.properties.isInteractable
-                console.log(JSON.stringify(interact))
                 if (interact in this.fnDict){
                     this.fnDict[interact]()
                 }
             }
             if(this.wallTile.properties.isInteractable != "" && this.wallTile.index != -1){
                 var interact = this.wallTile.properties.isInteractable
-                console.log(JSON.stringify(interact))
                 if (interact in this.fnDict){
                     this.fnDict[interact]()
                 }
@@ -255,7 +260,6 @@ export default class Game extends Phaser.Scene{
 
     openBackpack(){
         this.scene.pause(this.currentLevel)
-        console.log("Backpack opened")
         this.r = this.add.rectangle(this.niko.x, this.niko.y, 700, 500, 0x301934)
         this.r.setStrokeStyle(4,0xefc53f)
         const invSize = this.niko.inventory.length
@@ -270,9 +274,7 @@ export default class Game extends Phaser.Scene{
             items[i].on('pointerup', ()=>{
                 //Having Issue here, tryna click on mop but its not working.
                 //Issue - Have player equip the item on click of the text.
-                console.log("Player Clicked Item")
                 this.niko.equipped = this.niko.inventory[i]
-                console.log("Equipped", this.niko.equipped)
             }, items[i])
             if(i%2 == 0){
                 currX = currX + 300
@@ -290,7 +292,6 @@ export default class Game extends Phaser.Scene{
                 items[i].destroy()
             }   
             this.scene.resume(this.currentLevel)
-            console.log("Backpack closed")
             document.removeEventListener("keydown", end)
         }
 
