@@ -123,49 +123,54 @@ export default class mainMenu extends Phaser.Scene{
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            const leaderboardTable = document.getElementById("leaderboard");
-            
+            const leaderboardTable = document.createElement('table');
+            leaderboardTable.className = 'table table-striped';
+
+            //create table header
+            const lhead = document.createElement('thead');
+            const lheadRow = document.createElement('tr');
+            const rankCol = document.createElement('th');
+            const userCol = document.createElement('th');
+            const scoreCol = document.createElement('th');
+            rankCol.textContent = 'Rank';
+            lheadRow.appendChild(rankCol);
+            userCol.textContent = 'User';
+            lheadRow.appendChild(userCol);
+            scoreCol.textContent = 'Score';
+            lheadRow.appendChild(scoreCol);
+            lhead.appendChild(lheadRow);
+            leaderboardTable.appendChild(lhead);
+
+            //create table body
+            const lbody = document.createElement('tbody');
             if(data.error === 'Empty leaderboard'){
                 console.log("NO LEADERBOARD LOL")
-                for (let i = 0; i < 6; i++) {
-                    if(i === 0){
-                        const row = leaderboardTable.insertRow(0);
-                        const rank = row.insertCell(0);
-                        const username = row.insertCell(1);
-                        const score = row.insertCell(2);
-                        rank.textContent = "Rank";
-                        username.textContent = "Name";
-                        score.textContent = "Time";
-                    } else{
-                        const row = leaderboardTable.insertRow(i);
-                        const rank = row.insertCell(0);
-                        const username = row.insertCell(1);
-                        const score = row.insertCell(2);
-                        rank.textContent = i;
-                        username.textContent = "N/A";
-                        score.textContent = 0;
-                    }
-                }
+                const lbodyRow = document.createElement('tr');
+                const noLeaderboard = document.createElement('td');
+                noLeaderboard.colSpan = 3;
+                noLeaderboard.textContent = 'No leaderboard yet';
+                lbodyRow.appendChild(noLeaderboard);
+                lbody.appendChild(lbodyRow);
+                leaderboardTable.appendChild(lbody);
+
             }else{
-                for(let i = 0; i < 1; i++){
-                    row = leaderboardTable.insertRow(0);
-                    rank = row.insertCell(0);
-                    username = row.insertCell(1);
-                    score = row.insertCell(2);
-                    rank.textContent = "Rank";
-                    username.textContent = "Name";
-                    score.textContent = "Time";
-                }
                 data.forEach((entry, index) => {
-                    const row = leaderboardTable.insertRow(index + 1);
-                    const rank = row.insertCell(0);
-                    const username = row.insertCell(1);
-                    const score = row.insertCell(2);
-                    rank.textContent = entry.rank;
-                    username.textContent = entry.username;
+                    const lbodyRow = document.createElement('tr');
+                    const rank = document.createElement('td');
+                    const user = document.createElement('td');
+                    const score = document.createElement('td');
+                    rank.textContent = index + 1;
+                    lbodyRow.appendChild(rank);
+                    user.textContent = entry.username;
+                    lbodyRow.appendChild(user);
                     score.textContent = entry.score;
+                    lbodyRow.appendChild(score);
+                    lbody.appendChild(lbodyRow);
                 });
             }
+            const leaderboardDiv = document.getElementById('leaderboardContainer');
+            leaderboardDiv.appendChild(leaderboardTable);
+
         })
         leaderboard.addListener('click');
         var self = this;

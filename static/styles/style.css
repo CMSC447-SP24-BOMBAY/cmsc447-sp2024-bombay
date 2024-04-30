@@ -12,3 +12,26 @@ form{
     text-align: center;
     display: inline-flex;
 }
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: 'Press Start 2P', cursive; /* This is a pixelated font */
+    background-color: #000; /* Classic black background */
+    color: #fff; /* White text */
+    font-size: 16px;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #222; /* Slightly lighter black for the striped effect */
+}
+
+th, td {
+    border: 2px solid #a0008b; /* Bright green, common in old terminal displays */
+    text-align: center;
+    padding: 8px;
+}
+
+th {
+    background-color: #930fc7; /* Darker shade for headers */
+}

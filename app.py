@@ -21,6 +21,7 @@ def login_form():
 def leaderboard_html():
     return render_template('leaderboard.html')
 
+
 @app.teardown_appcontext
 def close_conn(exception):
     db = getattr(g, '_database', None)
