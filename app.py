@@ -8,6 +8,7 @@ LEADERBOARD_TOP = 5
 app = Flask(__name__, static_folder='static', template_folder='templates')
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.json.sort_keys = False
 
 @app.route("/", methods=['GET','POST'])
 def home():
@@ -72,9 +73,21 @@ def login():
 
             cur.close()
             conn.close()
+            # set all level times to -1
             conn = sqlite3.connect("game.db")
             cur = conn.cursor()
-            
+            cur.execute("""
+                        UPDATE player
+                        SET level1_time = -1,
+                            level2_time = -1,
+                            level3_time = -1
+                        WHERE player.name = ?
+                        """, [data["username"]])
+            conn.commit()
+            cur.close()
+            conn.close()
+            conn = sqlite3.connect("game.db")
+            cur = conn.cursor()
             # execute query
             res = cur.execute("""
                               SELECT player.name, player.level_id, player.level1_time, player.level2_time, player.level3_time
@@ -135,6 +148,35 @@ def player(name):
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
 
 
+@app.route("/api/settings/<name>/<keybind>/<int:newbind>", methods=["PUT"])
+@cross_origin()
+def settings_update(name, keybind, newbind):
+    try:
+        if request.method == "PUT":
+            conn = sqlite3.connect("game.db")
+            cur = conn.cursor()
+
+            # execute query
+            cur.execute(f"""
+                        UPDATE keybinds
+                        SET
+                            {keybind} = ?
+                        WHERE keybinds.player_name = ?
+                        """, [newbind, name])
+            conn.commit()
+            # error executing query
+            if cur.rowcount == 0:
+                cur.close()
+                conn.close()
+                raise Exception("Error updating keybinds")
+
+            cur.close()
+            conn.close()
+            return jsonify({str(HTTPStatus.OK.value):"Keybinds updated"})
+    except sqlite3.Error as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+    except Exception as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
 # settings endpoint
 @app.route("/api/settings/<name>", methods=["GET", "PUT"])
 @cross_origin()
@@ -308,9 +350,11 @@ def time_post(name, level, time):
                 cur.close()
                 conn.close()
                 raise Exception("Error updating time")
-
             cur.close()
             conn.close()
+            if(level == 3):
+                score = time_get(name, 1) + time_get(name, 2) + time_get(name, 3)
+                leaderboard_post(name, score)
             return jsonify({str(HTTPStatus.OK.value):"Time updated"})
     except sqlite3.Error as e:
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
@@ -342,6 +386,33 @@ def leaderboard_post(name, score):
             cur.close()
             conn.close()
             return jsonify({str(HTTPStatus.OK.value):"Leaderboard updated"})
+    except sqlite3.Error as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+    except Exception as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+    
+@app.route("/api/bombay_leaderboard", methods=["GET"])
+@cross_origin()
+def bombay_leaderboard():
+    try:
+        if request.method == "GET":
+            conn = sqlite3.connect("game.db")
+            cur = conn.cursor()
+
+            res = cur.execute(""" SELECT leaderboard.player_name, leaderboard.player_score
+                            FROM leaderboard
+                            ORDER BY leaderboard.player_score DESC LIMIT ? 
+                        """, [LEADERBOARD_TOP])
+            response = {"Group":"Bombay", "Title":f"Top {LEADERBOARD_TOP} Scores"}
+            for rank, (name, score) in enumerate(res):
+                response[name] = score
+
+            cur.close()
+            conn.close()
+
+            print(jsonify({'data':response}))
+
+            return jsonify({'data':[response]}), HTTPStatus.OK.value
     except sqlite3.Error as e:
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
     except Exception as e:
