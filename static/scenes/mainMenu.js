@@ -18,7 +18,7 @@ export default class mainMenu extends Phaser.Scene{
 
         this.load.image("leaderboard", '/static/Assets/Menu Assets/Transparent/leaderboard_Transparent.png')
 
-        //this.load.image("settings", '/static/Assets/Menu Assets/Transparent/settings_transparent.png')
+        this.load.image("settings", '/static/Assets/Menu Assets/Transparent/settings_transparent.png')
 
         this.load.atlas('Main Niko', '/static/Assets/Character_Sprites/Blue Niko/idle_spritesheet.png', '/static/Assets/Character_Sprites/Blue Niko/idle_spritesheet.json')
 
@@ -49,7 +49,7 @@ export default class mainMenu extends Phaser.Scene{
         let playButton = this.add.image(this.game.renderer.width/4 ,this.game.renderer.height/3, "play").setScale(0.60,0.60)
         let leadButton = this.add.image(this.game.renderer.width/4 ,this.game.renderer.height/1.7, "leaderboard").setScale(0.30,0.30)
         let quit = this.add.image(this.game.renderer.width/5.8 ,this.game.renderer.height/1.4, "quit").setScale(0.35,0.35)
-        let settings = this.add.image(this.game.renderer.width/4, this.game.renderer.height/2.1, "leaderboard").setScale(0.30, 0.30)
+        let settings = this.add.image(this.game.renderer.width/4, this.game.renderer.height/2.1, "settings").setScale(0.47, 0.47)
 
         //Music - From Cave Story (Im a nerd)
         this.sound.play("CaveStory01_music", {
