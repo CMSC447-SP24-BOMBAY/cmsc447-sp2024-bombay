@@ -115,6 +115,14 @@ export default class levelSelect extends Phaser.Scene{
                 this.game.sound.stopAll();
                 this.scene.stop('levelSelect')
             })
+
+            this.blocker = this.add.rectangle(400, 300, 600, 500, 0x4B006E)
+            this.blocker.setStrokeStyle(4, 0xefc53f);
+            this.blockerText = this.add.text(220, 270, ["Level 2 Not Unlocked","Complete level 1 to unlock."], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+            setTimeout(()=>{
+                this.blocker.destroy()
+                this.blockerText.destroy()
+            }, 3000)
         })
 
         anim2.setInteractive();
@@ -150,6 +158,14 @@ export default class levelSelect extends Phaser.Scene{
                 this.game.sound.stopAll();
                 this.scene.stop('levelSelect')
             })
+
+            this.blocker = this.add.rectangle(400, 300, 600, 500, 0x4B006E)
+            this.blocker.setStrokeStyle(4, 0xefc53f);
+            this.blockerText = this.add.text(220, 270, ["Level 3 Not Unlocked","Complete level 2 to unlock."], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+            setTimeout(()=>{
+                this.blocker.destroy()
+                this.blockerText.destroy()
+            }, 3000)
         })
 
         anim3.setInteractive();
