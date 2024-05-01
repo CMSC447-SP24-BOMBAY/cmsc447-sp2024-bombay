@@ -30,20 +30,29 @@ export default class cutscenes1 extends Phaser.Scene{
         })
 
         const end = () =>{
-            if(i == 14){
-                this.screen.destroy()
-                document.removeEventListener("keydown", end)
-                this.game.sound.stopAll();
-                this.scene.start("levelSelect")
-                this.scene.stop("cutscenes1")
-            }
-            else{
-                i += 1
-                this.screen.destroy()
-                this.screen = this.physics.add.image(this.game.renderer.width/2, this.game.renderer.height/2, 'cut'+String(i)).setScale(0.78,1.05)
+            if(!lock){
+                lock = true
+                if(i == 14){
+                    this.screen.destroy()
+                    document.removeEventListener("keydown", end)
+                    document.removeEventListener("keyup", reset)
+                    this.game.sound.stopAll();
+                    this.scene.start("levelSelect")
+                    this.scene.stop("cutscenes1")
+                }
+                else{
+                    i += 1
+                    this.screen.destroy()
+                    this.screen = this.physics.add.image(this.game.renderer.width/2, this.game.renderer.height/2, 'cut'+String(i)).setScale(0.78,1.05)
+                }
             }
         }
+        const reset = () =>{
+            lock = false
+        }
 
+        var lock = false
         document.addEventListener("keydown", end)
+        document.addEventListener("keyup", reset)
     }
 }

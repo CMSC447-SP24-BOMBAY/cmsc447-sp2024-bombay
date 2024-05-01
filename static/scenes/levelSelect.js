@@ -43,9 +43,15 @@ export default class levelSelect extends Phaser.Scene{
         this.add.image(this.game.renderer.width/1.25 ,this.game.renderer.height/1.5 , "levelSelect_bg").setScale(0.75,0.75)
         let level1 = this.add.image(this.game.renderer.width/1.5 ,this.game.renderer.height/6, "level1").setScale(0.5, 0.5)
         let anim1 = this.add.image(this.game.renderer.width/1.5+200 ,this.game.renderer.height/6, "lightbulb").setScale(0.05, 0.05)
+
         let level2 = this.add.image(this.game.renderer.width/1.5 ,this.game.renderer.height/3, "level2").setScale(0.5, 0.5)
+        let anim2 = this.add.image(this.game.renderer.width/1.5+200 ,this.game.renderer.height/3, "lightbulb").setScale(0.05, 0.05)
+
         let level3 = this.add.image(this.game.renderer.width/1.5 ,this.game.renderer.height/2, "level3").setScale(0.5, 0.5)
+        let anim3 = this.add.image(this.game.renderer.width/1.5+200 ,this.game.renderer.height/2, "lightbulb").setScale(0.05, 0.05)
+
         let quit = this.add.image(this.game.renderer.width/1.5 ,this.game.renderer.height/1.6, "quit").setScale(0.35,0.35)
+        let anim4 = this.add.image(this.game.renderer.width/1.5+200 ,this.game.renderer.height/1.6, "lightbulb").setScale(0.05, 0.05)
     
         //Music - From Oneshot (Im a nerd)
         this.sound.play("eleventh_hour_music", {
@@ -101,6 +107,14 @@ export default class levelSelect extends Phaser.Scene{
             this.scene.stop('levelSelect')
         })
 
+        anim2.setInteractive();
+        anim2.on("pointerup", ()=>{
+            console.log("Cutscene 2 Clicked")
+            this.scene.start('cutscenes2')
+            this.game.sound.stopAll();
+            this.scene.stop('levelSelect')
+        })
+
         //  Level3 Button Events
         level3.setInteractive();
         level3.on("pointerover", ()=>{
@@ -119,6 +133,14 @@ export default class levelSelect extends Phaser.Scene{
             this.scene.stop('levelSelect')
         })
 
+        anim3.setInteractive();
+        anim3.on("pointerup", ()=>{
+            console.log("Cutscene 3 Clicked")
+            this.scene.start('cutscenes3')
+            this.game.sound.stopAll();
+            this.scene.stop('levelSelect')
+        })
+
         //  Quit Button Events
         quit.setInteractive();
         quit.on("pointerover", ()=>{
@@ -133,6 +155,14 @@ export default class levelSelect extends Phaser.Scene{
         quit.on("pointerup", ()=>{
             console.log("Quit from Level Select Button Clicked")
             this.scene.start('mainMenu')
+            this.game.sound.stopAll();
+            this.scene.stop('levelSelect')
+        })
+
+        anim4.setInteractive();
+        anim4.on("pointerup", ()=>{
+            console.log("Cutscene 4 Clicked")
+            this.scene.start('cutscenes4')
             this.game.sound.stopAll();
             this.scene.stop('levelSelect')
         })
