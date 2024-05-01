@@ -13,7 +13,7 @@ export default class login extends Phaser.Scene{
         var self = this
         loginForm.on('click', function (event)
         {
-            const inputUsername = this.getChildByName('username')
+            self.inputUsername = this.getChildByName('username')
             
             if (event.target.name === 'createUserButton')
             {
@@ -26,7 +26,7 @@ export default class login extends Phaser.Scene{
                     loginError.textContent = 'Enter a valid username' // Display the error message
                 } else{
                     const userData = {
-                        username: inputUsername.value
+                        username: self.inputUsername.value
                     }
     
                     // Send HTTP POST request
@@ -68,7 +68,7 @@ export default class login extends Phaser.Scene{
                     loginError.style.display = "block"
                     loginError.textContent = 'Enter a valid username' // Display the error message
                 } else{
-                    const url = '/api/player/' + inputUsername.value
+                    const url = '/api/player/' + self.inputUsername.value
                     fetch(url, {
                         method: 'get',
                     })
@@ -83,7 +83,7 @@ export default class login extends Phaser.Scene{
                             return null // Return null or a similar marker to indicate no further processing needed
                         } else {
                             // For other responses, proceed to parse the response as JSON
-                            self.registry.set('username', inputUsername.value)
+                            self.registry.set('username', self.inputUsername.value)
                             self.scene.start('mainMenu')
                             self.scene.stop('login')
                         }
