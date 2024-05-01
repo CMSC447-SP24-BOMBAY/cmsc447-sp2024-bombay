@@ -1,5 +1,5 @@
 export default class login extends Phaser.Scene{
-    constructor(){
+        constructor(){
         super('login')
     }
     
@@ -10,24 +10,23 @@ export default class login extends Phaser.Scene{
     create(){
         let loginForm = this.add.dom(this.game.renderer.width/2, this.game.renderer.height/2).createFromCache("login_form")
         loginForm.addListener('click')
-        var self = this //this is a mystery mouskatool that will help us later
+        var self = this
         loginForm.on('click', function (event)
         {
-            //stores the username input
-            const inputUsername = this.getChildByName('username')
+            self.inputUsername = this.getChildByName('username')
             
             if (event.target.name === 'createUserButton')
             {
 
                 //  Have they entered anything?
-                if (inputUsername.value === '')
+                if (self.inputUsername.value === '')
                 {
                     const loginError = document.getElementById("login_error")
                     loginError.style.display = "block"
                     loginError.textContent = 'Enter a valid username' // Display the error message
                 } else{
                     const userData = {
-                        username: inputUsername.value
+                        username: self.inputUsername.value
                     }
     
                     // Send HTTP POST request
@@ -63,13 +62,13 @@ export default class login extends Phaser.Scene{
                     })
                 }
             } else if(event.target.name === 'loginButton') {
-                if (inputUsername.value === '')
+                if (self.inputUsername.value === '')
                 {
                     const loginError = document.getElementById("login_error")
                     loginError.style.display = "block"
                     loginError.textContent = 'Enter a valid username' // Display the error message
                 } else{
-                    const url = '/api/player/' + inputUsername.value
+                    const url = '/api/player/' + self.inputUsername.value
                     fetch(url, {
                         method: 'get',
                     })
@@ -84,7 +83,7 @@ export default class login extends Phaser.Scene{
                             return null // Return null or a similar marker to indicate no further processing needed
                         } else {
                             // For other responses, proceed to parse the response as JSON
-                            self.registry.set('username', inputUsername.value)
+                            self.registry.set('username', self.inputUsername.value)
                             self.scene.start('mainMenu')
                             self.scene.stop('login')
                         }

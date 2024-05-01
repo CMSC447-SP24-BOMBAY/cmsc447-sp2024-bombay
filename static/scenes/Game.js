@@ -11,23 +11,30 @@ export default class Game extends Phaser.Scene{
     }
 
     preload(){
-        // keybinds
-
-        //TODO: Once login is added, use this with user information to get user's keybinds
-        /*
-        fetch('/api/settings/', {
+        //Fetch the keybinds for the curret player and setting the corresponding buttons
+        const url = '/api/settings/' + this.registry.get('username')
+        fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
         })
-        .then(result => {keybinds = result})
+        .then(response => response.json())
+        .then(result => {
+            this.backpack = this.input.keyboard.addKey(result['backpack'])
+            this.interact = this.input.keyboard.addKey(result['interact'])
+            this.up = this.input.keyboard.addKey(result['up'])
+            this.down = this.input.keyboard.addKey(result['down'])
+            this.left = this.input.keyboard.addKey(result['left'])
+            this.right = this.input.keyboard.addKey(result['right'])
+            this.menu = this.input.keyboard.addKey(result['menu'])
+        })
         .catch(error => {console.error('Error:', error)})
-        this.cursors = this.input.keyboard.addKeys(keybinds)
-        */
-        this.cursors = this.input.keyboard.createCursorKeys()
+        //this.cursors = this.input.keyboard.addKeys(keybinds)
+        /*this.cursors = this.input.keyboard.createCursorKeys()
         this.interact = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E)
         this.backpack = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B)
+        */
     }
 
     create(){
@@ -94,6 +101,7 @@ export default class Game extends Phaser.Scene{
         })
 
         this.cameras.main.startFollow(this.niko, true)
+        this.paused = false
         // For Debugging
         // const debugGraphics = this.add.graphics().setAlpha(0.7)
         // wallslayer.renderDebug(debugGraphics, {
@@ -101,11 +109,32 @@ export default class Game extends Phaser.Scene{
         //     collidingTileColor: new Phaser.Display.Color(255,255,0, 255),
         //     faceColor: new Phaser.Display.Color(255, 0, 255, 255)
         // })
+
+        //The timer
+        this.scene.timeText = this.add.text(0, 0, "Time: 0", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+        this.scene.timeText.setScrollFactor(0)
+        let time=0
+        this.endTime = time
+        this.time.addEvent({
+        delay:1000,
+        repeat:-1,
+        callback:()=>{
+        time+=1
+        this.endTime = time
+        this.scene.timeText.setText('Time: '+time)}
+        })
+
+        //Hint Variables
+        this.hints = 0
+        this.hintBookInteracted = false
     }
 
     update(time, dTime){
+        if(this.paused == true){
+            return ;
+        }
         //Initial check to see if input and Player exists
-        if(!this.cursors || !this.niko){
+        if(!this.niko){
             console.log(this.cursors)
             console.log(this.niko)
             console.log("Update is not being run")
@@ -113,22 +142,22 @@ export default class Game extends Phaser.Scene{
         }
         const speed = 100
 
-        if(this.cursors.left.isDown){
+        if(this.left.isDown){
             this.niko.anims.play('niko-run-left', true)
             this.niko.setVelocity(-speed, 0)
             this.niko.facing = "left"
         }
-        else if(this.cursors.right.isDown){
+        else if(this.right.isDown){
             this.niko.anims.play('niko-run-right', true)
             this.niko.setVelocity(speed, 0)
             this.niko.facing = "right"
         }
-        else if(this.cursors.up.isDown){
+        else if(this.up.isDown){
             this.niko.anims.play('niko-run-back', true)
             this.niko.setVelocity(0, -speed)
             this.niko.facing = "up"
         }
-        else if(this.cursors.down.isDown){
+        else if(this.down.isDown){
             this.niko.anims.play('niko-run-forward', true)
             this.niko.setVelocity(0, speed)
             this.niko.facing = "down"
@@ -168,14 +197,12 @@ export default class Game extends Phaser.Scene{
             //console.log(this.floorTile.index, this.wallTile.index)
             if(this.floorTile.properties.isInteractable != "" && this.floorTile.index != -1){
                 var interact = this.floorTile.properties.isInteractable
-                console.log(JSON.stringify(interact))
                 if (interact in this.fnDict){
                     this.fnDict[interact]()
                 }
             }
             if(this.wallTile.properties.isInteractable != "" && this.wallTile.index != -1){
                 var interact = this.wallTile.properties.isInteractable
-                console.log(JSON.stringify(interact))
                 if (interact in this.fnDict){
                     this.fnDict[interact]()
                 }
@@ -188,9 +215,8 @@ export default class Game extends Phaser.Scene{
         this.input.on('pointerup', (pointer, gameObjects)=>{
             for (let clickedOn of gameObjects){
                 //In case an interactable object is not in the dictionary
-                if (clickedOn in this.fnDict){
-                    this.fnDict[clickedOn]
-                    clickedOn.setVisible(false)
+                if (clickedOn.name in this.fnDict){
+                    this.fnDict[clickedOn.name]
                 }
             }
         })
@@ -206,36 +232,34 @@ export default class Game extends Phaser.Scene{
         this.backpack.on('up', ()=>{this.backpackIsPressed = false})
     }
 
-    dialog(){
-        this.scene.pause("level1")
+    dialog(curr = 0){
+        if(curr == 0){
+            this.scene.pause(this.currentLevel)
+        }
         this.r = this.add.rectangle(this.niko.x, this.niko.y+200, 700, 150, 0x301934)
         this.r.setStrokeStyle(4,0xefc53f)
         this.face = this.add.image(this.niko.x-290, this.niko.y+200, 'niko_face').setScale(1.5,1.5)
-        this.text = this.add.text(this.niko.x-200, this.niko.y+150, this.message, { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+        this.text = this.add.text(this.niko.x-200, this.niko.y+150, this.message[curr], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
             
         const end = () =>{
             this.r.destroy()
             this.text.destroy()
             this.face.destroy()
-            this.scene.resume("level1")
-        }
-
-        var keypressed = false
-        document.addEventListener("keydown", (event) => {
-            end()
-            keypressed = true
-        })
-        
-        function repeat(){
-            if(!keypressed){
-                setTimeout(repeat,0)
+            document.removeEventListener("keydown", end)
+            curr = curr + 1
+            if(curr == this.message.length){
+                this.scene.resume(this.currentLevel)
+            }
+            else{
+                this.dialog(curr)
             }
         }
-        repeat()
+
+        document.addEventListener("keydown", end)
     }
 
     openBackpack(){
-        this.scene.pause("level1")
+        this.scene.pause(this.currentLevel)
         this.r = this.add.rectangle(this.niko.x, this.niko.y, 700, 500, 0x301934)
         this.r.setStrokeStyle(4,0xefc53f)
         const invSize = this.niko.inventory.length
@@ -244,14 +268,14 @@ export default class Game extends Phaser.Scene{
         var currY = this.niko.y - 200
 
         for (let i = 0; i < invSize; i++) {
-            items[i] = this.add.text(currX, currY, this.niko.inventory[i], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(1.4,1.4);
-            items[i].setInteractive();
-            items[i].on("pointerup", ()=>{
+            items[i] = this.add.text(currX, currY, this.niko.inventory[i], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(1.4,1.4)
+
+            items[i].setInteractive()
+            items[i].on('pointerup', ()=>{
                 //Having Issue here, tryna click on mop but its not working.
                 //Issue - Have player equip the item on click of the text.
                 this.niko.equipped = this.niko.inventory[i]
-                console.log("Equipped", this.niko.equipped)
-            })
+            }, items[i])
             if(i%2 == 0){
                 currX = currX + 300
             }
@@ -261,27 +285,17 @@ export default class Game extends Phaser.Scene{
             }
         }
 
-        //Kills the program
+        //Kills the backpack
         const end = () =>{
             this.r.destroy()
             for (let i = 0; i < invSize; i++) {
                 items[i].destroy()
             }   
-            this.scene.resume("level1")
+            this.scene.resume(this.currentLevel)
+            document.removeEventListener("keydown", end)
         }
 
-        var keypressed = false
-        document.addEventListener("keydown", (event) => {
-            end()
-            keypressed = true
-        })
-        
-        function repeat(){
-            if(!keypressed){
-                setTimeout(repeat,0)
-            }
-        }
-        repeat()
+        document.addEventListener("keydown", end)
     }
 }
 

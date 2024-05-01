@@ -110,6 +110,9 @@ export default class mainMenu extends Phaser.Scene{
         quit.on("pointerout", ()=>{
             hoverSp.setVisible(false)
         })
+        quit.on("pointerup", ()=>{
+            window.location.reload();
+        })
     }
 
     onLeaderboardPressed(){

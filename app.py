@@ -27,13 +27,7 @@ def close_conn(exception):
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
-
-# test endpoint
-@app.route("/api/test", methods=["GET"])
-@cross_origin()
-def test():
-    return jsonify({"test":"Hello World!"}), HTTPStatus.OK.value
-
+        
 # login endpoint
 @app.route("/api/login", methods=["POST"])
 @cross_origin()
@@ -274,6 +268,84 @@ def leaderboard():
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
     except Exception as e:
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+
+@app.route("/api/time/<name>/<int:level>", methods=["GET"])
+@cross_origin()
+def time_get(name, level):
+    try:
+        # get time for player at level
+        if request.method == "GET":
+            conn = sqlite3.connect("game.db")
+            cur = conn.cursor()
+
+            # execute query
+            res = cur.execute(f"""
+                              SELECT player.level{level}_time
+                              FROM player
+                              WHERE player.name = ?
+                              """, [name])
+            res = res.fetchone()
+            # validate query result
+            if res:
+                # format time response
+                response = {}
+                for col, row in zip([column[0] for column in cur.description], res):
+                    response[col] = row
+            # error executing query
+            else:
+                cur.close()
+                conn.close()
+                raise Exception("Name does not exist")
+
+            cur.close()
+            conn.close()
+            return jsonify(response), HTTPStatus.OK.value
+    except sqlite3.Error as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+    except Exception as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+@app.route("/api/time/<name>/<int:level>/<int:time>", methods=["POST"])
+@cross_origin()
+def time_post(name, level, time):
+    try:
+        if request.method == "POST":
+            conn = sqlite3.connect("game.db")
+            cur = conn.cursor()
+
+            # execute query
+            cur.execute("""
+                        UPDATE player
+                        SET
+                            level_id = ?,
+                            level1_time = CASE
+                                WHEN ? = 1 THEN ?
+                                ELSE level1_time
+                            END,
+                            level2_time = CASE
+                                WHEN ? = 2 THEN ?
+                                ELSE level2_time
+                            END,
+                            level3_time = CASE
+                                WHEN ? = 3 THEN ?
+                                ELSE level3_time
+                            END
+                        WHERE player.name = ?
+                        """, [level, level, time, level, time, level, time, name])
+            conn.commit()
+            # error executing query
+            if cur.rowcount == 0:
+                cur.close()
+                conn.close()
+                raise Exception("Error updating time")
+
+            cur.close()
+            conn.close()
+            return jsonify({str(HTTPStatus.OK.value):"Time updated"})
+    except sqlite3.Error as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+    except Exception as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+
 
 @app.route("/api/leaderboard/<name>/<score>", methods=["POST"])
 @cross_origin()
