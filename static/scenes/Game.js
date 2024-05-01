@@ -30,11 +30,6 @@ export default class Game extends Phaser.Scene{
             this.menu = this.input.keyboard.addKey(result['menu'])
         })
         .catch(error => {console.error('Error:', error)})
-        //this.cursors = this.input.keyboard.addKeys(keybinds)
-        /*this.cursors = this.input.keyboard.createCursorKeys()
-        this.interact = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E)
-        this.backpack = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B)
-        */
     }
 
     create(){
@@ -142,6 +137,7 @@ export default class Game extends Phaser.Scene{
         }
         const speed = 100
 
+        //Directional input
         if(this.left.isDown){
             this.niko.anims.play('niko-run-left', true)
             this.niko.setVelocity(-speed, 0)
