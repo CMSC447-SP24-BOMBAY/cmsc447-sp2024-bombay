@@ -72,9 +72,21 @@ def login():
 
             cur.close()
             conn.close()
+            # set all level times to -1
             conn = sqlite3.connect("game.db")
             cur = conn.cursor()
-            
+            cur.execute("""
+                        UPDATE player
+                        SET level1_time = -1,
+                            level2_time = -1,
+                            level3_time = -1
+                        WHERE player.name = ?
+                        """, [data["username"]])
+            conn.commit()
+            cur.close()
+            conn.close()
+            conn = sqlite3.connect("game.db")
+            cur = conn.cursor()
             # execute query
             res = cur.execute("""
                               SELECT player.name, player.level_id, player.level1_time, player.level2_time, player.level3_time
@@ -337,9 +349,11 @@ def time_post(name, level, time):
                 cur.close()
                 conn.close()
                 raise Exception("Error updating time")
-
             cur.close()
             conn.close()
+            if(level == 3):
+                score = time_get(name, 1) + time_get(name, 2) + time_get(name, 3)
+                leaderboard_post(name, score)
             return jsonify({str(HTTPStatus.OK.value):"Time updated"})
     except sqlite3.Error as e:
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
