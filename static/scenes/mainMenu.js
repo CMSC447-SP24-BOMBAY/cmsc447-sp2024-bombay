@@ -18,6 +18,8 @@ export default class mainMenu extends Phaser.Scene{
 
         this.load.image("leaderboard", '/static/Assets/Menu Assets/Transparent/leaderboard_Transparent.png')
 
+        //this.load.image("settings", '/static/Assets/Menu Assets/Transparent/settings_transparent.png')
+
         this.load.atlas('Main Niko', '/static/Assets/Character_Sprites/Blue Niko/idle_spritesheet.png', '/static/Assets/Character_Sprites/Blue Niko/idle_spritesheet.json')
 
         this.load.audio("CaveStory01_music", "/static/Assets/Menu Assets/music/CaveStory-01.mp3")
@@ -45,9 +47,10 @@ export default class mainMenu extends Phaser.Scene{
         this.add.image(this.game.renderer.width/1.25 ,this.game.renderer.height/1.5 , "background").setScale(0.75,0.75)
         this.add.image(this.game.renderer.width/2 ,this.game.renderer.height/6, "title").setScale(0.60,0.60)
         let playButton = this.add.image(this.game.renderer.width/4 ,this.game.renderer.height/3, "play").setScale(0.60,0.60)
-        let leadButton = this.add.image(this.game.renderer.width/4 ,this.game.renderer.height/2, "leaderboard").setScale(0.30,0.30)
-        let quit = this.add.image(this.game.renderer.width/5.8 ,this.game.renderer.height/1.6, "quit").setScale(0.35,0.35)
-    
+        let leadButton = this.add.image(this.game.renderer.width/4 ,this.game.renderer.height/1.7, "leaderboard").setScale(0.30,0.30)
+        let quit = this.add.image(this.game.renderer.width/5.8 ,this.game.renderer.height/1.4, "quit").setScale(0.35,0.35)
+        let settings = this.add.image(this.game.renderer.width/4, this.game.renderer.height/2.1, "leaderboard").setScale(0.30, 0.30)
+
         //Music - From Cave Story (Im a nerd)
         this.sound.play("CaveStory01_music", {
             loop: true
@@ -77,7 +80,6 @@ export default class mainMenu extends Phaser.Scene{
             hoverSp.setVisible(false)
         })
         playButton.on("pointerup", ()=>{
-            console.log("Play Button Clicked")
             this.scene.start('levelSelect')
             this.game.sound.stopAll();
             this.scene.stop('mainMenu')
@@ -95,12 +97,11 @@ export default class mainMenu extends Phaser.Scene{
             hoverSp.setVisible(false)
         })
         leadButton.on("pointerup", ()=>{
-            console.log("Leaderboard Button Clicked")
             this.onLeaderboardPressed()
         })
 
         //  Quit Button Events
-        quit.setInteractive();
+        quit.setInteractive()
         quit.on("pointerover", ()=>{
             hoverSp.setVisible(true)
             hoverSp.play("idle")
@@ -112,6 +113,24 @@ export default class mainMenu extends Phaser.Scene{
         })
         quit.on("pointerup", ()=>{
             window.location.reload();
+        })
+
+        //Settings Button Events
+        settings.setInteractive()
+        settings.on("pointerover", ()=>{
+            hoverSp.setVisible(true)
+            hoverSp.play("idle")
+            hoverSp.x = 25
+            hoverSp.y = settings.y
+        })
+        settings.on("pointerout", ()=>{
+            hoverSp.setVisible(false)
+        })
+        settings.on("pointerup", ()=>{
+            console.log("Settings Clicked")
+            this.scene.start('levelSelect')
+            this.game.sound.stopAll();
+            this.scene.stop('mainMenu')
         })
     }
 
