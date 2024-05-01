@@ -8,9 +8,9 @@ table_scripts = [
     CREATE TABLE IF NOT EXISTS player (
         name        TEXT    PRIMARY KEY,
         level_id    INTEGER DEFAULT 1,
-        level1_time TEXT    DEFAULT NULL,
-        level2_time TEXT    DEFAULT NULL,
-        level3_time TEXT    DEFAULT NULL
+        level1_time INTEGER    DEFAULT NULL,
+        level2_time INTEGER    DEFAULT NULL,
+        level3_time INTEGER    DEFAULT NULL
     );
     """,
     """
