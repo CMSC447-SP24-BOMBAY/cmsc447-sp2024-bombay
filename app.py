@@ -300,9 +300,7 @@ def time_get(name, level):
             # validate query result
             if res:
                 # format time response
-                response = {}
-                for col, row in zip([column[0] for column in cur.description], res):
-                    response[col] = row
+                response = {'time': res[0]}
             # error executing query
             else:
                 cur.close()

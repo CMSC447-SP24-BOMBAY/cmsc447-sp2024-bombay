@@ -39,6 +39,7 @@ export default class levelSelect extends Phaser.Scene{
     }
 
     create(){
+        var self = this
         //Creates all the images
         this.add.image(this.game.renderer.width/1.25 ,this.game.renderer.height/1.5 , "levelSelect_bg").setScale(0.75,0.75)
         let level1 = this.add.image(this.game.renderer.width/1.5 ,this.game.renderer.height/6, "level1").setScale(0.5, 0.5)
@@ -101,7 +102,7 @@ export default class levelSelect extends Phaser.Scene{
             hoverSp.setVisible(false)
         })
         level2.on("pointerup", ()=>{
-            fetch('/api/time/' + this.register.get('username') + '/2', {method: 'GET'})
+            fetch('/api/time/' + self.registry.get('username') + '/1', {method: 'GET'})
             .then(response => response.json())
             .then(data => {
                 console.log(data)
@@ -136,7 +137,7 @@ export default class levelSelect extends Phaser.Scene{
             hoverSp.setVisible(false)
         })
         level3.on("pointerup", ()=>{
-            fetch('/api/time/' + this.register.get('username') + '/3', {method: 'GET'})
+            fetch('/api/time/' + self.registry.get('username') + '/2', {method: 'GET'})
             .then(response => response.json())
             .then(data => {
                 console.log(data)
