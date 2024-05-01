@@ -375,7 +375,7 @@ export default class level3 extends Game{
                 else if(this.interactCola && this.obtainedQuarter){
                     this.message = [["Alrighty, lemme just pop this quarter in rq!", "..."], ["..."], ["its uh, not giving me the stone... It got stuck", "Are you serious!", "*Kicks machine*"], ["Oh hey it popped out!"]]
                     this.dialog()
-                    this.niko.inventory.push("Refined Clear Stone")
+                    this.niko.inventory.push("Refined Light Green Stone")
                     const index = this.niko.inventory.indexOf("Quarter")
                     this.niko.inventory.splice(index, 1)
                 }
@@ -401,10 +401,10 @@ export default class level3 extends Game{
                     this.message = [["There is some really shiny stone at the back of this safe.", "Lemme see if I can-", "*reaches into safe*"], ["*Bzzt Bzzt*", "- High_Power_Security_Gate_Active -"], ["A security gate? How do I lower the power here?"]]
                     this.dialog()
                 }
-                else if(!this.niko.inventory.includes("Light Blue Refined Stone") && this.roomPower < 2){
+                else if(!this.niko.inventory.includes("Refined Light Blue Stone") && this.roomPower < 2){
                     this.message = [["Oh neat, the security system here seems to be powered off!"], ["Prolly cuz of how much power these rooms have.", "But hey! Would ya look at that", "Another one of em shiny looking stones!"]]
                     this.dialog()
-                    this.niko.inventory.push("Light Blue Refined Stone")
+                    this.niko.inventory.push("Refined Light Blue Stone")
                 }
                 else{
                     this.message = [["I already got the stone from here...", "I wonder what is in the rest of the safes?"]]
@@ -607,6 +607,499 @@ export default class level3 extends Game{
                     this.RBGcombination.push(3)
                 }
             },
+            "greenBin": ()=>{
+                if(this.binInHand == false){
+                    this.niko.inventory.push("green rock")
+                    this.binInHand = true
+                    this.message = [["Oh what a nice green rock.. its pretty heavy"]]
+                    this.dialog()
+                }
+                else{
+                    this.message = [["Hmm... these are kinda heavy", "I can only hold one of these at a time"]]
+                    this.dialog()
+                }
+            },
+            "orangeBin": ()=>{
+                if(this.binInHand == false){
+                    this.niko.inventory.push("orange rock")
+                    this.binInHand = true
+                    this.message = [["Oh what a nice orange rock.. its pretty heavy"]]
+                    this.dialog()
+                }
+                else{
+                    this.message = [["Hmm... these are kinda heavy", "I can only hold one of these at a time"]]
+                    this.dialog()
+                }
+            },
+            "redBin": ()=>{
+                if(this.binInHand == false){
+                    this.niko.inventory.push("red rock")
+                    this.binInHand = true
+                    this.message = [["Oh what a nice red rock.. its pretty heavy"]]
+                    this.dialog()
+                }
+                else{
+                    this.message = [["Hmm... these are kinda heavy", "I can only hold one of these at a time"]]
+                    this.dialog()
+                }
+            },
+            "purpleBin": ()=>{
+                if(this.binInHand == false){
+                    this.niko.inventory.push("purple rock")
+                    this.binInHand = true
+                    this.message = [["Oh what a nice purple rock.. its pretty heavy"]]
+                    this.dialog()
+                }
+                else{
+                    this.message = [["Hmm... these are kinda heavy", "I can only hold one of these at a time"]]
+                    this.dialog()
+                }
+            },
+            "elemPlace":() =>{
+                if(this.niko.inventory.includes("Refine purple stone")){
+                    this.message = [["There's nothing else to do here"]]
+                    this.dialog()
+                }
+                else if(this.binInHand == true){
+                    if (this.niko.inventory.includes("green rock")){
+                        if (this.floorTile.x == 8 && this.floorTile.y == 13){
+                            if(this.leftElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("green rock"), 1)
+                                this.leftElemPlace.push("green rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this green rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.leftElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                        else if (this.floorTile.x == 14 && this.floorTile.y == 13){
+                            if(this.rightElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("green rock"), 1)
+                                this.rightElemPlace.push("green rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this green rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.rightElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                    } 
+                    else if (this.niko.inventory.includes("red rock")){
+                        if (this.floorTile.x == 8 && this.floorTile.y == 13){
+                            if(this.leftElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("red rock"), 1)
+                                this.leftElemPlace.push("red rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this red rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.leftElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                        else if (this.floorTile.x == 14 && this.floorTile.y == 13){
+                            if(this.rightElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("red rock"), 1)
+                                this.rightElemPlace.push("red rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this red rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.rightElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                    } 
+                    else if (this.niko.inventory.includes("orange rock")){
+                        if (this.floorTile.x == 8 && this.floorTile.y == 13){
+                            if(this.leftElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("orange rock"), 1)
+                                this.leftElemPlace.push("orange rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this orange rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.leftElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                        else if (this.floorTile.x == 14 && this.floorTile.y == 13){
+                            if(this.rightElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("orange rock"), 1)
+                                this.rightElemPlace.push("orange rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this orange rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.rightElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                    } 
+                    else if (this.niko.inventory.includes("purple rock")){
+                        if (this.floorTile.x == 8 && this.floorTile.y == 13){
+                            if(this.leftElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("purple rock"), 1)
+                                this.leftElemPlace.push("purple rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this purple rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.leftElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                        else if (this.floorTile.x == 14 && this.floorTile.y == 13){
+                            if(this.rightElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("purple rock"), 1)
+                                this.rightElemPlace.push("purple rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this purple rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.rightElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                    }
+                    else if (this.niko.inventory.includes("bright red rock")){
+                        if (this.floorTile.x == 8 && this.floorTile.y == 13){
+                            if(this.leftElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("bright red rock"), 1)
+                                this.leftElemPlace.push("bright red rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this bright red rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.leftElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                        else if (this.floorTile.x == 14 && this.floorTile.y == 13){
+                            if(this.rightElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("bright red rock"), 1)
+                                this.rightElemPlace.push("bright red rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this bright red rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.rightElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                    }
+                    else if (this.niko.inventory.includes("magenta rock")){
+                        if (this.floorTile.x == 8 && this.floorTile.y == 13){
+                            if(this.leftElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("magenta rock"), 1)
+                                this.leftElemPlace.push("magenta rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this magenta rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.leftElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                        else if (this.floorTile.x == 14 && this.floorTile.y == 13){
+                            if(this.rightElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("magenta rock"), 1)
+                                this.rightElemPlace.push("magenta rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this magenta rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.rightElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                    }
+                    else if (this.niko.inventory.includes("fire rock")){
+                        if (this.floorTile.x == 8 && this.floorTile.y == 13){
+                            if(this.leftElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("fire rock"), 1)
+                                this.leftElemPlace.push("fire rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this fire rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.leftElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                        else if (this.floorTile.x == 14 && this.floorTile.y == 13){
+                            if(this.rightElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("fire rock"), 1)
+                                this.rightElemPlace.push("fire rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this fire rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.rightElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                    }
+                    else if (this.niko.inventory.includes("refined rock")){
+                        if (this.floorTile.x == 8 && this.floorTile.y == 13){
+                            if(this.leftElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("refined rock"), 1)
+                                this.leftElemPlace.push("refined rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this refined rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.leftElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                        else if (this.floorTile.x == 14 && this.floorTile.y == 13){
+                            if(this.rightElemPlace.length == 0) {
+                                this.niko.inventory.splice(this.niko.inventory.indexOf("refined rock"), 1)
+                                this.rightElemPlace.push("refined rock")
+                                this.binInHand = false
+                                this.message = [["Im gonna put this refined rock here"]]
+                                this.dialog()
+                            } else {
+                                this.message = [["There's already a " + this.rightElemPlace[0] + " here."]]
+                                this.dialog()
+                            }
+                        }
+                    }
+                }
+                else{
+                    this.message = [["I dont think I have anything to put here...", "In this rock shaped hole"]]
+                    this.dialog()
+                }
+            },
+            "shrine":() =>{
+                //when making a bright red rock
+                if(this.niko.inventory.includes("Refined purple stone")){
+                    this.message = [["Nothing else for me to combine here"]]
+                    this.dialog()
+                }
+                else if (this.leftElemPlace.includes("red rock") && this.rightElemPlace.includes("red rock")){
+                    if(this.binInHand == true){
+                        this.message = [["I should probably get all other rocks out of my inventory"]]
+                        this.dialog()
+                    }
+                    else{
+                        this.leftElemPlace = this.leftElemPlace.filter(rock => rock !== "red rock")
+                        this.rightElemPlace = this.rightElemPlace.filter(rock => rock !== "red rock")
+                        this.niko.inventory.push("bright red rock")
+                        this.binInHand = true
+                        this.message = [["Woah looks like combining two red rocks gets me a bright red rock"]]
+                        this.dialog()
+                    }
+                } 
+                else if ((this.leftElemPlace.includes("bright red rock") && this.rightElemPlace.includes("purple rock")) || (this.leftElemPlace.includes("purple rock") && this.rightElemPlace.includes("bright red rock"))) {
+                    if(this.binInHand == true){
+                        this.message = [["I should probably get all other rocks out of my inventory"]]
+                        this.dialog()
+                    }
+                    else{
+                        if (this.leftElemPlace.includes("bright red rock")){
+                            this.leftElemPlace = this.leftElemPlace.filter(rock => rock !== "bright red rock")
+                            this.rightElemPlace = this.rightElemPlace.filter(rock => rock !== "purple rock")
+                        }
+                        else{
+                            this.leftElemPlace = this.leftElemPlace.filter(rock => rock !== "purple rock")
+                            this.rightElemPlace = this.rightElemPlace.filter(rock => rock !== "bright red rock") 
+                        }
+                        this.niko.inventory.push("magenta rock")
+                        this.binInHand = true
+                        this.message = [["Combining the bright red rock with a purple rock gave me a magenta rock"]]
+                        this.dialog()
+                    }
+                } 
+                else if ((this.leftElemPlace.includes("magenta rock") && this.rightElemPlace.includes("orange rock")) || (this.leftElemPlace.includes("orange rock") && this.rightElemPlace.includes("magenta rock"))) {
+                    if(this.binInHand == true){
+                        this.message = [["I should probably get all other rocks out of my inventory"]]
+                        this.dialog()
+                    }
+                    else{
+                        if (this.leftElemPlace.includes("magenta rock")){
+                            this.leftElemPlace = this.leftElemPlace.filter(rock => rock !== "magenta rock")
+                            this.rightElemPlace = this.rightElemPlace.filter(rock => rock !== "orange rock")
+                        }
+                        else{
+                            this.leftElemPlace = this.leftElemPlace.filter(rock => rock !== "orange rock")
+                            this.rightElemPlace = this.rightElemPlace.filter(rock => rock !== "magenta rock")
+                        }                   
+                        this.niko.inventory.push("fire rock")
+                        this.binInHand = true
+                        this.message = [["Combining the magenta rock with an orange rock gave me a fire rock"]]
+                        this.dialog()
+                    }
+                } 
+                else if ((this.leftElemPlace.includes("fire rock") && this.rightElemPlace.includes("green rock")) || (this.leftElemPlace.includes("green rock") && this.rightElemPlace.includes("fire rock"))) {
+                    if(this.binInHand == true){
+                        this.message = [["I should probably get all other rocks out of my inventory"]]
+                        this.dialog()
+                    }
+                    else{
+                        if (this.leftElemPlace.includes("fire rock")){
+                            this.leftElemPlace = this.leftElemPlace.filter(rock => rock !== "fire rock")
+                            this.rightElemPlace = this.rightElemPlace.filter(rock => rock !== "green rock")
+                        }
+                        else{
+                            this.leftElemPlace = this.leftElemPlace.filter(rock => rock !== "green rock")
+                            this.rightElemPlace = this.rightElemPlace.filter(rock => rock !== "fire rock") 
+                        }
+                        this.niko.inventory.push("refined rock")
+                        this.binInHand = true
+                        this.message = [["Combining the fire rock with a green rock gave me a refined rock"]]
+                        this.dialog()
+                    }
+                } 
+                else if ((this.leftElemPlace.includes("refined rock") && this.rightElemPlace.includes("purple rock")) || (this.leftElemPlace.includes("purple rock") && this.rightElemPlace.includes("refined rock"))) {
+                    if(this.binInHand == true){
+                        this.message = [["I should probably get all other rocks out of my inventory"]]
+                        this.dialog()
+                    }
+                    else{
+                        if (this.leftElemPlace.includes("refined rock")){
+                            this.leftElemPlace = this.leftElemPlace.filter(rock => rock !== "refined rock")
+                            this.rightElemPlace = this.rightElemPlace.filter(rock => rock !== "purple rock")
+                        }
+                        else{
+                            this.leftElemPlace = this.leftElemPlace.filter(rock => rock !== "purple rock")
+                            this.rightElemPlace = this.rightElemPlace.filter(rock => rock !== "refined rock") 
+                        }
+                        this.niko.inventory.push("Refined Purple Stone")
+                        this.message = [["Combining the refined rock with a purple rock gave me a refined purple rock"]]
+                        this.dialog()
+                    }
+                } 
+                else if(this.leftElemPlace.length == 0 || this.rightElemPlace.length == 0){
+                    this.message = [["Nothing happened... looks like I need to have a rock on each side"]]
+                    this.dialog()
+                }
+                else {
+                    this.leftElemPlace.splice(0, this.leftElemPlace.length)
+                    this.rightElemPlace.splice(0, this.rightElemPlace.length)
+                    this.message = [["Nothing happened... I just got a black rock", "I might as well throw this away since it can't do anything"]]
+                    this.dialog()
+                }    
+            },
+            "shrineCabinet":() =>{
+                this.message = [["I wonder what this button does", "*BOOP*"], ["This shrine is used to combine rocks and upgrade their quality and refine them", "You can combine any two rocks but only certain combinations", "will actually provide useful items"], ["To gain the Purple Refined Stone you must combine different rocks in the", "shrine above"], ["First you must make a bright red rock", "Next you must use that to make a magenta rock", "Then use that to make a fire rock", "Then a refined rock and then finally a Refined Purple Stone"]]
+                this.dialog()
+            },
+            "pipes":() =>{
+                if(this.freezersChecked == false){
+                    this.message = [["Looks like these pipes are connected to the freezer..."]]
+                    this.dialog()
+                }
+                else{
+                    if(this.pipesBroken == true){
+                        this.message = [["Too bad I had to break these...", "I better hurry up and get out of here before someone sees what I did"]]
+                        this.dialog()
+                    }
+                    else{
+                        this.pipesBroken = true
+                        this.message = [["Maybe if I break these the freezer will unlock...", "Im just gonna hit this with my mop until it breaks!"],["*BANG* *BANG *BANG*"],["Oh... is that an off switch..."], ["Well its too late for that now"]]
+                        this.dialog()
+                    }
+                }
+            },
+            "marketFreezers":() =>{
+                if(this.freezersChecked == false){
+                    this.message = [["Oh it looks like theres a stone here!","Of course the door is locked..."],["Maybe if I just cut the power to this somehow..."]]
+                    this.dialog()
+                    this.freezersChecked = true
+                }
+                else{
+                    if (this.pipesBroken == true && !this.niko.inventory.includes("Frozen Stone") && !this.niko.inventory.includes("Refined Blue Stone")){
+                        this.niko.inventory.push("Frozen Stone")
+                        this.message = [["Well this stone looks like its been freeze dried", "I dont know if it'll work"],["I should probably find a way to rehydrate this"]]
+                        this.dialog()
+                    }
+                    else if(this.pipesBroken == false){
+                        this.message = [["I need to figure out how to open this..."]]
+                        this.dialog()
+                    }
+                    else{
+                        this.message = [["Well looks like all of this is going to go bad..."]]
+                        this.dialog()
+                    }
+                }
+            },
+            "bath":() =>{
+                if(this.niko.inventory.includes("Frozen Stone")){
+                    this.niko.inventory.push("Refined Blue Stone")
+                    this.niko.inventory.splice(this.niko.inventory.indexOf("Frozen Stone"), 1)
+                    this.message = [["Maybe I'll just soak the frozen stone in here for a bit..."],["It looks like its working!", "Guess thats another stone down"]]
+                    this.dialog()
+                }
+                else if(this.niko.inventory.includes("Refined Blue Stone")){
+                    this.message = [["Im kinda thirsty..."],["Ehh this just tastes like rocks"]]
+                    this.dialog()
+                }
+                else{
+                    this.message = [["The water here looks warm"]]
+                    this.dialog()
+                }
+            },
+            "hintMachine":() =>{
+                if(!this.hintBookInteracted){
+                    this.message = [["There is a wierd machine here!", "It has a label on it saying 'hint machine'", "There are instructions attached that says to interact when stuck"], ["Huh, I guess the hint machine got an upgrade"], ["[Gameplay Notice: You can use hints as many times as you want.", "However, sometimes the notes won't change.", "And using a hint, will cost you more of your overall score"]]
+                    this.dialog()
+                    this.hintBookInteracted = true
+                }
+                else if(!this.niko.inventory.includes("Refined Light Blue Stone")){
+                    this.hints += 1
+                    this.message = [["Hmm Im not really sure where to find the next stone...", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","'The Refined Light Blue Stone: ","It can be found in one of the vaults","You must make sure the power is at the right level inorder to get it","To edit the power level you should interact with the computer or fireplace"], ['hints used:'+this.hints]]
+                    this.dialog()    
+                }
+                else if(!this.niko.inventory.includes("Refined Red Stone")){
+                    this.hints += 1
+                    this.message = [["Hmm Im not really sure where to find the next stone...", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","'The Refined Red Stone: ","Remember that a refined stone can be found where the corresponding", "painting is found"],["Next to the Dolphin Painting is a list of steps", "that will tell you how to turn a red powder into a Refined", "Red Stone"],["The fireplace can help you increase the power to what it needs to be"] ['hints used:'+this.hints]]
+                    this.dialog()    
+                }
+                else if(!this.niko.inventory.includes("Refined Light Green Stone")){
+                    this.hints += 1
+                    this.message = [["Hmm Im not really sure where to find the next stone...", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","'The Refined Light Green Stone: ","Remember that a refined stone can be found where the corresponding", "painting is found"],["Next to the painting are vending machines...", "There is a Refined Light Green Stone in them", "There should also be a quarter around the area to help you","get it out"], ['hints used:'+this.hints]]
+                    this.dialog()    
+                }
+                else if(!this.niko.inventory.includes("Refined Blue Stone")){
+                    this.hints += 1
+                    this.message = [["Hmm Im not really sure where to find the next stone...", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","'The Refined Blue Stone: ","Remember that a refined stone can be found where the corresponding", "painting is found"],["Next to the Houses Painting is a freezer", "There are a few things around the freezer that can help you get and","fix up the stone"], ['hints used:'+this.hints]]
+                    this.dialog()    
+                }
+                else if(!this.niko.inventory.includes("Refined Orange Stone")){
+                    this.hints += 1
+                    this.message = [["Hmm Im not really sure where to find the next stone...", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","'The Refined Orange Stone: ","Remember that a refined stone can be found where the corresponding", "painting is found"],["Next to the Desert Painting is a broken time machine", "To get the stone inside of it you must interact with the", "star and moon machines in the right number and order", "and then you should be able to retrieve the stone"], ['hints used:'+this.hints]]
+                    this.dialog()    
+                }
+                else if(!this.niko.inventory.includes("Refined Green Stone")){
+                    this.hints += 1
+                    this.message = [["Hmm Im not really sure where to find the next stone...", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","'The Refined Green Stone: ","Remember that a refined stone can be found where the corresponding", "painting is found"],["The White Pillar Painting is in a room with no entrances... seemingly", "To figure out how to enter the room there is an encoded message","in a nearby bookshelf"],["Once you are in the room there is another encoded message","This will tell you the order in which you should interact","with the statues to get a stone out of the jukebox"], ['hints used:'+this.hints]]
+                    this.dialog()    
+                }
+                else if(!this.niko.inventory.includes("Refined Purple Stone")){
+                    this.hints += 1
+                    this.message = [["Hmm Im not really sure where to find the next stone...", "Lets see what the machine has to say", "*BOOP*"],["*Machine Whirring*","'The Refined Blue Stone: ","Remember that a refined stone can be found where the corresponding", "painting is found"],["Next to the Moon Painting is a set of altars", "There is an instruction guide outside of the room on how to make the stone"],["The recipes for creating the necesarry stones are :","red rock + red rock = bright red rock", "bright red rock + purple rock = magenta rock", "magenta rock + orange rock = fire rock"], ["fire rock + green rock = refined rock"], ['hints used:'+this.hints]]
+                    this.dialog()    
+                }
+                else{
+                    this.message = [["The time machine should be ready to activate"]]
+                    this.dialog()
+                }
+            },
+            "timeMachine":() =>{
+                if (this.niko.inventory.includes("Refined Light Blue Stone") && this.niko.inventory.includes("Refined Blue Stone") && this.niko.inventory.includes("Refined Light Green Stone") && this.niko.inventory.includes("Refined Green Stone") && this.niko.inventory.includes("Refined Purple Stone") && this.niko.inventory.includes("Refined Orange Stone")&&this.niko.inventory.includes("Refined Red Stone")){
+                    this.scene.stop("level3")
+                    this.scene.start('completed3', {time: this.endTime, hints: this.hints})
+                }
+                else{
+                    this.message = [["To reactivate time machine please put in the 7 refined stones :", "Light Blue, Red, Light Green, Blue, Orange, Green and Purple"]]
+                    this.dialog()
+                }
+            }
         }
     }
 
@@ -683,6 +1176,14 @@ export default class level3 extends Game{
 
         this.interactRGB = false
         this.RBGcombination = []
+
+        this.binInHand = false
+        this.leftElemPlace = []
+        this.rightElemPlace = []
+        this.hintBookInteracted = false
+        this.freezersChecked = false
+        this.pipesBroken = false
+        this.hints = 0
     }
 
     update(time, dTime){
