@@ -11,13 +11,13 @@ export default class cutscenes3 extends Phaser.Scene{
         this.load.image('3cut5', '/static/Assets/cutScenes/level3scenes/3cut5.png')
         this.load.image('3cut6', '/static/Assets/cutScenes/level3scenes/3cut6.png')
         this.load.image('3cut7', '/static/Assets/cutScenes/level3scenes/3cut7.png')
-        this.load.audio("cutsceneSong1", "/static/Assets/Menu Assets/music/SpongeBob Music - Hawaiian Train [Remaster].mp3")
+        this.load.audio("cutsceneSong3", "/static/Assets/Menu Assets/music/73. Kanako.mp3")
     }
 
     create(){
         let i = 1
         this.screen = this.physics.add.image(this.game.renderer.width/2, this.game.renderer.height/2, '3cut'+String(i)).setScale(0.78,1.05)
-        this.sound.play("cutsceneSong1", {
+        this.sound.play("cutsceneSong3", {
             loop: true,
             volume: 0.5
         })
@@ -31,7 +31,7 @@ export default class cutscenes3 extends Phaser.Scene{
                     document.removeEventListener("keydown", end)
                     this.game.sound.stopAll();
                     this.scene.start("levelSelect")
-                    this.scene.stop("cutscenes1")
+                    this.scene.stop("cutscenes3")
                 }
                 else{
                     i += 1
