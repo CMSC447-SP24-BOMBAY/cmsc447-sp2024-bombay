@@ -14,12 +14,13 @@ import level3 from "../scenes/level3.js";
 import cutscenes2 from "../scenes/cutscenes2.js";
 import cutscenes3 from "../scenes/cutscenes3.js";
 import cutscenes4 from "../scenes/cutscenes4.js";
+import settings from "../scenes/settings.js";
 
 var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    scene: [login, mainMenu, levelSelect, loader1, level1, loader2, level2, completed1, cutscenes1, loader3, level3, cutscenes2, cutscenes3, cutscenes4],
+    scene: [login, mainMenu, levelSelect, loader1, level1, loader2, level2, completed1, cutscenes1, loader3, level3, cutscenes2, cutscenes3, cutscenes4, settings],
     
     parent: 'canvas_body',
     dom: {

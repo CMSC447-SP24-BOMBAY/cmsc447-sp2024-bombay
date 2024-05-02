@@ -128,7 +128,7 @@ export default class mainMenu extends Phaser.Scene{
         })
         settings.on("pointerup", ()=>{
             console.log("Settings Clicked")
-            this.scene.start('levelSelect')
+            this.scene.start('settings')
             this.game.sound.stopAll();
             this.scene.stop('mainMenu')
         })
