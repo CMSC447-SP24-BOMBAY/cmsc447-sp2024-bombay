@@ -112,7 +112,7 @@ export default class Game extends Phaser.Scene{
 
         //The timer
         this.scene.timeText = this.add.text(0, 0, "Time: 0", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
-        this.scene.timeText.setScrollFactor(0)
+        this.scene.timeText.setScrollFactor(0).setDepth(100)
         let time=0
         this.endTime = time
         this.time.addEvent({

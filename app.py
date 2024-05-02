@@ -8,6 +8,7 @@ LEADERBOARD_TOP = 5
 app = Flask(__name__, static_folder='static', template_folder='templates')
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.json.sort_keys = False
 
 @app.route("/", methods=['GET','POST'])
 def home():
@@ -383,6 +384,33 @@ def leaderboard_post(name, score):
             cur.close()
             conn.close()
             return jsonify({str(HTTPStatus.OK.value):"Leaderboard updated"})
+    except sqlite3.Error as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+    except Exception as e:
+        return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
+    
+@app.route("/api/bombay_leaderboard", methods=["GET"])
+@cross_origin()
+def bombay_leaderboard():
+    try:
+        if request.method == "GET":
+            conn = sqlite3.connect("game.db")
+            cur = conn.cursor()
+
+            res = cur.execute(""" SELECT leaderboard.player_name, leaderboard.player_score
+                            FROM leaderboard
+                            ORDER BY leaderboard.player_score DESC LIMIT ? 
+                        """, [LEADERBOARD_TOP])
+            response = {"Group":"Bombay", "Title":f"Top {LEADERBOARD_TOP} Scores"}
+            for rank, (name, score) in enumerate(res):
+                response[name] = score
+
+            cur.close()
+            conn.close()
+
+            print(jsonify({'data':response}))
+
+            return jsonify({'data':[response]}), HTTPStatus.OK.value
     except sqlite3.Error as e:
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
     except Exception as e:
