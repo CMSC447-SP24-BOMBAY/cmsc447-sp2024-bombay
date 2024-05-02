@@ -11,6 +11,9 @@ export default class settings extends Phaser.Scene{
         var downKey
         var leftKey
         var rightKey
+        var self = this
+        var newKey
+        var inUse
 
         const url = '/api/settings/' + this.registry.get('username')
         fetch(url, {
@@ -31,14 +34,13 @@ export default class settings extends Phaser.Scene{
             keybinds.push(String.fromCharCode(result['menu']))
         })
         .catch(error => {console.error('Error:', error)})
-        console.log(keybinds)
 
         const wait = () =>{
+            //Wait to get all keys
             if (keybinds.length != 7){
-                console.log(keybinds.length)
                 setTimeout(wait, 2)
             }
-                else{
+            else{
                 for(var i in keybinds){
                     if(keybinds[i] == '%'){
                         keybinds[i] = "Left Arrow"
@@ -53,8 +55,6 @@ export default class settings extends Phaser.Scene{
                         keybinds[i] = "Down Arrow"
                     }
                 }
-
-                console.log(keybinds)
 
                 this.r = this.add.rectangle(250, 200, 700, 500, 0x301934)
                 this.r.setStrokeStyle(4,0xefc53f)
@@ -73,13 +73,43 @@ export default class settings extends Phaser.Scene{
                 let rightText = this.add.text(0, 350, "Right: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)    
                 rightKey = this.add.text(175, 350, "" + keybinds[5], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
 
-                //backpackKey.setIneractive(new Phaser.Geom.Rectangle(0,0, backpackKey.width, backpackKey.height), Phaser.Geom.Rectangle.Contains)
+                //Set Backpack key
                 backpackKey.setInteractive()
                 backpackKey.on('pointerdown', function (pointer){
-                    console.log('here')
+                    self.input.keyboard.on('keydown', function(input){
+                        newKey = input.key.toUpperCase()
+                        for (var key in keybinds){
+                            if (keybinds[key] == newKey){
+                                inUse = true
+                            }
+                        }
+                        //Not a keybind for any other function
+                        if (!inUse){
+                            backpackKey.text = newKey
+                            this.setNewKey(backpackKey, newKey)
+                            console.log(newKey)
+                        }
+                        inUse = false
+                        return
+                    }, self)
+                    return
                 })
             }
         }
         wait()
+    }
+
+    setNewKey(functionality, assignment){
+        //Update keybind for the user
+        const url = '/api/settings/' + this.registry.get('username')
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({functionality: assignment})
+        })
+        .then(response => response.json())
+        .catch(error => {console.error('Error:', error)})
     }
 }
