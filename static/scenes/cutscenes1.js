@@ -18,7 +18,7 @@ export default class cutscenes1 extends Phaser.Scene{
         this.load.image('cut12', '/static/Assets/cutScenes/level1scenes/cut12.png')
         this.load.image('cut13', '/static/Assets/cutScenes/level1scenes/cut13.png')
         this.load.image('cut14', '/static/Assets/cutScenes/level1scenes/cut14.png')
-        this.load.audio("cutsceneSong1", "/static/Assets/Menu Assets/music/SpongeBob Music - Hawaiian Train [Remaster].mp3")
+        this.load.audio("cutsceneSong1", "/static/Assets/Menu Assets/music/11. Fever Pitch.mp3")
     }
 
     create(){

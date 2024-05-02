@@ -14,13 +14,13 @@ export default class cutscenes2 extends Phaser.Scene{
         this.load.image('2cut8', '/static/Assets/cutScenes/level2scenes/2cut8.png')
         this.load.image('2cut9', '/static/Assets/cutScenes/level2scenes/2cut9.png')
         this.load.image('2cut10', '/static/Assets/cutScenes/level2scenes/2cut10.png')
-        this.load.audio("cutsceneSong1", "/static/Assets/Menu Assets/music/SpongeBob Music - Hawaiian Train [Remaster].mp3")
+        this.load.audio("cutsceneSong2", "/static/Assets/Menu Assets/music/55. The Wild East.mp3")
     }
 
     create(){
         let i = 1
         this.screen = this.physics.add.image(this.game.renderer.width/2, this.game.renderer.height/2, '2cut'+String(i)).setScale(0.78,1.05)
-        this.sound.play("cutsceneSong1", {
+        this.sound.play("cutsceneSong2", {
             loop: true,
             volume: 0.5
         })
@@ -34,7 +34,7 @@ export default class cutscenes2 extends Phaser.Scene{
                     document.removeEventListener("keydown", end)
                     this.game.sound.stopAll();
                     this.scene.start("levelSelect")
-                    this.scene.stop("cutscenes1")
+                    this.scene.stop("cutscenes2")
                 }
                 else{
                     i += 1
