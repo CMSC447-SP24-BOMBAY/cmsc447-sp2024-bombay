@@ -107,12 +107,8 @@ export default class settings extends Phaser.Scene{
                 upKey.setInteractive()
                 upKey.on('pointerdown', function (pointer){
                     self.input.keyboard.once('keydown', function(input){
-<<<<<<< HEAD
                         // newKey = input.key.toUpperCase()
                         newKey = input.keyCode;
-=======
-                        newKey = input.key.toUpperCase()
->>>>>>> 3ea8b785b42363d8524b527f4eaac4f0c945fc18
                         this.checkInput(keybinds, 'up', upKey, newKey)
                     }, self)
                     return
@@ -170,10 +166,7 @@ export default class settings extends Phaser.Scene{
             if (keybinds[key] == newKey){
                 inUse = true
             }
-<<<<<<< HEAD
             // console.log(keybinds[key], newKey)
-=======
->>>>>>> 3ea8b785b42363d8524b527f4eaac4f0c945fc18
         }
         //Not a keybind for any other function
         if (!inUse){
@@ -194,10 +187,7 @@ export default class settings extends Phaser.Scene{
                 functionKey.text = String.fromCharCode(newKey)
             }
             this.setNewKey(functionality, newKey)
-<<<<<<< HEAD
             // console.log(newKey)
-=======
->>>>>>> 3ea8b785b42363d8524b527f4eaac4f0c945fc18
         }
 
         return
