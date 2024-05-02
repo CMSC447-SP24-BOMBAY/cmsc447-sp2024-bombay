@@ -72,15 +72,14 @@ export default class settings extends Phaser.Scene{
                 leftKey = this.add.text(175, 300, "" + keybinds[4], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
                 let rightText = this.add.text(0, 350, "Right: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)    
                 rightKey = this.add.text(175, 350, "" + keybinds[5], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+
+                //backpackKey.setIneractive(new Phaser.Geom.Rectangle(0,0, backpackKey.width, backpackKey.height), Phaser.Geom.Rectangle.Contains)
+                backpackKey.setInteractive()
+                backpackKey.on('pointerdown', function (pointer){
+                    console.log('here')
+                })
             }
         }
         wait()
-
-        //backpackKey.setIneractive(new Phaser.Geom.Rectangle(0,0, backpackKey.width, backpackKey.height), Phaser.Geom.Rectangle.Contains)
-        /*
-        backpackKey.on('pointerdown', function (pointer){
-            console.log('here')
-        })
-        */
     }
 }
