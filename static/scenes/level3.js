@@ -1163,6 +1163,18 @@ export default class level3 extends Game{
                     this.message = [["To reactivate time machine please put in the 7 refined stones :", "Light Blue, Red, Light Green, Blue, Orange, Green and Purple"]]
                     this.dialog()
                 }
+            },
+            "paleBookshelf": ()=>{
+                this.message = [["There is an out of place book!", "Lets see what it says"], ["Oh, its the same book as before.", "The one about the Ceasar Cipher...", "I wonder if that will be useful here..."]]
+                this.dialog()
+            },
+            "brownBookshelf": ()=>{
+                this.message = [["There are a bunch of cool figures along this bookshelf!"], ["There is a small bipedal Metal Action figure labeled MG Ray.", "A model gun with the Ace of Spades on the side.", "A skeleton with a blue hoodie.", "A blue bus with a balloon on top."],["And finally a tiny 'boulder'", "To be fair, its not really a 'boulder', Its a rock!"]]
+                this.dialog()
+            },
+            "computer": ()=>{
+                this.message = [["The computer has an open text file!", "It basically says that I need all 7 refined elements to the left", "in order to power the time machine!"], ["Oh neat the PC also has Destiny 2, Fortnite", "And like 50 gigs of pirated movies!", "YAY!"]]
+                this.dialog()
             }
         }
     }
