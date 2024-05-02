@@ -104,7 +104,6 @@ export default class levelSelect extends Phaser.Scene{
             .then(data => {
                 console.log(data)
                 if (data.time == -1){
-                    console.log("Level 2 is locked")
                     return
                 }
                 this.scene.start('loader2')
@@ -145,10 +144,8 @@ export default class levelSelect extends Phaser.Scene{
             .then(data => {
                 console.log(data)
                 if (data.time == -1){
-                    console.log("Level 3 is locked")
                     return
                 }
-                console.log("Level3 Button Clicked")
                 this.scene.start('loader3')
                 this.game.sound.stopAll();
                 this.scene.stop('levelSelect')

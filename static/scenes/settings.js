@@ -15,6 +15,7 @@ export default class settings extends Phaser.Scene{
         var newKey
         var inUse
 
+        //Get the current keybinds for the player
         const url = '/api/settings/' + this.registry.get('username')
         fetch(url, {
             method: 'GET',
@@ -41,6 +42,7 @@ export default class settings extends Phaser.Scene{
                 setTimeout(wait, 2)
             }
             else{
+                //Change the visual representation so it shows arrow keys
                 for(var i in keybinds){
                     if(keybinds[i] == '%'){
                         keybinds[i] = "Left Arrow"
@@ -78,19 +80,57 @@ export default class settings extends Phaser.Scene{
                 backpackKey.on('pointerdown', function (pointer){
                     self.input.keyboard.on('keydown', function(input){
                         newKey = input.key.toUpperCase()
-                        for (var key in keybinds){
-                            if (keybinds[key] == newKey){
-                                inUse = true
-                            }
-                        }
-                        //Not a keybind for any other function
-                        if (!inUse){
-                            backpackKey.text = newKey
-                            this.setNewKey(backpackKey, newKey)
-                            console.log(newKey)
-                        }
-                        inUse = false
-                        return
+                        this.checkInput(keybinds, 'interact', backpackKey, newKey)
+                    }, self)
+                    return
+                })
+
+                //Set interact key
+                interactKey.setInteractive()
+                interactKey.on('pointerdown', function (pointer){
+                    self.input.keyboard.on('keydown', function(input){
+                        newKey = input.key.toUpperCase()
+                        this.checkInput(keybinds, 'interact', interactKey, newKey)
+                    }, self)
+                    return
+                })
+
+                //Set up key
+                upKey.setInteractive()
+                upKey.on('pointerdown', function (pointer){
+                    self.input.keyboard.on('keydown', function(input){
+                        newKey = input.key.toUpperCase()
+                        this.checkInput(keybinds, 'up', upKey, newKey)
+                    }, self)
+                    return
+                })
+
+                //Set down key
+                downKey.setInteractive()
+                downKey.on('pointerdown', function (pointer){
+                    self.input.keyboard.on('keydown', function(input){
+                        newKey = input.key.toUpperCase()
+                        this.checkInput(keybinds, 'down', downKey, newKey)
+                    }, self)
+                    return
+                })
+
+                //Set left key
+                leftKey.setInteractive()
+                leftKey.on('pointerdown', function (pointer){
+                    self.input.keyboard.on('keydown', function(input){
+                        newKey = input.key.toUpperCase()
+                        this.checkInput(keybinds, 'left', leftKey, newKey)
+                    }, self)
+                    return
+                })
+
+                //Set right key
+                rightKey.setInteractive()
+                rightKey.on('pointerdown', function (pointer){
+                    self.input.keyboard.on('keydown', function(input){
+                        newKey = input.key.toUpperCase()
+                        this.checkInput(keybinds, 'right', rightKey, newKey)
                     }, self)
                     return
                 })
@@ -99,17 +139,34 @@ export default class settings extends Phaser.Scene{
         wait()
     }
 
+    checkInput(keybinds, functionality, functionKey, newKey){
+        var inUse
+
+        for (var key in keybinds){
+            if (keybinds[key] == newKey){
+                inUse = true
+            }
+        }
+        //Not a keybind for any other function
+        if (!inUse){
+            functionKey.text = newKey
+            this.setNewKey(functionality, newKey)
+            console.log(newKey)
+        }
+
+        return
+    }
+
     setNewKey(functionality, assignment){
         //Update keybind for the user
-        const url = '/api/settings/' + this.registry.get('username')
+        const url = '/api/settings/' + this.registry.get('username') + '/' + functionality + '/' + assignment.charCodeAt(0)
         fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({functionality: assignment})
         })
-        .then(response => response.json())
+        .then(response => {response.json()})
         .catch(error => {console.error('Error:', error)})
     }
 }
