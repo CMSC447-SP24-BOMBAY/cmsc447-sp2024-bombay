@@ -273,10 +273,8 @@ export default class level1 extends Game{
             decimalKeys.push(String.fromCharCode(result['left']))
             decimalKeys.push(String.fromCharCode(result['right']))
             decimalKeys.push(String.fromCharCode(result['menu']))
-            console.log(decimalKeys[0])
         })
         .catch(error => {console.error('Error:', error)})
-        console.log(decimalKeys[0])
 
         const wait = () =>{
             if(decimalKeys.length != 7){

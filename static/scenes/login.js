@@ -52,7 +52,6 @@ export default class login extends Phaser.Scene{
                             loginError.style.display = "block"
                             loginError.style.backgroundColor = "green"
                             loginError.textContent = 'User succesfully created' // Display the error message
-                            console.log(data)
                         }
                     })
                     .catch(error => {

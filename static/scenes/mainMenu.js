@@ -33,13 +33,11 @@ export default class mainMenu extends Phaser.Scene{
 
         this.load.on("progress", (percent)=>{
             loadingBar.fillRect(0, this.game.renderer.height/2, this.game.renderer.width * percent, 50);
-            console.log(percent);
         })
 
         this.load.on("complete", ()=>{
-            console.log("Completeed Load")
+            console.log("Completed Load")
         })
-        console.log(this.registry.get('username'))
     }
 
     create(){
@@ -127,7 +125,6 @@ export default class mainMenu extends Phaser.Scene{
             hoverSp.setVisible(false)
         })
         settings.on("pointerup", ()=>{
-            console.log("Settings Clicked")
             this.scene.start('settings')
             this.game.sound.stopAll();
             this.scene.stop('mainMenu')
@@ -208,7 +205,6 @@ export default class mainMenu extends Phaser.Scene{
         {
             if (event.target.name === 'close-button')
             {
-                console.log("close button clicked")
                 leaderboard.destroy();
             }
         })
