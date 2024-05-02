@@ -350,9 +350,6 @@ def time_post(name, level, time):
                 raise Exception("Error updating time")
             cur.close()
             conn.close()
-            if(level == 3):
-                score = time_get(name, 1) + time_get(name, 2) + time_get(name, 3)
-                leaderboard_post(name, score)
             return jsonify({str(HTTPStatus.OK.value):"Time updated"})
     except sqlite3.Error as e:
         return jsonify({'error':str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR.value
