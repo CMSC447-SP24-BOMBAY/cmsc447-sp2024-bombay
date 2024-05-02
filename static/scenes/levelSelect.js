@@ -30,11 +30,10 @@ export default class levelSelect extends Phaser.Scene{
 
         this.load.on("progress", (percent)=>{
             loadingBar.fillRect(0, this.game.renderer.height/2, this.game.renderer.width * percent, 50);
-            console.log(percent);
         })
 
         this.load.on("complete", ()=>{
-            console.log("Completeed Load")
+            console.log("Completed Load")
         })
     }
 
@@ -76,7 +75,6 @@ export default class levelSelect extends Phaser.Scene{
             hoverSp.setVisible(false)
         })
         level1.on("pointerup", ()=>{
-            console.log("Level1 Button Clicked")
             this.scene.start('loader1')
             this.game.sound.stopAll();
             this.scene.stop('levelSelect')
@@ -84,7 +82,6 @@ export default class levelSelect extends Phaser.Scene{
 
         anim1.setInteractive();
         anim1.on("pointerup", ()=>{
-            console.log("Cutscene 1 Clicked")
             this.scene.start('cutscenes1')
             this.game.sound.stopAll();
             this.scene.stop('levelSelect')
@@ -107,10 +104,8 @@ export default class levelSelect extends Phaser.Scene{
             .then(data => {
                 console.log(data)
                 if (data.time == -1){
-                    console.log("Level 2 is locked")
                     return
                 }
-                console.log("Level2 Button Clicked")
                 this.scene.start('loader2')
                 this.game.sound.stopAll();
                 this.scene.stop('levelSelect')
@@ -127,7 +122,6 @@ export default class levelSelect extends Phaser.Scene{
 
         anim2.setInteractive();
         anim2.on("pointerup", ()=>{
-            console.log("Cutscene 2 Clicked")
             this.scene.start('cutscenes2')
             this.game.sound.stopAll();
             this.scene.stop('levelSelect')
@@ -150,10 +144,8 @@ export default class levelSelect extends Phaser.Scene{
             .then(data => {
                 console.log(data)
                 if (data.time == -1){
-                    console.log("Level 3 is locked")
                     return
                 }
-                console.log("Level3 Button Clicked")
                 this.scene.start('loader3')
                 this.game.sound.stopAll();
                 this.scene.stop('levelSelect')
@@ -170,7 +162,6 @@ export default class levelSelect extends Phaser.Scene{
 
         anim3.setInteractive();
         anim3.on("pointerup", ()=>{
-            console.log("Cutscene 3 Clicked")
             this.scene.start('cutscenes3')
             this.game.sound.stopAll();
             this.scene.stop('levelSelect')
@@ -188,7 +179,6 @@ export default class levelSelect extends Phaser.Scene{
             hoverSp.setVisible(false)
         })
         quit.on("pointerup", ()=>{
-            console.log("Quit from Level Select Button Clicked")
             this.scene.start('mainMenu')
             this.game.sound.stopAll();
             this.scene.stop('levelSelect')
@@ -196,7 +186,6 @@ export default class levelSelect extends Phaser.Scene{
 
         anim4.setInteractive();
         anim4.on("pointerup", ()=>{
-            console.log("Cutscene 4 Clicked")
             this.scene.start('cutscenes4')
             this.game.sound.stopAll();
             this.scene.stop('levelSelect')
