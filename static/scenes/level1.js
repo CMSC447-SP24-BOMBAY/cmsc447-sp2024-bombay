@@ -252,6 +252,82 @@ export default class level1 extends Game{
     preload(){
         super.preload()
         this.load.image('table', '/static/Assets/Interactable Sprites/table.jpg')
+
+        //For Level1 only, we will display the controls to the user.
+        let decimalKeys = []
+
+        const url = '/api/settings/' + this.registry.get('username')
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => response.json())
+        .then(result => {
+            //The arrow keys are wierd as there are no ascii codes for arrow keys, but do take up 37-40
+            decimalKeys.push(String.fromCharCode(result['backpack']))
+            decimalKeys.push(String.fromCharCode(result['interact']))
+            decimalKeys.push(String.fromCharCode(result['up']))
+            decimalKeys.push(String.fromCharCode(result['down']))
+            decimalKeys.push(String.fromCharCode(result['left']))
+            decimalKeys.push(String.fromCharCode(result['right']))
+            decimalKeys.push(String.fromCharCode(result['menu']))
+            console.log(decimalKeys[0])
+        })
+        .catch(error => {console.error('Error:', error)})
+        console.log(decimalKeys[0])
+
+        const wait = () =>{
+            if(decimalKeys.length != 7){
+                setTimeout(wait, 2)
+            }
+            else{
+                for(var i in decimalKeys){
+                    if(decimalKeys[i] == '%'){
+                        decimalKeys[i] = "Left Arrow"
+                    }
+                    else if(decimalKeys[i] == '&'){
+                        decimalKeys[i] = "Up Arrow"
+                    }
+                    else if(decimalKeys[i] == "'"){
+                        decimalKeys[i] = "Right Arrow"
+                    }
+                    else if(decimalKeys[i] == '('){
+                        decimalKeys[i] = "Down Arrow"
+                    }
+                }
+        
+                this.scene.pause(this.currentLevel)
+                this.r = this.add.rectangle(250, 200, 700, 500, 0x301934)
+                this.r.setStrokeStyle(4,0xefc53f)
+        
+                let controls = this.add.text(150, 0, "Controls", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(3)
+                let backpackText = this.add.text(0, 100, "Backpack: "+decimalKeys[0], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let interactText = this.add.text(0, 150, "Interact: "+decimalKeys[1], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let upText = this.add.text(0, 200, "Up: "+decimalKeys[2], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let downText = this.add.text(0, 250, "Down: "+decimalKeys[3], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let leftText = this.add.text(0, 300, "Left: "+decimalKeys[4], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let rightText = this.add.text(0, 350, "Right: "+decimalKeys[5], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+        
+                //Kills the backpack
+                const end = () =>{
+                    this.r.destroy()
+                    controls.destroy()
+                    backpackText.destroy()
+                    interactText.destroy()
+                    upText.destroy()
+                    downText.destroy()
+                    leftText.destroy()
+                    rightText.destroy()
+                    this.scene.resume(this.currentLevel)
+                    document.removeEventListener("keydown", end)
+                }
+        
+                document.addEventListener("keydown", end)
+            }
+        }
+        wait()
     }
 
     create(){
