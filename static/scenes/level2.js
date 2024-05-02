@@ -977,7 +977,7 @@ export default class level2 extends Game{
 
         this.physics.add.collider(this.niko, this.wallslayer)
  
-        this.niko.setX(480)
+        this.niko.setX(410)
         this.niko.setY(360)
         //Hnt machine variables
         this.hintBookInteracted = false
