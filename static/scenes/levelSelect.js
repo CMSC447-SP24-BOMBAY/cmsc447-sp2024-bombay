@@ -38,6 +38,7 @@ export default class levelSelect extends Phaser.Scene{
     }
 
     create(){
+        var self = this
         //Creates all the images
         this.add.image(this.game.renderer.width/1.25 ,this.game.renderer.height/1.5 , "levelSelect_bg").setScale(0.75,0.75)
         let level1 = this.add.image(this.game.renderer.width/1.5 ,this.game.renderer.height/6, "level1").setScale(0.5, 0.5)
@@ -98,9 +99,26 @@ export default class levelSelect extends Phaser.Scene{
             hoverSp.setVisible(false)
         })
         level2.on("pointerup", ()=>{
-            this.scene.start('loader2')
-            this.game.sound.stopAll();
-            this.scene.stop('levelSelect')
+            fetch('/api/time/' + self.registry.get('username') + '/1', {method: 'GET'})
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.time == -1){
+                    console.log("Level 2 is locked")
+                    return
+                }
+                this.scene.start('loader2')
+                this.game.sound.stopAll();
+                this.scene.stop('levelSelect')
+            })
+
+            this.blocker = this.add.rectangle(400, 300, 600, 500, 0x4B006E)
+            this.blocker.setStrokeStyle(4, 0xefc53f);
+            this.blockerText = this.add.text(220, 270, ["Level 2 Not Unlocked","Complete level 1 to unlock."], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+            setTimeout(()=>{
+                this.blocker.destroy()
+                this.blockerText.destroy()
+            }, 3000)
         })
 
         anim2.setInteractive();
@@ -122,9 +140,27 @@ export default class levelSelect extends Phaser.Scene{
             hoverSp.setVisible(false)
         })
         level3.on("pointerup", ()=>{
-            this.scene.start('loader3')
-            this.game.sound.stopAll();
-            this.scene.stop('levelSelect')
+            fetch('/api/time/' + self.registry.get('username') + '/2', {method: 'GET'})
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.time == -1){
+                    console.log("Level 3 is locked")
+                    return
+                }
+                console.log("Level3 Button Clicked")
+                this.scene.start('loader3')
+                this.game.sound.stopAll();
+                this.scene.stop('levelSelect')
+            })
+
+            this.blocker = this.add.rectangle(400, 300, 600, 500, 0x4B006E)
+            this.blocker.setStrokeStyle(4, 0xefc53f);
+            this.blockerText = this.add.text(220, 270, ["Level 3 Not Unlocked","Complete level 2 to unlock."], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+            setTimeout(()=>{
+                this.blocker.destroy()
+                this.blockerText.destroy()
+            }, 3000)
         })
 
         anim3.setInteractive();

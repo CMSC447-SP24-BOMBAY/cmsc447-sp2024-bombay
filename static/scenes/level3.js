@@ -989,6 +989,70 @@ export default class level3 extends Game{
                 this.message = [["I wonder what this button does", "*BOOP*"], ["This shrine is used to combine rocks and upgrade their quality and refine them", "You can combine any two rocks but only certain combinations", "will actually provide useful items"], ["To gain the Purple Refined Stone you must combine different rocks in the", "shrine above"], ["First you must make a bright red rock", "Next you must use that to make a magenta rock", "Then use that to make a fire rock", "Then a refined rock and then finally a Refined Purple Stone"]]
                 this.dialog()
             },
+            "tempBin":() =>{
+                if (this.binInHand == true) {
+                    if (this.niko.inventory.includes("red rock")) {
+                        const index = this.niko.inventory.indexOf("red rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("green rock")) {
+                        const index = this.niko.inventory.indexOf("green rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()                       
+                    } 
+                    else if (this.niko.inventory.includes("orange rock")) {
+                        const index = this.niko.inventory.indexOf("orange rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("purple rock")) {
+                        const index = this.niko.inventory.indexOf("purple rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("bright red rock")) {
+                        const index = this.niko.inventory.indexOf("bright red rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("magenta rock")) {
+                        const index = this.niko.inventory.indexOf("magenta rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("fire rock")) {
+                        const index = this.niko.inventory.indexOf("fire rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("refined rock")) {
+                        const index = this.niko.inventory.indexOf("refined rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    }
+                }
+                else{
+                    this.message = [["I dont have any rocks to throw away"]]
+                    this.dialog()
+                }
+            },
             "pipes":() =>{
                 if(this.freezersChecked == false){
                     this.message = [["Looks like these pipes are connected to the freezer..."]]
@@ -1099,6 +1163,18 @@ export default class level3 extends Game{
                     this.message = [["To reactivate time machine please put in the 7 refined stones :", "Light Blue, Red, Light Green, Blue, Orange, Green and Purple"]]
                     this.dialog()
                 }
+            },
+            "paleBookshelf": ()=>{
+                this.message = [["There is an out of place book!", "Lets see what it says"], ["Oh, its the same book as before.", "The one about the Ceasar Cipher...", "I wonder if that will be useful here..."]]
+                this.dialog()
+            },
+            "brownBookshelf": ()=>{
+                this.message = [["There are a bunch of cool figures along this bookshelf!"], ["There is a small bipedal Metal Action figure labeled MG Ray.", "A model gun with the Ace of Spades on the side.", "A skeleton with a blue hoodie.", "A blue bus with a balloon on top."],["And finally a tiny 'boulder'", "To be fair, its not really a 'boulder', Its a rock!"]]
+                this.dialog()
+            },
+            "computer": ()=>{
+                this.message = [["The computer has an open text file!", "It basically says that I need all 7 refined elements to the left", "in order to power the time machine!"], ["Oh neat the PC also has Destiny 2, Fortnite", "And like 50 gigs of pirated movies!", "YAY!"]]
+                this.dialog()
             }
         }
     }
