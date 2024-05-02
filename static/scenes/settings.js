@@ -3,6 +3,9 @@ export default class settings extends Phaser.Scene{
         super('settings')
     }
 
+    preload(){
+        this.load.image("quit", '/static/Assets/Menu Assets/Transparent/Quit_Transparent.png')
+    }
     create(){
         var keybinds = []
         var backpackKey
@@ -62,18 +65,19 @@ export default class settings extends Phaser.Scene{
                 this.r.setStrokeStyle(4,0xefc53f)
 
                 //Displays each function and the current key assigned to it.
-                let backpackText = this.add.text(0, 100, "Backpack: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
-                backpackKey = this.add.text(175, 100, "" + keybinds[0], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
-                let interactText = this.add.text(0, 150, "Interact: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
-                interactKey = this.add.text(175, 150, "" + keybinds[1], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
-                let upText = this.add.text(0, 200, "Up: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
-                upKey = this.add.text(175, 200, "" + keybinds[2], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
-                let downText = this.add.text(0, 250, "Down: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
-                downKey = this.add.text(175, 250, "" + keybinds[3], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
-                let leftText = this.add.text(0, 300, "Left: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
-                leftKey = this.add.text(175, 300, "" + keybinds[4], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
-                let rightText = this.add.text(0, 350, "Right: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)    
-                rightKey = this.add.text(175, 350, "" + keybinds[5], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let backpackText = this.add.text(0, 50, "Backpack: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                backpackKey = this.add.text(175, 50, "" + keybinds[0], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let interactText = this.add.text(0, 100, "Interact: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                interactKey = this.add.text(175, 100, "" + keybinds[1], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let upText = this.add.text(0, 150, "Up: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                upKey = this.add.text(175, 150, "" + keybinds[2], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let downText = this.add.text(0, 200, "Down: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                downKey = this.add.text(175, 200, "" + keybinds[3], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let leftText = this.add.text(0, 250, "Left: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                leftKey = this.add.text(175, 250, "" + keybinds[4], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let rightText = this.add.text(0, 300, "Right: ", { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)    
+                rightKey = this.add.text(175, 300, "" + keybinds[5], { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }).setScale(2)
+                let quit = this.add.image(this.game.renderer.width/5.8 ,this.game.renderer.height/1.5, "quit").setScale(0.35,0.35)
 
                 //Set Backpack key
                 backpackKey.setInteractive()
@@ -133,6 +137,23 @@ export default class settings extends Phaser.Scene{
                         this.checkInput(keybinds, 'right', rightKey, newKey)
                     }, self)
                     return
+                })
+
+                //Quit Button Events
+                quit.setInteractive();
+                quit.on("pointerover", ()=>{
+                    hoverSp.setVisible(true)
+                    hoverSp.play("idle")
+                    hoverSp.x = 330
+                    hoverSp.y = quit.y
+                })
+                quit.on("pointerout", ()=>{
+                    hoverSp.setVisible(false)
+                })
+                quit.on("pointerup", ()=>{
+                    this.scene.start('mainMenu')
+                    this.game.sound.stopAll();
+                    this.scene.stop('levelSelect')
                 })
             }
         }
