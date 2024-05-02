@@ -989,6 +989,70 @@ export default class level3 extends Game{
                 this.message = [["I wonder what this button does", "*BOOP*"], ["This shrine is used to combine rocks and upgrade their quality and refine them", "You can combine any two rocks but only certain combinations", "will actually provide useful items"], ["To gain the Purple Refined Stone you must combine different rocks in the", "shrine above"], ["First you must make a bright red rock", "Next you must use that to make a magenta rock", "Then use that to make a fire rock", "Then a refined rock and then finally a Refined Purple Stone"]]
                 this.dialog()
             },
+            "tempBin":() =>{
+                if (this.binInHand == true) {
+                    if (this.niko.inventory.includes("red rock")) {
+                        const index = this.niko.inventory.indexOf("red rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("green rock")) {
+                        const index = this.niko.inventory.indexOf("green rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()                       
+                    } 
+                    else if (this.niko.inventory.includes("orange rock")) {
+                        const index = this.niko.inventory.indexOf("orange rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("purple rock")) {
+                        const index = this.niko.inventory.indexOf("purple rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("bright red rock")) {
+                        const index = this.niko.inventory.indexOf("bright red rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("magenta rock")) {
+                        const index = this.niko.inventory.indexOf("magenta rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("fire rock")) {
+                        const index = this.niko.inventory.indexOf("fire rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    } 
+                    else if (this.niko.inventory.includes("refined rock")) {
+                        const index = this.niko.inventory.indexOf("refined rock")
+                        this.niko.inventory.splice(index, 1)
+                        this.binInHand = false
+                        this.message = [["Lets throw away that rock"]]
+                        this.dialog()
+                    }
+                }
+                else{
+                    this.message = [["I dont have any rocks to throw away"]]
+                    this.dialog()
+                }
+            },
             "pipes":() =>{
                 if(this.freezersChecked == false){
                     this.message = [["Looks like these pipes are connected to the freezer..."]]
