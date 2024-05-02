@@ -396,7 +396,7 @@ def bombay_leaderboard():
 
             res = cur.execute(""" SELECT leaderboard.player_name, leaderboard.player_score
                             FROM leaderboard
-                            ORDER BY leaderboard.player_score DESC LIMIT ? 
+                            ORDER BY leaderboard.player_score ASC LIMIT ? 
                         """, [LEADERBOARD_TOP])
             response = {"Group":"Bombay", "Title":f"Top {LEADERBOARD_TOP} Scores"}
             for rank, (name, score) in enumerate(res):
